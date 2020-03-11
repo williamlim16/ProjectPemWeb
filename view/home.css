@@ -111,5 +111,11 @@
   color: white;
   background-color: #3b5998;
 }
+.avatar{
+  vertical-align: middle;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
 
 
