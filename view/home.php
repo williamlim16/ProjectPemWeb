@@ -7,7 +7,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="home.css">
+<<<<<<< HEAD:home.php
+    <link rel="stylesheet" href="css/home.css">
+=======
+    <link rel="stylesheet" href="view/home.css">
+>>>>>>> 23b540a165f325f039a2fc6e8e26b485b2ed6503:view/home.php
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
 
@@ -30,13 +34,30 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link disabled" href="#">My Profile</a>
+                </li> -->
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button> -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+
+                        <a href="#" class="nav-link" data-toggle="dropdown">
+                            <img src="defaultProfile.png" alt="Photo Avatar" id="profileavatar" class="avatar" style="width: 50px">
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right animate slideIn">
+                            <a href="profile.php" class="dropdown-item">Signed in as <br><strong>{{username}}</strong></a>
+                            <div class="dropdown-divider"></div>
+                            <a href="profile.php" class="dropdown-item">My Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a (click)="HeaderlogOut()" class="dropdown-item">Logout</a>
+                        </div>
+
+                    </li>
+                </ul>
             </form>
         </div>
     </nav>
@@ -45,9 +66,8 @@
 
         <div class="card text-left" style="margin: 20px">
             <div class="card-header">
-                <img src="../resource/avatar.png" class="avatar float-left rounded-circle" alt="">
+                <img src="resource/avatar.png" class="float-left ava">
                 <span class="d-inline-block align-middle">
-
                     <h5>
                         Username
                     </h5>

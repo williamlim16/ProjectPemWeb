@@ -1,5 +1,7 @@
 <?php
+
 class user
+
 {
     var $username;
     var $firstName;
