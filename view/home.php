@@ -1,12 +1,17 @@
 <!doctype html>
 <html lang="en">
 
+
 <head>
     <title>X-Self</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<<<<<<< HEAD:home.php
     <link rel="stylesheet" href="css/home.css">
+=======
+    <link rel="stylesheet" href="view/home.css">
+>>>>>>> 23b540a165f325f039a2fc6e8e26b485b2ed6503:view/home.php
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
 
@@ -60,33 +65,33 @@
     <div class="container">
 
         <div class="card text-left" style="margin: 20px">
-            <img class="card-img-top" src="holder.js/100px180/" alt="">
+            <div class="card-header">
+                <img src="resource/avatar.png" class="float-left ava">
+                <span class="d-inline-block align-middle">
+                    <h5>
+                        Username
+                    </h5>
+                </span>
+            </div>
             <div class="card-body">
-                <h4 class="card-title">Title</h4>
-                <p class="card-text">Body</p>
+                <div class="card-title">
+                    <h2>
+                        Post Title
+                    </h2>
+                </div>
+                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque corporis tempora aspernatur laborum repellat deleniti eum odit impedit quis. Cum facilis tempora dolorem exercitationem consequuntur tenetur, natus voluptates assumenda hic vitae. Dicta officiis odit omnis saepe exercitationem cumque assumenda repellendus at asperiores qui error quis, laboriosam magni voluptates nisi pariatur totam deleniti molestiae porro nihil voluptatum. Perferendis accusamus quaerat sequi? Similique nemo nostrum quibusdam exercitationem, porro dignissimos architecto consequatur magni pariatur maxime reiciendis deserunt dolorum atque incidunt fuga harum veniam expedita mollitia sit, commodi, quo inventore placeat? Rerum, eius nobis sequi sed, repudiandae ullam, consequatur omnis et ab eos fugiat?</p>
             </div>
         </div>
         <div class="card text-left" style="margin: 20px">
-            <img class="card-img-top" src="holder.js/100px180/" alt="">
             <div class="card-body">
-                <h4 class="card-title">Title</h4>
-                <p class="card-text">Body</p>
+                <h4 class="card-title">Post Title</h4>
+                <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque corporis tempora aspernatur laborum repellat deleniti eum odit impedit quis. Cum facilis tempora dolorem exercitationem consequuntur tenetur, natus voluptates assumenda hic vitae. Dicta officiis odit omnis saepe exercitationem cumque assumenda repellendus at asperiores qui error quis, laboriosam magni voluptates nisi pariatur totam deleniti molestiae porro nihil voluptatum. Perferendis accusamus quaerat sequi? Similique nemo nostrum quibusdam exercitationem, porro dignissimos architecto consequatur magni pariatur maxime reiciendis deserunt dolorum atque incidunt fuga harum veniam expedita mollitia sit, commodi, quo inventore placeat? Rerum, eius nobis sequi sed, repudiandae ullam, consequatur omnis et ab eos fugiat?</p>
+
             </div>
         </div>
-        <div class="card text-left" style="margin: 20px">
-            <img class="card-img-top" src="holder.js/100px180/" alt="">
-            <div class="card-body">
-                <h4 class="card-title">Title</h4>
-                <p class="card-text">Body</p>
-            </div>
-        </div>
-        <div class="card text-left" style="margin: 20px">
-            <img class="card-img-top" src="holder.js/100px180/" alt="">
-            <div class="card-body">
-                <h4 class="card-title">Title</h4>
-                <p class="card-text">Body</p>
-            </div>
-        </div>
+
+
+    </div>
     </div>
 
 
