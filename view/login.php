@@ -18,7 +18,12 @@
 
 
     <!-- Bootstrap CSS -->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Google reCAPTCHA-->
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
 </head>
 
 <body>
@@ -47,8 +52,15 @@
                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                                 <label class="custom-control-label" for="customCheck1">Remember password</label>
                             </div>
+                            <div class="g-recaptcha" data-sitekey="6Lf1E9kUAAAAABm_-Q-sgcnjaTX1d11-guJJ1m4X" style="margin-bottom: 10px">
+                            </div>
+
+                            <hr class="size=4">
                             <?php if (isset($invalid) && $invalid) { ?>
                                 <p class='text-danger'>Invalid credentials.</p>
+                            <?php } ?>
+                            <?php if (isset($spammer) && $spammer) { ?>
+                                <p class='text-danger'>Please complete the Captcha.</p>
                             <?php } ?>
                             <input type="hidden" name="do" value="login_check.php">
                             <input class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit" value="Sign In">
