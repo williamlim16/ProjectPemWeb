@@ -1,14 +1,14 @@
 <?php
-class loginCheck
+class LoginModel
 {
     var $username;
     var $password;
-    // comment
-    function __construct($susername, $spassword)
-    {
-        $this->username = $susername;
 
-        $this->password = $spassword;
+    function __construct($username, $password)
+    {
+        $this->username = $username;
+
+        $this->password = $password;
     }
     public function getusername()
     {
@@ -20,7 +20,7 @@ class loginCheck
     }
     public function setusername($str)
     {
-        $this->username    = $str;
+        $this->username = $str;
     }
     public function setpassword($str)
     {
