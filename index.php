@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['loc'])) $loc = $_POST['loc'];
 
-else $loc = 'login.php';
+else $loc = 'home.php';
 
 
 // include 'include/db_connect.php';
