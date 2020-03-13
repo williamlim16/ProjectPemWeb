@@ -3,6 +3,7 @@ class loginCheck
 {
     var $username;
     var $password;
+    // comment
     function __construct($susername, $spassword)
     {
         $this->username = $susername;
