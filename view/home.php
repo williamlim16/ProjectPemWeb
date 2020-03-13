@@ -42,7 +42,7 @@
                     <li class="nav-item dropdown">
 
                         <a href="#" class="nav-link" data-toggle="dropdown">
-                            <img src="defaultProfile.png" alt="Photo Avatar" id="profileavatar" class="avatar" style="width: 50px">
+                            <img src="resource/avatar.png" alt="Photo Avatar" id="profileavatar" class="avatar" style="width: 50px">
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right animate slideIn">
