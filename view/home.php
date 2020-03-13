@@ -7,7 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="view/home.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
 
@@ -45,9 +45,8 @@
 
         <div class="card text-left" style="margin: 20px">
             <div class="card-header">
-                <img src="../resource/avatar.png" class="avatar float-left rounded-circle" alt="">
+                <img src="resource/avatar.png" class="float-left ava">
                 <span class="d-inline-block align-middle">
-
                     <h5>
                         Username
                     </h5>
