@@ -9,4 +9,6 @@ if (isset($_POST['submitPost'])) {
     if (!$conn->query('INSERT INTO post (content, username, timestamp, picture) VALUES("' . $content . '", "' . $username . '","' . $timestamp . '", "' . $picture . '");')) {
         echo ("Error description: " . $conn->error);
     }
+
+    unset($_POST);
 }

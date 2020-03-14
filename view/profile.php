@@ -77,21 +77,14 @@ $users = new User(
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link" data-toggle="dropdown">
-                            <<<<<<< HEAD <img src="<?= $users->getprofilePicturePath() ?>" alt="Photo Avatar" id="profileavatar" class="avatar" style="width: 50px">
-                                =======
-                                <img src="img/ricardo1.jpg" alt="Photo Avatar" id="profileavatar" class="avatar" style="width: 50px">
-                                >>>>>>> master
+                            <img src="<?= $users->getprofilePicturePath() ?>" alt="Photo Avatar" id="profileavatar" class="avatar" style="width: 50px">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right animate slideIn">
-                            <<<<<<< HEAD <a href="profile.php" class="dropdown-item">Signed in as <br><strong><?= $users->getusername() ?></strong></a>
-                                =======
-                                <a href="profile.php" class="dropdown-item">Signed in as
-                                    <br><strong>{{username}}</strong></a>
-                                >>>>>>> master
-                                <div class="dropdown-divider"></div>
-                                <a href="profile.php" class="dropdown-item">My Profile</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item">Logout</a>
+                            <a href="profile.php" class="dropdown-item">Signed in as <br><strong><?= $users->getusername() ?></strong></a>
+                            <div class="dropdown-divider"></div>
+                            <a href="profile.php" class="dropdown-item">My Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item">Logout</a>
                         </div>
 
                     </li>
@@ -205,7 +198,6 @@ $users = new User(
                                             </div>
                                         </div>
                                         <input type="hidden" name="do" value="add_post.php">
-                                        <input type="hidden" name="do" value="login_check.php">
                                         <input type="hidden" name="loc" value="profile.php">
                                         <input type="hidden" name="username" value="<?= $users->username ?>">
                                         <input type="hidden" name="pp" value="<?= $users->profilePicturePath ?>">
