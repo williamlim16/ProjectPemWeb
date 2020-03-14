@@ -1,5 +1,4 @@
 <?php
-
 $query = "SELECT * FROM post WHERE username = '" . $_SESSION['user']->getUsername() . "'";
 $result = $conn->query($query);
 $posts = array();
@@ -28,7 +27,6 @@ $users = new User(
     $result2['userdesc']
 );
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,6 +53,7 @@ $users = new User(
 </head>
 
 <body>
+
     <!-- NAV -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background: linear-gradient(to right, #0062E6, #33AEFF)">
         <a class="navbar-brand" href="#" style="font-family: 'Pacifico', cursive; font-size:25px">Xpress Yourself</a>
@@ -73,17 +72,13 @@ $users = new User(
 
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button> -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
-
                         <a href="#" class="nav-link" data-toggle="dropdown">
-                            <img src="img/ricardo1.jpg" alt="Photo Avatar" id="profileavatar" class="avatar" style="width: 50px">
+                            <img src="<?= $users->getprofilePicturePath() ?>" alt="Photo Avatar" id="profileavatar" class="avatar" style="width: 50px">
                         </a>
-
                         <div class="dropdown-menu dropdown-menu-right animate slideIn">
-                            <a href="profile.php" class="dropdown-item">Signed in as <br><strong>{{username}}</strong></a>
+                            <a href="profile.php" class="dropdown-item">Signed in as <br><strong><?= $users->getusername() ?></strong></a>
                             <div class="dropdown-divider"></div>
                             <a href="profile.php" class="dropdown-item">My Profile</a>
                             <div class="dropdown-divider"></div>
@@ -103,7 +98,10 @@ $users = new User(
         <div class="w3-card">
             <div class="masthead" style="  background-image: url(' <?= $users->getcoverPath() ?>')">
                 <div class="container">
-                    <img src="<?= $users->getprofilePicturePath() ?> " class="profilePic">
+
+                    <div class="container">
+                        <img src="<?= $users->getprofilePicturePath() ?> " class="profilePic">
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -133,6 +131,7 @@ $users = new User(
                         </div>
                         <div class="w3-dark-text-grey w3-container">
                             <h4><?= "@" . $users->username ?></h4>
+                            <h5 style="color: black"><?= $users->userdesc ?></h5>
                         </div>
                         <div class="w3-container">
                             <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-blue"></i> <?= $users->getbdate(); ?></p>
@@ -195,11 +194,13 @@ $users = new User(
                                             </div>
                                         </div>
                                         <input type="hidden" name="do" value="add_post.php">
+                                        <input type="hidden" name="do" value="login_check.php">
                                         <input type="hidden" name="loc" value="profile.php">
-                                        <input type="hidden" name="loc" value="login.php">
+                                        <input type="hidden" name="username" value="<?= $users->username ?>">
+                                        <input type="hidden" name="pp" value="<?= $users->profilePicturePath ?>">
 
                                         <button type="submit" class="w3-button w3-theme btn-primary" name="submitPost">
-                                            <i class="fa fa-pen"></i>Post</button>
+                                            <i class="fa fa-pen"></i>&nbsp Post</button>
                                     </form>
                                 </div>
                             </div>
@@ -211,7 +212,7 @@ $users = new User(
                     foreach (array_reverse($posts) as $row) {
                         echo
                             '<div class="w3-container w3-card w3-white w3-round w3-margin"><br />
-                        <img src="' . $users->getprofilePicturePath()  . '" alt="avatar here" class="w3-left w3-margin-right" style="width:60px" />
+                        <img src="' . $row->getPicture()  . '" alt="avatar here" class="w3-left w3-margin-right postPicSize" style="width:60px" />
                         <span class="w3-right w3-opacity">' . $row->getTimestamp() . '</span>
                         <h4>' . $row->getUsername() . '</h4><br />
                         <hr class="w3-clear" />
@@ -230,7 +231,7 @@ $users = new User(
                         <div class="w3-container">
                             <p>Friend Request</p>
                             <img src="img/ricardo1.jpg" alt="Avatar" style="width:100%" /><br />
-                            <span>Michael Chen</span>
+                            <span>William Lim</span>
                             <div class="w3-row w3-opacity">
                                 <div class="w3-half">
                                     <button class="w3-button w3-block w3-green w3-section" title="Accept">

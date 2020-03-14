@@ -3,7 +3,7 @@ $invalid;
 $captcha;
 $spammer;
 if (isset($_POST['submit']) && $_POST['username'] == 'admin') {
-    $loginCred = new LoginModel('derp', md5('derp'));
+    $loginCred = new LoginModel('michen', md5('michael'));
     $_SESSION['user'] = $loginCred;
 }
 if (isset($_POST['g-recaptcha-response'])) $captcha = $_POST['g-recaptcha-response'];
@@ -37,6 +37,7 @@ if (!$captcha) {
                 // echo "<br>";
                 // echo $loginCred->getpassword();
                 if ($loginCred->getpassword() == md5($password)) {
+                    session_start();
                     $_SESSION['user'] = $loginCred;
                     // var_dump($_SESSION);
                 } else if (isset($_SESSION['user'])) unset($_SESSION['user']);
