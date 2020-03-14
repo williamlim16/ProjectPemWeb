@@ -1,4 +1,36 @@
-<!doctype html>
+<?php
+include '../include/db_connect.php';
+include '../model/postModel.php';
+include '../model/User.php';
+
+$query = "SELECT * FROM post WHERE username = 'Ricardo'";
+$result = $conn->query($query);
+$posts = array();
+foreach ($result as $row) array_push($posts, new postModel(
+    $row['postID'],
+    $row['content'],
+    $row['username'],
+    $row['timestamp'],
+    $row['picture']
+));
+
+// $query2 = "SELECT * FROM user WHERE firstname = 'derp'";
+// $result2 = $conn->query($query2);
+// $users = array();
+// foreach ($result2 as $row2) array_push($users, new User(
+//     $row2['username'],
+//     $row2['firstName'],
+//     $row2['lastName'],
+//     $row2['password'],
+//     $row2['bdate'],
+//     $row2['gender'],
+//     $row2['profilePicturePath'],
+//     $row2['coverPath'],
+//     $row2['contact'],
+//     $row2['userdesc']
+// ));
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,7 +50,7 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/profileStyle.css">
+    <link rel="stylesheet" href="../css/profileStyle.css">
     <link rel="stylesheet" href="css/footer.css">
 </head>
 
@@ -47,7 +79,7 @@
                     <li class="nav-item dropdown">
 
                         <a href="#" class="nav-link" data-toggle="dropdown">
-                            <img src="img/defaultProfile.png" alt="Photo Avatar" id="profileavatar" class="avatar" style="width: 50px">
+                            <img src="../img/ricardo1.jpg" alt="Photo Avatar" id="profileavatar" class="avatar" style="width: 50px">
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right animate slideIn">
@@ -71,7 +103,7 @@
         <div class="w3-card">
             <div class="masthead">
                 <div class="container">
-                    <img src="img/defaultProfile.png" class="profilePic">
+                    <img src="../img/ricardo1.jpg" class="profilePic">
                 </div>
             </div>
             <div class="row">
@@ -103,10 +135,10 @@
                             <h4>@ricardohusbando</h4>
                         </div>
                         <div class="w3-container">
-                            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-blue"></i>Designer</p>
-                            <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-blue"></i>London, UK</p>
-                            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-blue"></i>ex@mail.com</p>
-                            <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-blue"></i>1224435534</p>
+                            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-blue"></i>Male Dancer</p>
+                            <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-blue"></i>Situganteng, UK</p>
+                            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-blue"></i>milos@mail.com</p>
+                            <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-blue"></i>087775176573</p>
                             <hr>
 
                             <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
@@ -156,71 +188,36 @@
                             <div class="w3-card w3-round w3-white">
                                 <div class="w3-container w3-padding">
                                     <h6 class="w3-opacity">What's on your mind?</h6>
-                                    <p contenteditable="true" class="w3-border w3-padding">
-                                        Mr.Stark, I feel really good.
-                                    </p>
-                                    <button type="button" class="w3-button w3-theme btn-primary">
-                                        <i class="fa fa-pen"></i> Post
-                                    </button>
+                                    <form action="../control/add_post.php" method="post">
+                                        <div class="form-group row">
+                                            <input type="text" class="w3-border w3-padding form-control" name="post" id="post"> <br>
+                                            <!-- <input type="hidden" name="counter" value="add_post.php"> -->
+                                        </div>
+                                        <button type="submit" class="w3-button w3-theme btn-primary" name="submitPost">
+                                            <i class="fa fa-pen"></i>Post</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- write status -->
                     <!-- post -->
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
-                        <br />
-                        <img src="img/defaultProfile.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px" />
-                        <span class="w3-right w3-opacity">69 min</span>
-                        <h4>Ricardo Milos</h4>
-                        <br />
+                    <?php
+
+                    foreach ($posts as $row) {
+                        echo
+                            '<div class="w3-container w3-card w3-white w3-round w3-margin"><br />
+                        <img src="' . $row->getPicture()  . '" alt="avatar here" class="w3-left w3-margin-right" style="width:60px" />
+                        <span class="w3-right w3-opacity">' . $row->getTimestamp() . '</span>
+                        <h4>' . $row->getUsername() . '</h4><br />
                         <hr class="w3-clear" />
-                        <p>
-                            Felt cute might delete later idk.
-                        </p>
-                        <div class="w3-row-padding" style="margin:0 -16px">
-                            <div class="w3-half">
-                                <img src="img/ricardo1.jpg" style="width:100%" alt="Northern Lights" class="w3-margin-bottom" />
-                            </div>
-                            <div class="w3-half">
-                                <img src="img/ricardo2.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom" />
-                            </div>
-                        </div>
-                        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
-                            <i class="fa fa-thumbs-up"></i> Like
-                        </button>
-                        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom">
-                            <i class="fa fa-comment"></i> Comment
-                        </button>
-                    </div>
+                        <p>' . $row->getContent() . '</p>
+                        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Like</button>
+                        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> Comment</button>
+                        </div>';
+                    } ?>
                     <!-- post -->
-                    <!-- post -->
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
-                        <br />
-                        <img src="img/defaultProfile.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px" />
-                        <span class="w3-right w3-opacity">69 min</span>
-                        <h4>Ricardo Milos</h4>
-                        <br />
-                        <hr class="w3-clear" />
-                        <p>
-                            Felt cute might delete later idk.
-                        </p>
-                        <div class="w3-row-padding" style="margin:0 -16px">
-                            <div class="w3-half">
-                                <img src="img/ricardo1.jpg" style="width:100%" alt="Northern Lights" class="w3-margin-bottom" />
-                            </div>
-                            <div class="w3-half">
-                                <img src="img/ricardo2.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom" />
-                            </div>
-                        </div>
-                        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom">
-                            <i class="fa fa-thumbs-up"></i> Like
-                        </button>
-                        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom">
-                            <i class="fa fa-comment"></i> Comment
-                        </button>
-                    </div>
-                    <!-- post -->
+
 
                 </div>
                 <!-- card 2 -->
@@ -228,7 +225,7 @@
                     <div class="w3-card w3-round w3-white w3-center">
                         <div class="w3-container">
                             <p>Friend Request</p>
-                            <img src="img/michael.png" alt="Avatar" style="width:100%" /><br />
+                            <img src="../img/ricardo1.jpg" alt="Avatar" style="width:100%" /><br />
                             <span>Michael Chen</span>
                             <div class="w3-row w3-opacity">
                                 <div class="w3-half">

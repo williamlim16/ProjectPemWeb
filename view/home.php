@@ -45,15 +45,16 @@
 
                             <img src="resource/avatar.png" alt="Photo Avatar" id="profileavatar" class="avatar">
 
+
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right animate slideIn">
-                            <a href="profile.php" class="dropdown-item">Signed in as
-                                <br><strong>{{username}}</strong></a>
+                            <a href="view/profile.php" class="dropdown-item">Signed in as
+                                <br><strong>My Username</strong></a>
                             <div class="dropdown-divider"></div>
-                            <a href="profile.php" class="dropdown-item">My Profile</a>
+                            <a href="view/profile.php" class="dropdown-item">My Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a (click)="HeaderlogOut()" class="dropdown-item">Logout</a>
+                            <a class="dropdown-item">Logout</a>
                         </div>
 
                     </li>

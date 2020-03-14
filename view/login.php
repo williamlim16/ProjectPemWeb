@@ -18,15 +18,17 @@
 
 
     <!-- Bootstrap CSS -->
+    <<<<<<< HEAD=======>>>>>>> 4716d2fdadd13d481cdcd014843353fd31160ff7
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <!-- Google reCAPTCHA-->
-    <script src="https://www.google.com/recaptcha/api.js"></script>
+        <!-- Google reCAPTCHA-->
+        <script src="https://www.google.com/recaptcha/api.js"></script>
 
 </head>
 
 <body>
+
+
     <div class="container col-md-7">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -67,7 +69,7 @@
                             <input type="hidden" name="do" value="login_check.php">
                             <input class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit" value="Sign In">
                         </form>
-                        <form class="form-signin" method="POST" style="margin-top: 10px">
+                        <form class="form-signin" method="POST">
                             <button name='loc' value="register.php" class='btn btn-lg btn-block btn-warning text-uppercase'>Register</button>
                         </form>
                     </div>
