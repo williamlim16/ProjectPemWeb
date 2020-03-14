@@ -43,7 +43,8 @@
 
                         <a href="#" class="nav-link" data-toggle="dropdown">
 
-                            <img src="resource/avatar.png" alt="Photo Avatar" id="profileavatar" class="avatar" style="width: 50px">
+                            <img src="resource/avatar.png" alt="Photo Avatar" id="profileavatar" class="avatar">
+
 
                         </a>
 
