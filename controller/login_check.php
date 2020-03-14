@@ -37,6 +37,7 @@ if (!$captcha) {
                 // echo "<br>";
                 // echo $loginCred->getpassword();
                 if ($loginCred->getpassword() == md5($password)) {
+                    //SUCCESS LOGIN HERE
                     $_SESSION['user'] = $loginCred;
                     // var_dump($_SESSION);
                 } else if (isset($_SESSION['user'])) unset($_SESSION['user']);
