@@ -1,5 +1,5 @@
 <?php
-class postModel
+class PostModel
 {
     var $postid;
     var $content;
