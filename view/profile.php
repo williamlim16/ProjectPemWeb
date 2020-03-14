@@ -176,6 +176,7 @@ $users = new User(
                                 <div class="w3-round-xlarge w3-blue" style="height:24px;width:25%"></div>
                             </div>
                             <br>
+                            <button class="btn btn-warning">Edit Profile</button>
                         </div>
                     </div>
                 </div>
