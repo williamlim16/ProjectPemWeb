@@ -19,9 +19,13 @@
 
 
     <!-- Bootstrap CSS -->
+<<<<<<< HEAD
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+=======
     <!-- <<<<<<< HEAD=======>>>>>>> 4716d2fdadd13d481cdcd014843353fd31160ff7 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+>>>>>>> master
 
     <!-- Google reCAPTCHA-->
     <script src="https://www.google.com/recaptcha/api.js"></script>
@@ -45,6 +49,9 @@
                             <?php if (isset($insert_result) && $insert_result) {
                             ?>
                             <div class="form-label-group">
+<<<<<<< HEAD
+                                <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus name="username">
+=======
                                 <h5 class="text-success">Register successful!</h5>
                             </div>
                             <?php
@@ -53,6 +60,7 @@
                             <div class="form-label-group">
                                 <input type="text" id="inputUsername" class="form-control" placeholder="Username"
                                     required name="username">
+>>>>>>> master
                                 <label for="inputUsername">Username</label>
                             </div>
 
