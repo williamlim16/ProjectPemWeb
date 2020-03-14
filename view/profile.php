@@ -1,12 +1,9 @@
 <?php
-include '../include/db_connect.php';
-include '../model/postModel.php';
-include '../model/User.php';
 
-$query = "SELECT * FROM post WHERE username = 'Ricardo'";
+$query = "SELECT * FROM post WHERE username = '" . $_SESSION['user']->getUsername() . "'";
 $result = $conn->query($query);
 $posts = array();
-foreach ($result as $row) array_push($posts, new postModel(
+foreach ($result as $row) array_push($posts, new PostModel(
     $row['postID'],
     $row['content'],
     $row['username'],
@@ -14,21 +11,24 @@ foreach ($result as $row) array_push($posts, new postModel(
     $row['picture']
 ));
 
-// $query2 = "SELECT * FROM user WHERE firstname = 'derp'";
-// $result2 = $conn->query($query2);
-// $users = array();
-// foreach ($result2 as $row2) array_push($users, new User(
-//     $row2['username'],
-//     $row2['firstName'],
-//     $row2['lastName'],
-//     $row2['password'],
-//     $row2['bdate'],
-//     $row2['gender'],
-//     $row2['profilePicturePath'],
-//     $row2['coverPath'],
-//     $row2['contact'],
-//     $row2['userdesc']
-// ));
+$query2 = "SELECT * FROM user WHERE username = '" . $_SESSION['user']->getUsername() . "'";
+$result2 = $conn->query($query2);
+$result2 = $result2->fetch_assoc();
+
+$users = new User(
+    $result2['username'],
+    $result2['firstName'],
+    $result2['lastName'],
+    $result2['password'],
+    $result2['bdate'],
+    $result2['gender'],
+    $result2['profilePicturePath'],
+    $result2['coverPath'],
+    $result2['contact'],
+    $result2['userdesc']
+);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +50,7 @@ foreach ($result as $row) array_push($posts, new postModel(
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="../css/profileStyle.css">
+    <link rel="stylesheet" href="css/profileStyle.css">
     <link rel="stylesheet" href="css/footer.css">
 </head>
 
@@ -79,7 +79,7 @@ foreach ($result as $row) array_push($posts, new postModel(
                     <li class="nav-item dropdown">
 
                         <a href="#" class="nav-link" data-toggle="dropdown">
-                            <img src="../img/ricardo1.jpg" alt="Photo Avatar" id="profileavatar" class="avatar" style="width: 50px">
+                            <img src="img/ricardo1.jpg" alt="Photo Avatar" id="profileavatar" class="avatar" style="width: 50px">
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right animate slideIn">
@@ -101,9 +101,9 @@ foreach ($result as $row) array_push($posts, new postModel(
 
     <div class="container">
         <div class="w3-card">
-            <div class="masthead">
+            <div class="masthead" style="  background-image: url(' <?= $users->getcoverPath() ?>')">
                 <div class="container">
-                    <img src="../img/ricardo1.jpg" class="profilePic">
+                    <img src="<?= $users->getprofilePicturePath() ?> " class="profilePic">
                 </div>
             </div>
             <div class="row">
@@ -129,13 +129,13 @@ foreach ($result as $row) array_push($posts, new postModel(
                 <div class="w3-quarter col-3">
                     <div class="w3-white w3-text-grey w3-card-4">
                         <div class="w3-container w3-text-black">
-                            <h2 style="margin-top: 20px">Ricardo Milos</h2>
+                            <h2 style="margin-top: 20px"><?= $users->firstName . " " .  $users->lastName ?></h2>
                         </div>
                         <div class="w3-dark-text-grey w3-container">
-                            <h4>@ricardohusbando</h4>
+                            <h4><?= "@" . $users->username ?></h4>
                         </div>
                         <div class="w3-container">
-                            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-blue"></i>Male Dancer</p>
+                            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-blue"></i> <?= $users->getbdate(); ?></p>
                             <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-blue"></i>Situganteng, UK</p>
                             <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-blue"></i>milos@mail.com</p>
                             <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-blue"></i>087775176573</p>
@@ -188,11 +188,16 @@ foreach ($result as $row) array_push($posts, new postModel(
                             <div class="w3-card w3-round w3-white">
                                 <div class="w3-container w3-padding">
                                     <h6 class="w3-opacity">What's on your mind?</h6>
-                                    <form action="../control/add_post.php" method="post">
+                                    <form method="post">
                                         <div class="form-group row">
-                                            <input type="text" class="w3-border w3-padding form-control" name="post" id="post"> <br>
-                                            <!-- <input type="hidden" name="counter" value="add_post.php"> -->
+                                            <div class="container">
+                                                <input type="text" class="w3-border w3-padding form-control" name="post" id="post" style="height: 55px">
+                                            </div>
                                         </div>
+                                        <input type="hidden" name="do" value="add_post.php">
+                                        <input type="hidden" name="loc" value="profile.php">
+                                        <input type="hidden" name="loc" value="login.php">
+
                                         <button type="submit" class="w3-button w3-theme btn-primary" name="submitPost">
                                             <i class="fa fa-pen"></i>Post</button>
                                     </form>
@@ -203,11 +208,10 @@ foreach ($result as $row) array_push($posts, new postModel(
                     <!-- write status -->
                     <!-- post -->
                     <?php
-
-                    foreach ($posts as $row) {
+                    foreach (array_reverse($posts) as $row) {
                         echo
                             '<div class="w3-container w3-card w3-white w3-round w3-margin"><br />
-                        <img src="' . $row->getPicture()  . '" alt="avatar here" class="w3-left w3-margin-right" style="width:60px" />
+                        <img src="' . $users->getprofilePicturePath()  . '" alt="avatar here" class="w3-left w3-margin-right" style="width:60px" />
                         <span class="w3-right w3-opacity">' . $row->getTimestamp() . '</span>
                         <h4>' . $row->getUsername() . '</h4><br />
                         <hr class="w3-clear" />
@@ -225,7 +229,7 @@ foreach ($result as $row) array_push($posts, new postModel(
                     <div class="w3-card w3-round w3-white w3-center">
                         <div class="w3-container">
                             <p>Friend Request</p>
-                            <img src="../img/ricardo1.jpg" alt="Avatar" style="width:100%" /><br />
+                            <img src="img/ricardo1.jpg" alt="Avatar" style="width:100%" /><br />
                             <span>Michael Chen</span>
                             <div class="w3-row w3-opacity">
                                 <div class="w3-half">
