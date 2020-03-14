@@ -54,7 +54,9 @@
                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                                 <label class="custom-control-label" for="customCheck1">Remember password</label>
                             </div>
-                            <div class="g-recaptcha" data-sitekey="6Lf1E9kUAAAAABm_-Q-sgcnjaTX1d11-guJJ1m4X" style="margin-bottom: 10px">
+                            <div class="container center">
+                                <div class="g-recaptcha" data-sitekey="6Lf1E9kUAAAAABm_-Q-sgcnjaTX1d11-guJJ1m4X" style="margin-bottom: 10px">
+                                </div>
                             </div>
 
                             <hr class="size=4">
