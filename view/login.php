@@ -41,8 +41,8 @@
                         <h5 class="card-title text-center">Sign In</h5>
                         <form class="form-signin" method="POST" action="">
                             <div class="form-label-group">
-                                <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus name="username">
-                                <label for="username">Username</label>
+                                <input type="text" id="inputUsername" class="form-control" placeholder="Username" required name="username">
+                                <label for="inputUsername">Username</label>
                             </div>
 
                             <div class="form-label-group">
