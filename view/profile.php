@@ -37,24 +37,18 @@ $users = new User(
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
-        integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/profileStyle.css">
@@ -63,11 +57,9 @@ $users = new User(
 
 <body>
     <!-- NAV -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
-        style="background: linear-gradient(to right, #0062E6, #33AEFF)">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background: linear-gradient(to right, #0062E6, #33AEFF)">
         <a class="navbar-brand" href="#" style="font-family: 'Pacifico', cursive; font-size:25px">Xpress Yourself</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -88,8 +80,7 @@ $users = new User(
                     <li class="nav-item dropdown">
 
                         <a href="#" class="nav-link" data-toggle="dropdown">
-                            <img src="img/ricardo1.jpg" alt="Photo Avatar" id="profileavatar" class="avatar"
-                                style="width: 50px">
+                            <img src="img/ricardo1.jpg" alt="Photo Avatar" id="profileavatar" class="avatar" style="width: 50px">
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right animate slideIn">
@@ -154,8 +145,7 @@ $users = new User(
                             <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-blue"></i>087775176573</p>
                             <hr>
 
-                            <p class="w3-large"><b><i
-                                        class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
+                            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
                             <p>Adobe Photoshop</p>
                             <div class="w3-light-grey w3-round-xlarge w3-small">
                                 <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">90%</div>
@@ -176,8 +166,7 @@ $users = new User(
                             </div>
                             <br>
 
-                            <p class="w3-large w3-text-theme"><b><i
-                                        class="fa fa-globe fa-fw w3-margin-right w3-text-blue"></i>Languages</b></p>
+                            <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-blue"></i>Languages</b></p>
                             <p>English</p>
                             <div class="w3-light-grey w3-round-xlarge">
                                 <div class="w3-round-xlarge w3-blue" style="height:24px;width:100%"></div>
@@ -191,7 +180,10 @@ $users = new User(
                                 <div class="w3-round-xlarge w3-blue" style="height:24px;width:25%"></div>
                             </div>
                             <br>
-                            <button class="btn btn-warning">Edit Profile</button>
+                            <form class="form-signin" method="POST">
+                                <button name="loc" value="edit.php" class="btn btn-warning" style="margin-bottom: 15px;">Edit Profile</button>
+                            </form>
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -207,8 +199,7 @@ $users = new User(
                                     <form method="post">
                                         <div class="form-group row">
                                             <div class="container">
-                                                <input type="text" class="w3-border w3-padding form-control" name="post"
-                                                    id="post" style="height: 55px">
+                                                <input type="text" class="w3-border w3-padding form-control" name="post" id="post" style="height: 55px">
                                             </div>
                                         </div>
                                         <input type="hidden" name="do" value="add_post.php">
@@ -263,8 +254,6 @@ $users = new User(
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
 
