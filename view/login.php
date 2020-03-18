@@ -19,7 +19,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Google reCAPTCHA-->
     <script src="https://www.google.com/recaptcha/api.js"></script>
@@ -44,6 +43,11 @@
                             ?>
                                 <div class="form-label-group">
                                     <h5 class="text-success">Register successful!</h5>
+
+                                    <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus name="username">
+
+                                    <h5 class="text-success">Register successful!</h5>
+
                                 </div>
                             <?php
                             }
