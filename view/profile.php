@@ -28,7 +28,8 @@ $users = new User(
 );
 
 $query3 = "SELECT * FROM comment WHERE username = '" . $_SESSION['user']->getusername() . "'";
-$result3 = $conn->query($query2)
+$result3 = $conn->query($query2);
+$result3 = $result2->fetch_assoc();
 
 ?>
 <!DOCTYPE html>
