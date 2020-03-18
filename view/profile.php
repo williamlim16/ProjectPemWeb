@@ -211,20 +211,22 @@ $users = new User(
                     </div>
                     <!-- write status -->
                     <!-- post -->
-                    <?php
-                    foreach (array_reverse($posts) as $row) {
-                        echo
-                            '<div class="w3-container w3-card w3-white w3-round w3-margin"><br />
-                        <img src="' . $row->getPicture()  . '" alt="avatar here" class="w3-left w3-margin-right postPicSize" style="width:60px" />
-                        <span class="w3-right w3-opacity">' . $row->getTimestamp() . '</span>
-                        <h4>' . $row->getUsername() . '</h4><br />
-                        <hr class="w3-clear" />
-                        <p>' . $row->getContent() . '</p>
-                        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Like</button>
-                        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> Comment</button>
-                        </div>';
-                    } ?>
-                    <!-- post -->
+                    <?php foreach ($posts as $row) : ?>
+                        <div class="w3-container w3-card w3-white w3-round w3-margin"><br />
+                            <img src=" <?= $row->getPicture() ?>" alt="avatar here" class="w3-left w3-margin-right postPicSize" style="width:60px" />
+                            <span class="w3-right w3-opacity"> <?= $row->getTimestamp() ?> </span>
+                            <h4><?= $row->getUsername() ?></h4><br />
+                            <hr class="w3-clear" />
+                            <p><?= $row->getContent() ?></p>
+                            <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Like</button>
+                            <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#collapseExample<? $row->getId() ?>"><i class="fa fa-comment"></i> Comment</button>
+                            <div class="collapse" id="collapseExample<?= $row->getId() ?>">
+                                <div class="card card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
 
 
                 </div>
