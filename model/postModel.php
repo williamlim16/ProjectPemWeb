@@ -32,6 +32,10 @@ class PostModel
     {
         return $this->picture;
     }
+    public function getId()
+    {
+        return $this->postid;
+    }
     // public function getPostCount()
     // {
     //     return $this->postcount++;
