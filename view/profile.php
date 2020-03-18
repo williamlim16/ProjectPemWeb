@@ -1,7 +1,7 @@
 <?php
 $query = "SELECT * FROM post WHERE username = '" . $_SESSION['user']->getUsername() . "'";
 $result = $conn->query($query);
-$posts = array();
+$posts = array(); //gaperlu
 foreach ($result as $row) array_push($posts, new PostModel(
     $row['postID'],
     $row['content'],
@@ -211,19 +211,18 @@ $users = new User(
                     </div>
                     <!-- write status -->
                     <!-- post -->
-                    <?php
-                    foreach (array_reverse($posts) as $row) {
-                        echo
-                            '<div class="w3-container w3-card w3-white w3-round w3-margin"><br />
-                        <img src="' . $row->getPicture()  . '" alt="avatar here" class="w3-left w3-margin-right postPicSize" style="width:60px" />
-                        <span class="w3-right w3-opacity">' . $row->getTimestamp() . '</span>
-                        <h4>' . $row->getUsername() . '</h4><br />
-                        <hr class="w3-clear" />
-                        <p>' . $row->getContent() . '</p>
-                        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Like</button>
-                        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> Comment</button>
-                        </div>';
-                    } ?>
+                    <?php foreach ($posts as $row) : ?>
+                        <div class="w3-container w3-card w3-white w3-round w3-margin"><br />
+                            <img src=" <?= $row->getPicture() ?>" alt="avatar here" class="w3-left w3-margin-right postPicSize" style="width:60px" />
+                            <span class="w3-right w3-opacity"> <?= $row->getTimestamp() ?> </span>
+                            <h4><?= $row->getUsername() ?></h4><br />
+                            <hr class="w3-clear" />
+                            <p><?= $row->getContent() ?></p>
+                            <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Like</button>
+                            <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> Comment</button>
+                        </div>
+
+                    <?php endforeach; ?>
                     <!-- post -->
 
 
