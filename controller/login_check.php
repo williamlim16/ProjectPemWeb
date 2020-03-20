@@ -2,10 +2,10 @@
 $invalid;
 $captcha;
 $spammer;
-if (isset($_POST['submit']) && $_POST['username'] == 'admin') {
-    $loginCred = new LoginModel('derp', md5('derp'));
-    $_SESSION['user'] = $loginCred;
-}
+// if (isset($_POST['submit']) && $_POST['username'] == 'admin') {
+//     $loginCred = new LoginModel('michen', md5('michael'));
+//     $_SESSION['user'] = $loginCred;
+// }
 if (isset($_POST['g-recaptcha-response'])) $captcha = $_POST['g-recaptcha-response'];
 if (!$captcha) {
     $spammer = true;
@@ -40,7 +40,8 @@ if (!$captcha) {
                     //SUCCESS LOGIN HERE
                     $_SESSION['user'] = $loginCred;
                     // var_dump($_SESSION);
-                } else if (isset($_SESSION['user'])) unset($_SESSION['user']);
+                } else if (isset($_SESSION['user']))
+                    unset($_SESSION['user']);
             }
             if (!isset($_SESSION['user'])) {
                 $invalid = true;
