@@ -146,28 +146,22 @@ $users = new User(
                             <hr>
 
                             <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
-                            <p>Adobe Photoshop</p>
-                            <div class="w3-light-grey w3-round-xlarge w3-small">
-                                <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">90%</div>
-                            </div>
-                            <br>
-                            <p>Photography</p>
-                            <div class="w3-light-grey w3-round-xlarge w3-small">
-                                <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:80%">
-                                    <div class="w3-center w3-text-white">80%</div>
+
+                            <?php
+
+                            $query = "SELECT * FROM skills WHERE username_fk =  '" . $_SESSION['user']->getusername() . "'";
+                            $result = $conn->query($query);
+                            $skills = array();
+                            foreach ($result as $row2) array_push($skills, new Skills($row2['username_fk'], $row2['skills'], $row2['percent']));
+                            foreach ($skills as $row2) { ?>
+                                <p><?php echo $row2->getskills() ?></p>
+                                <div class="w3-light-grey w3-round-xlarge w3-small">
+                                    <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:<?php echo $row2->getpercentage() ?>%"><?php echo $row2->getpercentage() ?>%</div>
                                 </div>
-                            </div>
-                            <br>
-                            <p>Illustrator</p>
-                            <div class="w3-light-grey w3-round-xlarge w3-small">
-                                <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:75%">75%</div>
-                            </div>
-                            <br>
-                            <p>Media</p>
-                            <div class="w3-light-grey w3-round-xlarge w3-small">
-                                <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:50%">50%</div>
-                            </div>
-                            <br>
+                                <br>
+                            <?php
+                            }
+                            ?>
 
                             <form class="form-signin" method="POST">
                                 <button name="loc" value="edit.php" class="btn btn-warning" style="margin-bottom: 15px;">Edit Profile</button>
