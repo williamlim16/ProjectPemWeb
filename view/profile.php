@@ -77,12 +77,10 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
 
 <body>
     <!-- NAV -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
-        style="background: linear-gradient(to right, #0062E6, #33AEFF)">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background: linear-gradient(to right, #0062E6, #33AEFF)">
         <a class="navbar-brand" href="index.php" style="font-family: 'Pacifico', cursive; font-size:25px">Xpress
             Yourself</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -91,8 +89,7 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                 <li class="nav-item active">
                     <form method="post">
                         <input type="hidden" name="loc" value="home.php">
-                        <button class="btn btn-link p-0" type="submit" style="color:white">Home <span
-                                class="sr-only">(current)</span></button>
+                        <button class="btn btn-link p-0" type="submit" style="color:white">Home <span class="sr-only">(current)</span></button>
                     </form>
                 </li>
             </ul>
@@ -101,8 +98,7 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link" data-toggle="dropdown">
 
-                            <img src="<?= $loginUser->getprofilePicturePath() ?>" alt="Photo Avatar" id="profileavatar"
-                                class="avatar">
+                            <img src="<?= $loginUser->getprofilePicturePath() ?>" alt="Photo Avatar" id="profileavatar" class="avatar">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right animate slideIn">
                             <a href="index.php" class="dropdown-item">Signed in as
@@ -132,19 +128,18 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
             <div class="masthead" style="background-image: url('<?= $userProfile->getcoverPath() ?>')" alt="No cover!">
             </div>
             <img class="prof" src="                       
-            <?= $userProfile->profilePicturePath; ?>"
-                style="display: block;max-width:180px; max-height:180px; width:auto; height:auto;">
+            <?= $userProfile->profilePicturePath; ?>" style="display: block;max-width:180px; max-height:180px; width:auto; height:auto;">
             <div class="row">
                 <div class="col-3">
                     <?php if (!$otherUser) { ?>
-                    <form method="POST">
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-link">
-                                <i class="fas fa-pencil-alt" style="font-size:40px; color:black"></i>
-                            </button>
-                            <input type="hidden" name="loc" value="edit.php">
-                        </div>
-                    </form>
+                        <form method="POST">
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-link">
+                                    <i class="fas fa-pencil-alt" style="font-size:40px; color:black"></i>
+                                </button>
+                                <input type="hidden" name="loc" value="edit.php">
+                            </div>
+                        </form>
                     <?php } ?>
                 </div>
                 <div class="col-md-3">
@@ -202,33 +197,22 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                             foreach ($result as $row) array_push($skills, new Skills($row['username_fk'], $row['skills'], $row['percent']));
 
                             ?>
-                            <p class="w3-large"><b><i
-                                        class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
+                            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
                             <?php foreach ($skills as $row2) : ?>
-                            <p><?php echo $row2->getskills() ?></p>
-                            <div class="w3-light-grey w3-round-xlarge w3-small">
-                                <div class="w3-container w3-center w3-round-xlarge w3-blue"
-                                    style="width:<?php echo $row2->getpercentage() . '%' ?>">
-                                    <?php echo $row2->getpercentage() ?>%</div>
-                            </div>
-                            <?php endforeach; ?>
-
-                            <br>
-                            <!-- <p class="w3-large w3-text-theme"><b><i
-                                        class="fa fa-globe fa-fw w3-margin-right w3-text-blue"></i>Languages</b></p>
-                            <p>English</p>
-                            <div class="w3-light-grey w3-round-xlarge">
-                                <div class="w3-round-xlarge w3-blue" style="height:24px;width:100%"></div>
-                            </div>
-                            <p>Spanish</p>
-                            <div class="w3-light-grey w3-round-xlarge">
-                                <div class="w3-round-xlarge w3-blue" style="height:24px;width:55%"></div>
-                            </div>
-                            <p>German</p>
-                            <div class="w3-light-grey w3-round-xlarge">
-                                <div class="w3-round-xlarge w3-blue" style="height:24px;width:25%"></div>
-                            </div>
-                            <br> -->
+                                <p><?php echo $row2->getskills() ?></p>
+                                <div class="w3-light-grey w3-round-xlarge w3-small">
+                                    <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:<?php echo $row2->getpercentage() . '%' ?>">
+                                        <?php echo $row2->getpercentage() ?>%</div>
+                                </div>
+                                <p>Illustrator</p>
+                                <div class="w3-light-grey w3-round-xlarge w3-small">
+                                    <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:75%">75%</div>
+                                </div>
+                                <p>Media</p>
+                                <div class="w3-light-grey w3-round-xlarge w3-small">
+                                    <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:50%">50%</div>
+                                </div>
+                                <br>
                         </div>
                     </div>
                 </div>
@@ -237,160 +221,139 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                 <div class="col-md-7">
                     <!-- write status -->
                     <?php if (!$otherUser) { ?>
-                    <div class="w3-row-padding">
-                        <div class="w3-col m12">
-                            <div class="w3-card w3-round w3-white">
-                                <div class="w3-container w3-padding">
-                                    <h6 class="w3-opacity">What's on your mind?</h6>
-                                    <form method="post" enctype="multipart/form-data">
-                                        <div class="form-group row">
-                                            <div class="container">
-                                                <input type="text" class="w3-border w3-padding form-control" name="post"
-                                                    id="post" style="height: 55px;">
-                                                <div class="custom-file">
-                                                    <input type="file" name="fileToUpload" class="custom-file-input" id="inputGroupFile01"
-                                                        aria-describedby="inputGroupFileAddon01">
-                                                    <label class="custom-file-label" for="inputGroupFile01">Choose
-                                                        file</label>
+                        <div class="w3-row-padding">
+                            <div class="w3-col m12">
+                                <div class="w3-card w3-round w3-white">
+                                    <div class="w3-container w3-padding">
+                                        <h6 class="w3-opacity">What's on your mind?</h6>
+                                        <form method="post" enctype="multipart/form-data">
+                                            <div class="form-group row">
+                                                <div class="container">
+                                                    <input type="text" class="w3-border w3-padding form-control" name="post" id="post" style="height: 55px;">
+                                                    <div class="custom-file">
+                                                        <input type="file" name="fileToUpload" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                        <label class="custom-file-label" for="inputGroupFile01">Choose
+                                                            file</label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <input type="hidden" name="do" value="add_post.php">
-                                        <input type="hidden" name="loc" value="profile.php">
-                                        <input type="hidden" name="username" value="<?= $loginUser->username ?>">
-                                        <input type="hidden" name="pp" value="<?= $loginUser->profilePicturePath ?>">
+                                            <input type="hidden" name="do" value="add_post.php">
+                                            <input type="hidden" name="loc" value="profile.php">
+                                            <input type="hidden" name="username" value="<?= $loginUser->username ?>">
+                                            <input type="hidden" name="pp" value="<?= $loginUser->profilePicturePath ?>">
 
-                                        <button type="submit" class="w3-button w3-theme btn-primary" name="submitPost">
-                                            <i class="fa fa-pen"></i>&nbsp Post</button>
-                                    </form>
+                                            <button type="submit" class="w3-button w3-theme btn-primary" name="submitPost">
+                                                <i class="fa fa-pen"></i>&nbsp Post</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <?php } ?>
                     <!-- write status -->
 
                     <?php foreach (array_reverse($userPost) as $row) : ?>
-                    <div class="w3-container w3-card w3-white w3-round w3-margin"><br />
-                        <img src=" <?= $row->getPicture() ?>" alt="avatar here"
-                            class="w3-left w3-margin-right postPicSize" style="width:60px" />
-                        <span class="w3-right w3-opacity"> <?= $row->getTimestamp() ?> </span>
-                        <h4><a href="index.php?user=<?= $row->getUsername() ?>"><?= $row->getUsername() ?></a></h4>
-                        <br />
-                        <hr class="w3-clear" />
-                        <img src="<?= $row->getPhotos()?>" class="img-fluid rounded mx-auto d-block">
-                        <p><?= $row->getContent() ?></p>
-                        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i
-                                class="fa fa-thumbs-up"></i> Like</button>
-                        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse"
-                            data-target="#postCollapse<?= $row->getId() ?>"><i class="fa fa-comment"></i>
-                            Comment</button>
-                        <button type="button" <?php if ($otherUser) echo ' hidden ' ?>
-                            class="w3-button w3-theme-d1 w3-margin-bottom" data-toggle="collapse"
-                            data-target="#collapseEdit<?= $row->getId() ?>"><i class="fas fa-pencil-alt"></i>
-                            Edit</button>
+                        <div class="w3-container w3-card w3-white w3-round w3-margin"><br />
+                            <img src=" <?= $row->getPicture() ?>" alt="avatar here" class="w3-left w3-margin-right postPicSize" style="width:60px" />
+                            <span class="w3-right w3-opacity"> <?= $row->getTimestamp() ?> </span>
+                            <h4><a href="index.php?user=<?= $row->getUsername() ?>"><?= $row->getUsername() ?></a></h4>
+                            <br />
+                            <hr class="w3-clear" />
+                            <img src="<?= $row->getPhotos() ?>" class="img-fluid rounded mx-auto d-block">
+                            <p><?= $row->getContent() ?></p>
+                            <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Like</button>
+                            <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#postCollapse<?= $row->getId() ?>"><i class="fa fa-comment"></i>
+                                Comment</button>
+                            <button type="button" <?php if ($otherUser) echo ' hidden ' ?> class="w3-button w3-theme-d1 w3-margin-bottom" data-toggle="collapse" data-target="#collapseEdit<?= $row->getId() ?>"><i class="fas fa-pencil-alt"></i>
+                                Edit</button>
 
-                        <div class="collapse" id="collapseEdit<?= $row->getId() ?>">
-                            <form method="post">
-                                <div class="form-group">
-                                    <textarea class="form-control" name="post"><?= $row->getContent() ?></textarea>
-                                </div>
-                                <button type="submit" name="editpost" value="<?= $row->getId() ?>"
-                                    class="btn btn-success">Confirm</button>
-                                <input type="hidden" name="do" value="add_post.php">
-                                <button type="submit" name="delete" value="<?= $row->getId() ?>"
-                                    class="btn btn-danger">Delete</button>
-                                <input type="hidden" name="do" value="add_post.php">
-                            </form>
-                            <hr>
-                        </div>
-
-                        <div class="collapse" id="postCollapse<?= $row->getId() ?>">
-                            <!--GET COMMENT FOR EACH POST WITH QUERY, NOT REQUESTING ALL COMMENT AT ONCE -->
-                            <?php
-                                $id = $row->getId();
-                                $getComment = "SELECT * FROM comment WHERE comment.PostID = '$id'";
-                                $res = $conn->query($getComment);
-                                $comments = array();
-                                foreach ($res as $com) array_push($comments, new CommentModel(
-                                    $com['commentID'],
-                                    $com['content'],
-                                    $com['username'],
-                                    $com['postID'],
-                                    $com['timestamp'],
-                                    $com['picture']
-                                ));
-                                foreach ($comments as $com) : ?>
-
-                            <div class="list-group">
-                                <div class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-start">
-                                        <img src=" <?= $com->getPicture() ?>" alt="avatar here"
-                                            class="w3-left w3-margin-right postPicSize"
-                                            style="width: 35px;height: 35px;" />
-                                        <h5 class="mb-1"><a
-                                                href="index.php?user=<?= $com->getUsername() ?>"><?= $com->getUsername() ?></a>
-                                            </h3>
+                            <div class="collapse" id="collapseEdit<?= $row->getId() ?>">
+                                <form method="post">
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="post"><?= $row->getContent() ?></textarea>
                                     </div>
-                                    <hr>
-                                    <p class="mb-1"><?= $com->getContent(); ?></p>
-                                    <small><?= $com->getTimestamp(); ?></small>
-                                    <small><a class="" data-toggle="collapse"
-                                            <?php if ($com->getusername() != $loginUser->getusername()) echo ' hidden ' ?>
-                                            href="#collapseExample<?= $com->getCommentId() ?>" role="button">
-                                            Edit</a></small>
-                                    <div class="collapse" id="collapseExample<?= $com->getCommentId() ?>">
-                                        <form method="POST" action="">
-                                            <div class="form-group">
-                                                <textarea class="form-control"
-                                                    name="comment"><?= $com->getContent() ?></textarea>
+                                    <button type="submit" name="editpost" value="<?= $row->getId() ?>" class="btn btn-success">Confirm</button>
+                                    <input type="hidden" name="do" value="add_post.php">
+                                    <button type="submit" name="delete" value="<?= $row->getId() ?>" class="btn btn-danger">Delete</button>
+                                    <input type="hidden" name="do" value="add_post.php">
+                                </form>
+                                <hr>
+                            </div>
+
+                            <div class="collapse" id="postCollapse<?= $row->getId() ?>">
+                                <!--GET COMMENT FOR EACH POST WITH QUERY, NOT REQUESTING ALL COMMENT AT ONCE -->
+                                <?php
+                                    $id = $row->getId();
+                                    $getComment = "SELECT * FROM comment WHERE comment.PostID = '$id'";
+                                    $res = $conn->query($getComment);
+                                    $comments = array();
+                                    foreach ($res as $com) array_push($comments, new CommentModel(
+                                        $com['commentID'],
+                                        $com['content'],
+                                        $com['username'],
+                                        $com['postID'],
+                                        $com['timestamp'],
+                                        $com['picture']
+                                    ));
+                                    foreach ($comments as $com) : ?>
+
+                                    <div class="list-group">
+                                        <div class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <div class="d-flex w-100 justify-content-start">
+                                                <img src=" <?= $com->getPicture() ?>" alt="avatar here" class="w3-left w3-margin-right postPicSize" style="width: 35px;height: 35px;" />
+                                                <h5 class="mb-1"><a href="index.php?user=<?= $com->getUsername() ?>"><?= $com->getUsername() ?></a>
+                                                    </h3>
                                             </div>
-                                            <button type="submit" name="editcomment" value="<?= $com->getCommentId() ?>"
-                                                class="btn btn-success">Confirm</button>
-                                            <input type="hidden" name="do" value="add_comment.php">
-                                            <input type="hidden" name="username" value="<?= $row->getUsername() ?>">
-                                            <button type="submit" name="delete" value="<?= $com->getCommentId() ?>"
-                                                class="btn btn-danger">Delete</button>
-                                            <input type="hidden" name="username" value="<?= $row->getUsername() ?>">
-                                            <input type="hidden" name="do" value="add_comment.php">
-                                        </form>
+                                            <hr>
+                                            <p class="mb-1"><?= $com->getContent(); ?></p>
+                                            <small><?= $com->getTimestamp(); ?></small>
+                                            <small><a class="" data-toggle="collapse" <?php if ($com->getusername() != $loginUser->getusername()) echo ' hidden ' ?> href="#collapseExample<?= $com->getCommentId() ?>" role="button">
+                                                    Edit</a></small>
+                                            <div class="collapse" id="collapseExample<?= $com->getCommentId() ?>">
+                                                <form method="POST" action="">
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" name="comment"><?= $com->getContent() ?></textarea>
+                                                    </div>
+                                                    <button type="submit" name="editcomment" value="<?= $com->getCommentId() ?>" class="btn btn-success">Confirm</button>
+                                                    <input type="hidden" name="do" value="add_comment.php">
+                                                    <input type="hidden" name="username" value="<?= $row->getUsername() ?>">
+                                                    <button type="submit" name="delete" value="<?= $com->getCommentId() ?>" class="btn btn-danger">Delete</button>
+                                                    <input type="hidden" name="username" value="<?= $row->getUsername() ?>">
+                                                    <input type="hidden" name="do" value="add_comment.php">
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <p class="mb-1"></p>
+                                    <?php endforeach; ?>
+                                    <hr>
+                                    <form method="POST" action="">
+
+                                        <div class="form-group">
+                                            <textarea class="form-control" placeholder="Add your comment" name="comment" id="textarea"></textarea>
+                                        </div>
+                                        <button type="submit" name="submitcomment" value="<?= $row->getId() ?>" class="btn btn-info">Add Comment</button>
+                                        <input type="hidden" name="do" value="add_comment.php">
+                                        <input type="hidden" name="pp" value="<?= $loginUser->profilePicturePath ?>">
+                                        <input type="hidden" name="username" value="<?= $row->getUsername() ?>">
+                                    </form>
+                                    <hr>
                                     </div>
-                                </div>
-                                <p class="mb-1"></p>
+                                    <p class="mb-1"></p>
                                 <?php endforeach; ?>
                                 <hr>
                                 <form method="POST" action="">
 
                                     <div class="form-group">
-                                        <textarea class="form-control" placeholder="Add your comment" name="comment"
-                                            id="textarea"></textarea>
+                                        <textarea class="form-control" placeholder="Add your comment" name="comment" id="textarea"></textarea>
                                     </div>
-                                    <button type="submit" name="submitcomment" value="<?= $row->getId() ?>"
-                                        class="btn btn-info">Add Comment</button>
+                                    <button type="submit" name="submitcomment" value="<?= $row->getId() ?>" class="btn btn-info">Add Comment</button>
                                     <input type="hidden" name="do" value="add_comment.php">
-                                    <input type="hidden" name="pp" value="<?= $loginUser->profilePicturePath ?>">
                                     <input type="hidden" name="username" value="<?= $row->getUsername() ?>">
+                                    <input type="hidden" name="pp" value="<?= $loginUser->profilePicturePath ?>">
                                 </form>
                                 <hr>
                             </div>
-                            <p class="mb-1"></p>
-                            <?php endforeach; ?>
-                            <hr>
-                            <form method="POST" action="">
-
-                                <div class="form-group">
-                                    <textarea class="form-control" placeholder="Add your comment" name="comment"
-                                        id="textarea"></textarea>
-                                </div>
-                                <button type="submit" name="submitcomment" value="<?= $row->getId() ?>"
-                                    class="btn btn-info">Add Comment</button>
-                                <input type="hidden" name="do" value="add_comment.php">
-                                <input type="hidden" name="username" value="<?= $row->getUsername() ?>">
-                                <input type="hidden" name="pp" value="<?= $loginUser->profilePicturePath ?>">
-                            </form>
-                            <hr>
                         </div>
-                    </div>
                     <?php endforeach; ?>
 
 
@@ -478,7 +441,7 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        jQuery('button').click(function (e) {
+        jQuery('button').click(function(e) {
             jQuery('.collapse').collapse('hide');
         });
         // $('#addc').click(function() {
