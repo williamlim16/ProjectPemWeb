@@ -13,5 +13,4 @@ else if (isset($_SESSION['user']))
 else
     $loc = 'login.php';
 
-
 include 'view/' . $loc;

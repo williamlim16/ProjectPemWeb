@@ -13,6 +13,7 @@ $response = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Ambil data-data dari form
     $user_username = sterilize_input($_POST['username']); //new addition, database's primary key
+    $user_password = sterilize_input($_POST['user_password']);
     $user_email = sterilize_input($_POST['email']);
     $user_gender = sterilize_input($_POST['gender']);
     $user_lastname = sterilize_input($_POST['lastname']);
@@ -34,33 +35,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $result = $conn->query($check_query);
         $duplikat = $result->num_rows != 0;
 
-        if ($duplikat == true) {
-            echo "DUPE";
+        if ($duplikat == false) {
             $response['status'] = 'duplicate';
             $response['message'] = 'Username already exists!';
-        } else { // Aman, no duplikat
+        } else { // Aman, ketemu datanya
             // Tambahkan pemeriksaan2 atau perubahan value di sini
-
-            // Insert ke DB
-            $insert_query = "INSERT INTO $table_name (username, password, firstName, lastName, bdate, gender, contact)
-                VALUE('$user_username', '$user_password', '$user_firstname', '$user_lastname', '$user_dateofbirth', '$user_gender', '$user_email')";
+            // Update DB
+            $insert_query = "UPDATE $table_name SET username='$user_username', password='$user_password', firstName='$user_firstname', lastName='$user_lastname', bdate='$user_dateofbirth', gender='$user_gender', contact='$user_email'";
             // phone number belum dipakai
-
             // Cek hasil insert
             $insert_result = $conn->query($insert_query);
+
 
             // Atur Response
             if ($insert_result == false) {
                 echo "CANNOT INSERT";
-
                 $response['status'] = 'failed';
                 $response['message'] = 'Failed to insert values to DB!';
             } else {
                 echo "SUCCESS";
-
                 $response['status'] = 'success';
-                $response['message'] = 'User Sign Up Successful!';
-                $_POST['loc'] = 'login.php';
+                $response['message'] = 'User Update Successful!';
+                $_POST['loc'] = 'profile.php';
             }
         }
     }
@@ -69,6 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $response['status'] = 'password mismatch';
     $response['message'] = 'Password and Confirm Password does not match!';
 }
+
+
 
 
 // Kembalikan response JSON

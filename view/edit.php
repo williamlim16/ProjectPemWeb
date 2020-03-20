@@ -28,19 +28,14 @@ $users = new User(
     <title>Edit Profile</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/edit.css">
 </head>
 
 <body>
     <div class="container col-sm-12 col-md-6 col-md-offset-3" style="margin-top:128px;">
-        <div class="jumbotron">
-            <h1 class="text-center">Edit Profile</h1>
+        <h1 class="text-center mb-5 text-light">Edit Profile</h1>
+        <div class="jumbotron" style="background-color:white !important;">
             <form action="" method="post">
                 <!-- using MVC, no action -->
                 <div class="form-group col-sm-12">
@@ -49,7 +44,7 @@ $users = new User(
                         <span class="input-group-addon">
                             <i class="glyphicon glyphicon-user"></i>
                         </span>
-                        <input required id="username" name="username" type="text" class="form-control" value="<?php echo $users->getUsername() ?>" />
+                        <input required readonly id="username" name="username" type="text" class="form-control" value="<?php echo $users->getUsername() ?>" />
                     </div>
                 </div>
                 <div class="form-group col-sm-12">
@@ -67,7 +62,7 @@ $users = new User(
                         <span class="input-group-addon">
                             <i class="glyphicon glyphicon-lock"></i>
                         </span>
-                        <input required id="user_password" name="password" type="password" class="form-control" placeholder="Insert your password here" />
+                        <input required id="user_password" name="user_password" type="password" class="form-control" placeholder="Insert your password here" />
                     </div>
                 </div>
                 <div class="form-group col-sm-12 col-md-6">
@@ -97,7 +92,7 @@ $users = new User(
                         <span class="input-group-addon">
                             <i class="glyphicon glyphicon-phone"></i>
                         </span>
-                        <input required id="user_phone" name="phone_number" type="tel" class="form-control" placeholder="Insert your phone number (9-12 digits)" pattern="8[0-9]{8,11}" />
+                        <input required id="user_phone" name="phone_number" type="tel" class="form-control" placeholder="Insert your phone number (9-12 digits)" />
                     </div>
                 </div>
                 <div class="form-group col-sm-12 col-md-6">
@@ -112,7 +107,7 @@ $users = new User(
                     </div>
                 </div>
                 <div class="form-inline form-group">
-                    <label for="gender" class="control-label col-sm-12"> Gender </label>
+                    <label for="gender" class="control-label col-sm-12 text-left"> Gender </label>
                     <div class="form-group col-sm-4">
                         <input type="radio" name="gender" id="gender_male" class="form-control" value="M" />
                         <label for="gender_male" class="control-label"> Male </label>
@@ -126,11 +121,25 @@ $users = new User(
                         <label for="gender_other" class="control-label"> Other</label>
                     </div>
                 </div>
+                <div class="form-inline form-group">
+                    <label class="control-label col-sm-12" for="skills">Skills</label>
+                    <div class="form-group col-sm-4">
+                        <label for="photoshop" for="">Photoshop</label>
+                        <input type="range" name="photoshop" class="custom-range" id="">
+                    </div>
+                </div>
+
                 <input type="hidden" name="loc" value="profile.php"> <!-- MVC view controller-->
                 <input type="hidden" name="do" value="edit_db.php"><!-- MVC controller-->
+                <button class="btn btn-primary mt-5 col-sm-12">Submit</button>
             </form>
         </div>
     </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
 </html>
