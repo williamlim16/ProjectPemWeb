@@ -28,9 +28,9 @@
 <body>
 
 
-    <div class="container col-md-7">
+    <div class="d-flex justify-content-center">
         <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="col-sm-9 col-md-7 col-lg-5 ">
                 <div class="text-center">
                     <p style="font-family: 'Pacifico', cursive; font-size:50px" class="main-text">
                         Xpress Yourself</p>
@@ -43,6 +43,7 @@
                             ?>
                                 <div class="form-label-group">
                                     <h5 class="text-success">Register successful!</h5>
+
 
                                     <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus name="username">
 
