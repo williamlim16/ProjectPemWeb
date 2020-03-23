@@ -32,7 +32,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                         <label class="card-title" for="<?php echo $row2->getskills() ?>"><?php echo $row2->getskills() ?></label>
-                                        <input type="range" name="percent[]" class="custom-range" min="0" max="100" value="<?php echo $row2->getpercentage() ?>">
+                                        <input type="range" name="percent[]" class="custom-range" min="0" max="100" oninput="myFunction(this.value)" value="<?php echo $row2->getpercentage() ?>">
                                         <input type="hidden" name="name[]" class="custom-range" value="<?php echo $row2->getusername() ?>">
                                         <input type="hidden" name="skills[]" class="custom-range" value="<?php echo $row2->getskills() ?>">
                                     </div>
@@ -45,8 +45,17 @@
                 </div>
                 <div class="form-row">
                     <div class="col">
+                        <input type="hidden" name="loc" value="profile.php"> <!-- MVC view controller-->
+                        <input type="hidden" name="do" value="skillsu_db.php"><!-- MVC controller-->
+                        <button class="btn btn-primary col-12" type="submit">Update</button>
+                    </div>
+                </div>
+            </form>
+            <form method="post">
+                <div class="form-row">
+                    <div class="col mt-3">
                         <input type="hidden" name="loc" value="skills.php"> <!-- MVC view controller-->
-                        <input type="hidden" name="do" value="skills_db.php"><!-- MVC controller-->
+                        <input type="hidden" name="toggle" value="true"><!-- MVC controller-->
                         <button class="btn btn-success col-12" type="submit">Add</button>
                     </div>
                 </div>
@@ -61,6 +70,35 @@
             </form>
         </div>
     </div>
+    <div class='modal fade' id='login' tabindex='-1' role='dialog'>
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h1 class='modal-title text-center'>Are you sure about that?</h1>
+                </div>
+                <form method="post">
+                    <input type="hidden" name="id">
+                    <input type="hidden" name="do">
+                    <button type='submit' name='submit' class='btn btn-danger'>Yes</button>
+                </form>
+                <form method="post">
+                    <input type="hidden" name="loc" value='home_man.php'>
+                    <button type='submit' name='submit' class='btn btn-primary'>Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#login').modal({
+                keyboard: false,
+                show: true,
+
+
+                backdrop: 'static'
+            });
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

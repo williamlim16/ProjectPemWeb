@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Primary key = username
             $check_query = "UPDATE skills SET percent='$user_percent' WHERE username_fk='$user_username' AND skills='$user_skills'"; //ga perlu pake limit
             $insert_result = $conn->query($check_query);
-            echo $insert_result;
         }
     }
 } else {
