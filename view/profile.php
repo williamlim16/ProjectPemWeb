@@ -150,8 +150,7 @@ $result3 = $result->fetch_assoc();
                             <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-blue"></i>
                                 <?= $users->getbdate(); ?></p>
                             <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-blue"></i>Situganteng, UK</p>
-                            <!-- ini di db enggak ada alamat, mau tambahin alamat? atau apus aja? -->
-                            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-blue"></i><?php echo $users->getcontact() ?>
+                            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-blue"></i>milos@mail.com
                             </p>
                             <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-blue"></i>087775176573</p>
                             <hr>
@@ -166,28 +165,32 @@ $result3 = $result->fetch_assoc();
                             <div class="w3-light-grey w3-round-xlarge w3-small">
                                 <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:80%">
                                     <div class="w3-center w3-text-white">80%</div>
-                            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
-
-                            <?php
-
-                            $query = "SELECT * FROM skills WHERE username_fk =  '" . $_SESSION['user']->getusername() . "'";
-                            $result = $conn->query($query);
-                            $skills = array();
-                            foreach ($result as $row2) array_push($skills, new Skills($row2['username_fk'], $row2['skills'], $row2['percent']));
-                            foreach ($skills as $row2) { ?>
-                                <p><?php echo $row2->getskills() ?></p>
-                                <div class="w3-light-grey w3-round-xlarge w3-small">
-                                    <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:<?php echo $row2->getpercentage() ?>%"><?php echo $row2->getpercentage() ?>%</div>
-
                                 </div>
-                                <br>
-                            <?php
-                            }
-                            ?>
+                            </div>
+                            <p>Illustrator</p>
+                            <div class="w3-light-grey w3-round-xlarge w3-small">
+                                <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:75%">75%</div>
+                            </div>
+                            <p>Media</p>
+                            <div class="w3-light-grey w3-round-xlarge w3-small">
+                                <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:50%">50%</div>
+                            </div>
+                            <br>
 
-                            <form class="form-signin" method="POST">
-                                <button name="loc" value="edit.php" class="btn btn-warning" style="margin-bottom: 15px;">Edit Profile</button>
-                            </form>
+                            <p class="w3-large w3-text-theme"><b><i
+                                        class="fa fa-globe fa-fw w3-margin-right w3-text-blue"></i>Languages</b></p>
+                            <p>English</p>
+                            <div class="w3-light-grey w3-round-xlarge">
+                                <div class="w3-round-xlarge w3-blue" style="height:24px;width:100%"></div>
+                            </div>
+                            <p>Spanish</p>
+                            <div class="w3-light-grey w3-round-xlarge">
+                                <div class="w3-round-xlarge w3-blue" style="height:24px;width:55%"></div>
+                            </div>
+                            <p>German</p>
+                            <div class="w3-light-grey w3-round-xlarge">
+                                <div class="w3-round-xlarge w3-blue" style="height:24px;width:25%"></div>
+                            </div>
                             <br>
                         </div>
                     </div>
@@ -222,7 +225,6 @@ $result3 = $result->fetch_assoc();
                     </div>
                     <!-- write status -->
                     <!-- post -->
-
                     <?php foreach ($posts as $row) : ?>
                         <div class="w3-container w3-card w3-white w3-round w3-margin"><br />
                             <img src=" <?= $row->getPicture() ?>" alt="avatar here" class="w3-left w3-margin-right postPicSize" style="width:60px" />
@@ -245,7 +247,6 @@ $result3 = $result->fetch_assoc();
                             </div>
                         </div>
                     <?php endforeach; ?>
-
 
 
                 </div>
@@ -271,6 +272,8 @@ $result3 = $result->fetch_assoc();
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
 
