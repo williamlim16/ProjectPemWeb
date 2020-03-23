@@ -26,4 +26,5 @@ if (isset($_POST['submitcomment'])) {
         echo ("Error description: " . $conn->error);
     }
     unset($_POST['delete']);
+
 }
