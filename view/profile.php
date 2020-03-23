@@ -106,7 +106,6 @@ foreach ($result3 as $com) array_push($comments, new CommentModel(
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item">Logout</a>
                         </div>
-
                     </li>
                 </ul>
             </form>
@@ -242,13 +241,30 @@ foreach ($result3 as $com) array_push($comments, new CommentModel(
                         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i
                                 class="fa fa-thumbs-up"></i> Like</button>
                         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse"
-                            data-target="#collapseExample<?= $row->getId() ?>"><i
-                                class="fa fa-comment"></i> Comment</button>
-                        <button type="button" <?php if($_SESSION['user']->getusername() != $row->getUsername()) echo ' hidden '?>
-                        class="w3-button w3-theme-d1 w3-margin-bottom"><i
-                                class="fa fa-pencil"></i> Edit</button>
+                            data-target="#collapseExample<?= $row->getId() ?>"><i class="fa fa-comment"></i>
+                            Comment</button>
+                        <button type="button"
+                            <?php if($_SESSION['user']->getusername() != $row->getUsername()) echo ' hidden '?>
+                            class="w3-button w3-theme-d1 w3-margin-bottom" data-toggle="collapse"
+                            data-target="#collapseEdit<?= $row->getId() ?>"><i class="fa fa-pencil"></i> Edit</button>
+
+                        <div class="collapse" id="collapseEdit<?= $row->getId() ?>">
+                            <form method="post">
+                                <div class="form-group">
+                                    <textarea class="form-control" name="post"><?=$row->getContent()?></textarea>
+                                </div>
+                                <button type="submit" name="editpost" value="<?= $row->getId() ?>"
+                                    class="btn btn-success">Confirm</button>
+                                <input type="hidden" name="do" value="add_post.php">
+                                <button type="submit" name="delete" value="<?= $row->getId() ?>"
+                                class="btn btn-danger">Delete</button>
+                                <input type="hidden" name="do" value="add_post.php">
+                            </form>
+                            <hr>
+                        </div>
+
                         <div class="collapse" id="collapseExample<?= $row->getId() ?>">
-                            
+
                             <?php foreach ($comments as $com) : ?>
                             <?php if($com->getId() == $row->getId()){ ?>
                             <div class="list-group">
@@ -392,6 +408,11 @@ foreach ($result3 as $com) array_push($comments, new CommentModel(
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    jQuery('button').click( function(e) {
+    jQuery('.collapse').collapse('hide');
+    });
+    </script>
 
 </body>
 

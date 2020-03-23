@@ -2,10 +2,6 @@
 
 <?php
 
-
-
-
-
 $query2 = "SELECT * FROM user WHERE username = '" . $_SESSION['user']->getusername() . "'";
 $result2 = $conn->query($query2);
 $result2 = $result2->fetch_assoc();
@@ -22,10 +18,6 @@ $users = new User(
     $result2['contact'],
     $result2['userdesc']
 );
-
-
-
-
 
 ?>
 <html lang="en">

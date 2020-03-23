@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['submitcomment'])) {
-    $content = $_POST['comment'];
+    $content = mysqli_real_escape_string($conn, strip_tags($_POST['comment']));
     $postid = $_POST['submitcomment'];
     $timestamp = date("h:i a");
     $username = $_POST['username'];
@@ -11,7 +11,7 @@ if (isset($_POST['submitcomment'])) {
 
     unset($_POST['submitcomment']);
 } else if (isset($_POST['editcomment'])){
-    $content = $_POST['comment'];
+    $content = mysqli_real_escape_string($conn, strip_tags($_POST['comment']));
     $comid = $_POST['editcomment'];
     $timestamp = date("h:i a");
     $username = $_POST['username'];
