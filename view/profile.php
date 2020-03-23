@@ -34,7 +34,8 @@ foreach ($result3 as $com) array_push($comments, new CommentModel(
     $com['commentID'],
     $com['content'],
     $com['username'],
-    $com['postID']
+    $com['postID'],
+    $com['timestamp']
 ));
 ?>
 <!DOCTYPE html>
@@ -245,10 +246,10 @@ foreach ($result3 as $com) array_push($comments, new CommentModel(
                                 class="fa fa-comment"></i>Comment</button>
                         <div class="collapse" id="collapseExample<?= $row->getId() ?>">
 
-                            <?php foreach (array_reverse($comments) as $com) : ?>
+                            <?php foreach ($comments as $com) : ?>
                             <?php if($com->getId() == $row->getId()){ ?>
                             <div class="list-group">
-                                <a class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-start">
                                         <img src=" <?= $row->getPicture() ?>" alt="avatar here"
                                             class="w3-left w3-margin-right postPicSize"
@@ -257,23 +258,42 @@ foreach ($result3 as $com) array_push($comments, new CommentModel(
                                     </div>
                                     <hr>
                                     <p class="mb-1"><?= $com->getContent();?></p>
-                                    <small>Time</small>
-                                </a>
+                                    <small><?= $com->getTimestamp(); ?></small>
+                                    <small><a class="" data-toggle="collapse"
+                                            <?php if($_SESSION['user']->getusername() != $com->getUsername()) echo ' hidden '?>
+                                            href="#collapseExample<?=$com->getCommentId()?>" role="button">
+                                            Edit</a></small>
+                                    <div class="collapse" id="collapseExample<?=$com->getCommentId()?>">
+                                        <form method="POST" action="">
+                                            <div class="form-group">
+                                                <textarea class="form-control"
+                                                    name="comment"><?=$com->getContent()?></textarea>
+                                            </div>
+                                            <button type="submit" name="editcomment" value="<?=$com->getCommentId()?>"
+                                                class="btn btn-success">Confirm</button>
+                                            <input type="hidden" name="do" value="add_comment.php">
+                                            <input type="hidden" name="username" value="<?= $users->username ?>">
+                                            <button type="submit" name="delete" value="<?=$com->getCommentId()?>"
+                                                class="btn btn-danger">Delete</button>
+                                            <input type="hidden" name="do" value="add_comment.php">
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                             <p class="mb-1"><?php } ?>
                                 <?php endforeach; ?>
                                 <hr>
-                                <div class="list-group">
-                                    <form method="POST" action="">
-                                        <label for="textarea">Add your comment</label>
-                                        <textarea class="form-control" name="comment" id="textarea"></textarea>
-                                        <button type="submit" name="submitcomment" value="<?= $row->getId() ?>"
-                                            class="btn btn-primary">Submit</button>
-                                        <input type="hidden" name="do" value="add_comment.php">
-                                        <input type="hidden" name="username" value="<?= $users->username ?>">
-                                    </form>
-                                </div>
-                                <hr class="w3-white">
+                                <form method="POST" action="">
+                                    <div class="form-group">
+                                        <textarea class="form-control" placeholder="Add your comment" name="comment"
+                                            id="textarea"></textarea>
+                                    </div>
+                                    <button type="submit" name="submitcomment" value="<?= $row->getId() ?>"
+                                        class="btn btn-info">Add Comment</button>
+                                    <input type="hidden" name="do" value="add_comment.php">
+                                    <input type="hidden" name="username" value="<?= $users->username ?>">
+                                </form>
+                                <hr>
                         </div>
                     </div>
                     <?php endforeach; ?>
