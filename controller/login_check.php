@@ -40,7 +40,8 @@ if (!$captcha) {
                     //SUCCESS LOGIN HERE
                     $_SESSION['user'] = $loginCred;
                     // var_dump($_SESSION);
-                } else if (isset($_SESSION['user'])) unset($_SESSION['user']);
+                } else if (isset($_SESSION['user']))
+                    unset($_SESSION['user']);
             }
             if (!isset($_SESSION['user'])) {
                 $invalid = true;
