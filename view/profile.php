@@ -113,8 +113,6 @@ foreach ($result3 as $com) array_push($comments, new CommentModel(
     </nav>
     <!-- NAV -->
 
-
-
     <div class="container">
         <div class="w3-card cont">
             <div class="masthead" style="  background-image: url(' <?= $users->getcoverPath() ?>')">
@@ -410,7 +408,7 @@ foreach ($result3 as $com) array_push($comments, new CommentModel(
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript">
     jQuery('button').click( function(e) {
-    jQuery('.collapse').collapse('hide');
+        jQuery('.collapse').collapse('hide');
     });
     </script>
 
