@@ -236,13 +236,16 @@ $result3 = $result->fetch_assoc();
                             <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#collapseExample<?= $row->getId() ?>"><i class="fa fa-comment"></i> Show Comment</button>
                             <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#collapseExample2"><i class="fa fa-comment"></i>Comment</button>
                             <div class="collapse" id="collapseExample2">
-                                <label for="textarea">Example textarea</label>
-                                <textarea class="form-control" name="comment" id="textarea"></textarea>
-                                <button type="submit" name="" class="btn btn-primary">Submit</button>
+                                <form method="POST" action="">
+                                    <label for="textarea">Example textarea</label>
+                                    <textarea class="form-control" name="comment" id="textarea"></textarea>
+                                    <button type="submit" name="submitcomment" class="btn btn-primary">Submit</button>
+                                    <input type="hidden" name="do" value="add_comment.php">
+                                </form>
                             </div>
                             <div class="collapse" id="collapseExample<?= $row->getId() ?>">
                                 <div class="card card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                    <?= $row ?>
                                 </div>
                             </div>
                         </div>
