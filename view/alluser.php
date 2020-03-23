@@ -10,8 +10,8 @@ foreach ($result as $row) array_push($results, new User(
     $row['password'],
     $row['bdate'],
     $row['gender'],
-    $row['profilePicturePath'],
     $row['coverPath'],
+    $row['profilePicturePath'],
     $row['contact'],
     $row['userdesc'],
     $row['phonenum']
