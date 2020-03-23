@@ -38,6 +38,7 @@ foreach ($result3 as $com) array_push($comments, new CommentModel(
     $com['username'],
     $com['postID'],
     $com['timestamp']
+));
 $query = "SELECT * FROM user WHERE username = '" . $_POST['username'] . "'";
 $result = $conn->query($query);
 $result = $result->fetch_assoc();
