@@ -13,7 +13,8 @@ foreach ($result as $row) array_push($results, new User(
     $row['profilePicturePath'],
     $row['coverPath'],
     $row['contact'],
-    $row['userdesc']
+    $row['userdesc'],
+    $row['phonenum']
 ));
 ?>
 
@@ -148,20 +149,20 @@ foreach ($result as $row) array_push($results, new User(
                 <div class="col-md-3">
                     <div class="card" style="height: 100%">
                         <div class="container pb-3 pt-3 ml-3">
-                            <img src="<?= $row->getprofilePicturePath() ?>" style="width:200px; height:200px" class="image">
+                            <img src="<?= $row->profilePicturePath ?>" style="width:200px; height:200px" class="image">
                             <div class="middle">
                                 <form method="POST">
-                                    <button class="btn btn-link" name="loc" value="othersProfile.php">
+                                    <button class="btn btn-link" name="loc" value="profile.php">
                                         <h5>View Profile</h5>
                                     </button>
-                                    <input type="hidden" name="username" value="<?= $row->getusername() ?>">
+                                    <input type="hidden" name="username" value="<?= $row->username ?>">
                                 </form>
                             </div>
                         </div>
                         <hr>
-                        <h1><?= $row->getfirstname() . " " . $row->getlastname() ?></h1>
-                        <p class="title"><?= $row->getcontact(); ?></p>
-                        <p><?= $row->getuserdesc(); ?></p>
+                        <h1><?= $row->firstName . " " . $row->lastName ?></h1>
+                        <p class="title"><?= $row->contact ?></p>
+                        <p><?= $row->userdesc ?></p>
                     </div>
                 </div>
             <?php endforeach; ?>
