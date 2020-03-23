@@ -28,6 +28,16 @@ $users = new User(
     $result['userdesc']
 );
 
+
+$query3 = "SELECT * FROM comment WHERE username = '" . $_SESSION['user']->getusername() . "'";
+$result3 = $conn->query($query3);
+$comments = array();
+foreach ($result3 as $com) array_push($comments, new CommentModel(
+    $com['commentID'],
+    $com['content'],
+    $com['username'],
+    $com['postID'],
+    $com['timestamp']
 $query = "SELECT * FROM user WHERE username = '" . $_POST['username'] . "'";
 $result = $conn->query($query);
 $result = $result->fetch_assoc();
@@ -45,7 +55,6 @@ $user_others = new User(
     $result['contact'],
     $result['userdesc']
 );
-
 $query = "SELECT * FROM post WHERE username = '" . $_POST['username'] . "'";
 $result = $conn->query($query);
 $post_others = array();
@@ -337,8 +346,6 @@ foreach ($result as $row) array_push($post_others, new PostModel(
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </div>
-
-
                     <?php if (!isset($_POST['username'])) : ?>
                         <div class="col-md-2">
                             <div class="w3-card w3-round w3-white w3-center" style="width: 120%; padding:20px">

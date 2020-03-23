@@ -4,6 +4,7 @@ include 'model/User.php';
 include 'model/LoginModel.php';
 include 'model/postModel.php';
 include 'model/skills.php';
+include 'model/CommentModel.php';
 session_start();
 if (isset($_POST['do'])) include 'controller/' . $_POST['do'];
 

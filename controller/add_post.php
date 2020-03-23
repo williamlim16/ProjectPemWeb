@@ -10,5 +10,5 @@ if (isset($_POST['submitPost'])) {
         echo ("Error description: " . $conn->error);
     }
 
-    unset($_POST);
+    unset($_POST['submitPost']);
 }
