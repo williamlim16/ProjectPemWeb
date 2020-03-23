@@ -243,9 +243,12 @@ foreach ($result3 as $com) array_push($comments, new CommentModel(
                                 class="fa fa-thumbs-up"></i> Like</button>
                         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse"
                             data-target="#collapseExample<?= $row->getId() ?>"><i
-                                class="fa fa-comment"></i>Comment</button>
+                                class="fa fa-comment"></i> Comment</button>
+                        <button type="button" <?php if($_SESSION['user']->getusername() != $row->getUsername()) echo ' hidden '?>
+                        class="w3-button w3-theme-d1 w3-margin-bottom"><i
+                                class="fa fa-pencil"></i> Edit</button>
                         <div class="collapse" id="collapseExample<?= $row->getId() ?>">
-
+                            
                             <?php foreach ($comments as $com) : ?>
                             <?php if($com->getId() == $row->getId()){ ?>
                             <div class="list-group">
