@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `postID` varchar(45) NOT NULL,
   `content` varchar(255) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `timestamp` date DEFAULT current_timestamp(),
+  `timestamp` varchar(100),
   `picture` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`postID`),
   KEY `fkIdx_20` (`username`)
