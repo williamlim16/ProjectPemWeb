@@ -35,12 +35,12 @@
 .prof {
   position: absolute;
   width: 150px;
-  border-radius: 50%; 
+  border-radius: 50%;
   max-width: 100%;
   height: auto;
-  bottom:20px;
-  left:40px;
-  border:5px solid #ffffff;
+  bottom: 20px;
+  left: 40px;
+  border: 5px solid #ffffff;
 }
 
 .image {

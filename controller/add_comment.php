@@ -8,7 +8,6 @@ if (isset($_POST['submitcomment'])) {
     if (!$conn->query('INSERT INTO comment (content, username, postID, timestamp) VALUES("' . $content . '", "' . $username . '","' . $postid .'","' . $timestamp . '");')) {
         echo ("Error description: " . $conn->error);
     }
-
     unset($_POST['submitcomment']);
 } else if (isset($_POST['editcomment'])){
     $content = mysqli_real_escape_string($conn, strip_tags($_POST['comment']));
@@ -26,4 +25,5 @@ if (isset($_POST['submitcomment'])) {
         echo ("Error description: " . $conn->error);
     }
     unset($_POST['delete']);
+
 }

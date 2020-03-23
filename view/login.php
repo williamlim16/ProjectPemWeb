@@ -30,7 +30,7 @@
 
     <div class="d-flex justify-content-center">
         <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 ">
+            <div class=" col-lg-12 ">
                 <div class="text-center">
                     <p style="font-family: 'Pacifico', cursive; font-size:50px" class="main-text">
                         Xpress Yourself</p>
@@ -43,12 +43,8 @@
                             ?>
                                 <div class="form-label-group">
                                     <h5 class="text-success">Register successful!</h5>
-
-
                                     <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus name="username">
-
                                     <h5 class="text-success">Register successful!</h5>
-
                                 </div>
                             <?php
                             }
@@ -68,7 +64,7 @@
                                 <label class="custom-control-label" for="customCheck1">Remember password</label>
                             </div>
                             <div class="container center">
-                                <div class="g-recaptcha" data-sitekey="6Lf1E9kUAAAAABm_-Q-sgcnjaTX1d11-guJJ1m4X" style="margin-bottom: 10px; margin-left: -30px">
+                                <div class="g-recaptcha" data-sitekey="6Lf1E9kUAAAAABm_-Q-sgcnjaTX1d11-guJJ1m4X">
                                 </div>
                             </div>
 
@@ -83,7 +79,7 @@
                             <input class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="submit" value="Sign In">
                         </form>
                         <form class="form-signin" method="POST">
-                            <button name='loc' value="signup.php" type="submit" class='btn btn-lg btn-block btn-warning text-uppercase'>Register</button>
+                            <button name='loc' value="signup.php" type="submit" class='btn btn-lg btn-block btn-warning text-uppercase mt-3'>Register</button>
                         </form>
                     </div>
                 </div>

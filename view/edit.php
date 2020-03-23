@@ -12,6 +12,7 @@ $users = new User(
     $result2['lastName'],
     $result2['password'],
     $result2['bdate'],
+    $result2['phonenum'],
     $result2['gender'],
     $result2['profilePicturePath'],
     $result2['coverPath'],
@@ -23,13 +24,15 @@ $users = new User(
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Profile</title>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/edit.css">
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body>
@@ -38,11 +41,11 @@ $users = new User(
         <div class="jumbotron" style="background-color:white !important;">
             <form action="" method="post">
                 <!-- using MVC, no action -->
-                <div class="form-group">
+                <div class="form-group ">
                     <div class="form-row">
                         <div class="col">
                             <label for="username" class="control-label"> Username </label>
-                            <input required readonly id="username" name="username" type="text" class="form-control" value="<?php echo $users->getUsername() ?>" />
+                            <input required readonly id="username" name="username" type="text" class="form-control rounder" value="<?php echo $users->getUsername() ?>" />
                         </div>
                         <div class="col">
                             <label for="email" class="control-label"> Email </label>
@@ -50,9 +53,9 @@ $users = new User(
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="form-row">
-                        <div class="col">
+                <!-- <div class="form-group">
+                    <div class="form-row ">
+                        <div class="col ">
                             <label for="password" class="control-label"> Password </label>
                             <input required id="user_password" name="user_password" type="password" class="form-control" placeholder="Insert your password here" />
                         </div>
@@ -63,7 +66,7 @@ $users = new User(
                             <input required id="confirm_password" name="confirm_password" type="password" class="form-control" placeholder="Re-type your password here" />
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col">
@@ -84,7 +87,7 @@ $users = new User(
                     <div class="form-row">
                         <div class="col">
                             <label for="phone_number" class="control-label">Phone Number</label>
-                            <input required id="user_phone" name="phone_number" type="tel" class="form-control" placeholder="Insert your phone number (9-12 digits)" />
+                            <input required id="user_phone" name="phone_number" type="tel" class="form-control" placeholder="Insert your phone number (9-12 digits)" value="<?php echo $users->getphonenum() ?>" />
                         </div>
                         <div class="col">
                             <label for="dateofbirth" class="control-label">Date of Birth</label>
@@ -96,7 +99,7 @@ $users = new User(
                     <div class="form-row">
                         <div class="col">
                             <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Gender</label>
-                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="gender">
                                 <option value="M">Male</option>
                                 <option value="F">Female</option>
                             </select>
@@ -104,42 +107,6 @@ $users = new User(
                     </div>
                 </div>
                 <br>
-                <br>
-                <div class="form-group">
-                    <div class="form-row">
-                        <div class="col">
-                            <label for="skills">Skills</label>
-                        </div>
-                    </div>
-
-                    <?php
-
-                    $query = "SELECT * FROM skills WHERE username_fk =  '" . $_SESSION['user']->getusername() . "'";
-                    $result = $conn->query($query);
-                    $skills = array();
-                    foreach ($result as $row2) array_push($skills, new Skills($row2['username_fk'], $row2['skills'], $row2['percent']));
-                    foreach ($skills as $row2) { ?>
-                        <div class="form-row">
-                            <div class="col">
-                                <label for="<?php echo $row2->getskills() ?>" for="<?php echo $row2->getskills() ?>"><?php echo $row2->getskills() ?></label>
-                                <input type="range" name="<?php echo $row2->getskills() ?>" class="custom-range" min="0" max="100" value="<?php echo $row2->getpercentage() ?>">
-                            </div>
-                        </div>
-                    <?php
-                    }
-                    ?>
-
-
-                </div>
-                <br>
-                <br>
-                <div class="form-group">
-                    <div class="form-row">
-                        <div class="col">
-                            <button class="btn btn-success col-sm-5">Add</button>
-                        </div>
-                    </div>
-                </div>
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col">
@@ -148,8 +115,23 @@ $users = new User(
                             <button class="btn btn-primary col-12">Submit</button>
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="col mt-3">
+                            <input type="hidden" name="loc" value="profile.php"> <!-- MVC view controller-->
+                            <button class="btn btn-danger col-12">Cancel</button>
+                        </div>
+                    </div>
                 </div>
-
+            </form>
+            <form method="post">
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col mt-2">
+                            <input type="hidden" name="loc" value="skills.php"> <!-- MVC view controller-->
+                            <button class="btn btn-warning col-12">Edit Skills</button>
+                        </div>
+                    </div>
+                </div>
             </form>
 
         </div>

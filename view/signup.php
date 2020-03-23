@@ -123,7 +123,7 @@
                 </button>
             </form>
             <h5 class="text-center text-muted">
-                Already have an account? <a href="signin.html"> Sign in now </a>
+                Already have an account? <form method="POST"><button name="loc" type="submit" value="login.php" role="button"> Sign in now </button></form>
             </h5>
         </div>
     </div>
