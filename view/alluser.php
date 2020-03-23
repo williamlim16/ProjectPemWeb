@@ -1,5 +1,5 @@
 <?php
-$query = "SELECT * FROM user";
+$query = 'SELECT * FROM user WHERE NOT username = "'.$_SESSION['user']->getusername().'" ';
 $result = $conn->query($query);
 $results = array();
 
