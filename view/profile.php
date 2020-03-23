@@ -10,23 +10,52 @@ foreach ($result as $row) array_push($posts, new PostModel(
     $row['picture']
 ));
 
-$query2 = "SELECT * FROM user WHERE username = '" . $_SESSION['user']->getusername() . "'";
-$result2 = $conn->query($query2);
-$result2 = $result2->fetch_assoc();
+$query = "SELECT * FROM user WHERE username = '" . $_SESSION['user']->getusername() . "'";
+$result = $conn->query($query);
+$result = $result->fetch_assoc();
 
 $users = new User(
-    $result2['username'],
-    $result2['firstName'],
-    $result2['lastName'],
-    $result2['password'],
-    $result2['bdate'],
-    $result2['phonenum'],
-    $result2['gender'],
-    $result2['profilePicturePath'],
-    $result2['coverPath'],
-    $result2['contact'],
-    $result2['userdesc']
+    $result['username'],
+    $result['firstName'],
+    $result['lastName'],
+    $result['password'],
+    $result['bdate'],
+    $result['number'],
+    $result['gender'],
+    $result['profilePicturePath'],
+    $result['coverPath'],
+    $result['contact'],
+    $result['userdesc']
 );
+
+$query = "SELECT * FROM user WHERE username = '" . $_POST['username'] . "'";
+$result = $conn->query($query);
+$result = $result->fetch_assoc();
+
+$user_others = new User(
+    $result['username'],
+    $result['firstName'],
+    $result['lastName'],
+    $result['password'],
+    $result['bdate'],
+    $result['phonenum'],
+    $result['gender'],
+    $result['profilePicturePath'],
+    $result['coverPath'],
+    $result['contact'],
+    $result['userdesc']
+);
+
+$query = "SELECT * FROM post WHERE username = '" . $_POST['username'] . "'";
+$result = $conn->query($query);
+$post_others = array();
+foreach ($result as $row) array_push($post_others, new PostModel(
+    $row['postID'],
+    $row['content'],
+    $row['username'],
+    $row['timestamp'],
+    $row['picture']
+));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,9 +125,18 @@ $users = new User(
 
     <div class="container">
         <div class="w3-card cont">
-            <div class="masthead" style="background-image: url(' <?= $users->getcoverPath() ?>')">
+            <div class="masthead" style="background-image: url('<?php if (isset($_POST['username']))
+                                                                    $user_others->coverPath;
+                                                                else
+                                                                    $users->coverPath;
+                                                                ?> ')">
             </div>
-            <img class="prof" src="<?= $users->getprofilePicturePath() ?>" style="display: block;max-width:180px;max-height:180px;width: auto;height: auto;">
+            <img class="prof" src="                       
+                     <?php if (isset($_POST['username'])) {
+                            echo $user_others->profilePicturePath;
+                        } else {
+                            echo $users->profilePicturePath;
+                        } ?>" style="display: block;max-width:180px;max-height:180px;width: auto;height: auto;">
             <div class="row">
                 <div class="col-3">
                 </div>
@@ -124,217 +162,276 @@ $users = new User(
                 <div class="col-md-3">
                     <div class="w3-white w3-text-grey w3-card-4">
                         <div class="w3-container w3-text-black">
-                            <h2 style="margin-top: 20px"><?= $users->firstName . " " .  $users->lastName ?></h2>
+                            <h2 style="margin-top: 20px">
+                                <?php if (isset($_POST['username'])) {
+                                    echo $user_others->firstName . " " . $user_others->lastName;
+                                } else {
+                                    echo $users->firstName . " " . $users->lastName;
+                                }
+                                ?>
+                            </h2>
                         </div>
                         <div class="w3-dark-text-grey w3-container">
-                            <h4><?= "@" . $users->username ?></h4>
-                            <h5 style="color: black"><?= $users->userdesc ?></h5>
+                            <h4>
+                                <?php if (isset($_POST['username'])) {
+                                    echo "@" . $user_others->username;
+                                } else {
+                                    echo "@" . $users->username;
+                                }
+                                ?>
+                            </h4>
+                            <h5 style="color: black">
+                                <?php if (isset($_POST['username'])) {
+                                    echo $user_others->userdesc;
+                                } else {
+                                    echo $users->userdesc;
+                                }
+                                ?>
+                            </h5>
                         </div>
                         <div class="w3-container">
                             <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-blue"></i>
-                                <?= $users->getbdate(); ?></p>
-                            <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-blue"></i>Situganteng, UK</p>
-                            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-blue"></i>milos@mail.com
+                                <?php if (isset($_POST['username'])) {
+                                    echo $user_others->bdate;
+                                } else {
+                                    echo $users->bdate;
+                                }
+                                ?>
+                            </p>
+                            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-blue"></i>
+                                <?php if (isset($_POST['username'])) {
+                                    echo $user_others->contact;
+                                } else {
+                                    echo $users->contact;
+                                }
+                                ?>
                             </p>
                             <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-blue"></i>087775176573</p>
                             <hr>
-                            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
                             <?php
                             $query = "SELECT * FROM skills WHERE username_fk =  '" . $_SESSION['user']->getusername() . "'";
                             $result = $conn->query($query);
                             $skills = array();
-                            foreach ($result as $row2) array_push($skills, new Skills($row2['username_fk'], $row2['skills'], $row2['percent']));
-                            foreach ($skills as $row2) { ?>
+                            ?>
+                            <?php foreach ($skills as $row2) : ?>
                                 <p><?php echo $row2->getskills() ?></p>
                                 <div class="w3-light-grey w3-round-xlarge w3-small">
                                     <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:<?php echo $row2->getpercentage() . '%' ?>"><?php echo $row2->getpercentage() ?>%</div>
-
-                            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
-                            <p>Adobe Photoshop</p>
-                            <div class="w3-light-grey w3-round-xlarge w3-small">
-                                <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">90%</div>
-                            </div>
-                            <p>Photography</p>
-                            <div class="w3-light-grey w3-round-xlarge w3-small">
-                                <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:80%">
-                                    <div class="w3-center w3-text-white">80%</div>
-
+                                <?php endforeach; ?>
+                                <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
+                                <p>Adobe Photoshop</p>
+                                <div class="w3-light-grey w3-round-xlarge w3-small">
+                                    <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">90%</div>
                                 </div>
-                            </div>
-                            <p>Illustrator</p>
-                            <div class="w3-light-grey w3-round-xlarge w3-small">
-                                <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:75%">75%</div>
-                            </div>
-                            <p>Media</p>
-                            <div class="w3-light-grey w3-round-xlarge w3-small">
-                                <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:50%">50%</div>
-                            </div>
-                            <br>
+                                <p>Photography</p>
+                                <div class="w3-light-grey w3-round-xlarge w3-small">
+                                    <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:80%">
+                                        <div class="w3-center w3-text-white">80%</div>
 
-                            <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-blue"></i>Languages</b></p>
-                            <p>English</p>
-                            <div class="w3-light-grey w3-round-xlarge">
-                                <div class="w3-round-xlarge w3-blue" style="height:24px;width:100%"></div>
-                            </div>
-                            <p>Spanish</p>
-                            <div class="w3-light-grey w3-round-xlarge">
-                                <div class="w3-round-xlarge w3-blue" style="height:24px;width:55%"></div>
-                            </div>
-                            <p>German</p>
-                            <div class="w3-light-grey w3-round-xlarge">
-                                <div class="w3-round-xlarge w3-blue" style="height:24px;width:25%"></div>
-                            </div>
-                            <br>
+                                    </div>
+                                </div>
+                                <p>Illustrator</p>
+                                <div class="w3-light-grey w3-round-xlarge w3-small">
+                                    <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:75%">75%</div>
+                                </div>
+                                <p>Media</p>
+                                <div class="w3-light-grey w3-round-xlarge w3-small">
+                                    <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:50%">50%</div>
+                                </div>
+                                <br>
+
+                                <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-blue"></i>Languages</b></p>
+                                <p>English</p>
+                                <div class="w3-light-grey w3-round-xlarge">
+                                    <div class="w3-round-xlarge w3-blue" style="height:24px;width:100%"></div>
+                                </div>
+                                <p>Spanish</p>
+                                <div class="w3-light-grey w3-round-xlarge">
+                                    <div class="w3-round-xlarge w3-blue" style="height:24px;width:55%"></div>
+                                </div>
+                                <p>German</p>
+                                <div class="w3-light-grey w3-round-xlarge">
+                                    <div class="w3-round-xlarge w3-blue" style="height:24px;width:25%"></div>
+                                </div>
+                                <br>
+                                </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- card 2 -->
-                <div class="col-md-7">
-                    <!-- write status -->
-                    <div class="w3-row-padding">
-                        <div class="w3-col m12">
-                            <div class="w3-card w3-round w3-white">
-                                <div class="w3-container w3-padding">
-                                    <h6 class="w3-opacity">What's on your mind?</h6>
-                                    <form method="post">
-                                        <div class="form-group row">
-                                            <div class="container">
-                                                <input type="text" class="w3-border w3-padding form-control" name="post" id="post" style="height: 55px">
-                                            </div>
+                    <!-- card 2 -->
+                    <div class="col-md-7">
+                        <!-- write status -->
+                        <?php if (!isset($_POST['username'])) : ?>
+                            <div class="w3-row-padding">
+                                <div class="w3-col m12">
+                                    <div class="w3-card w3-round w3-white">
+                                        <div class="w3-container w3-padding">
+                                            <h6 class="w3-opacity">What's on your mind?</h6>
+                                            <form method="post">
+                                                <div class="form-group row">
+                                                    <div class="container">
+                                                        <input type="text" class="w3-border w3-padding form-control" name="post" id="post" style="height: 55px">
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" name="do" value="add_post.php">
+                                                <input type="hidden" name="loc" value="profile.php">
+                                                <input type="hidden" name="username" value="<?= $users->username ?>">
+                                                <input type="hidden" name="pp" value="<?= $users->profilePicturePath ?>">
+
+                                                <button type="submit" class="w3-button w3-theme btn-primary" name="submitPost">
+                                                    <i class="fa fa-pen"></i>&nbsp Post</button>
+                                            </form>
                                         </div>
-                                        <input type="hidden" name="do" value="add_post.php">
-                                        <input type="hidden" name="loc" value="profile.php">
-                                        <input type="hidden" name="username" value="<?= $users->username ?>">
-                                        <input type="hidden" name="pp" value="<?= $users->profilePicturePath ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <!-- write status -->
+                        <!-- post -->
+                        <?php if (!isset($_POST['username'])) : ?>
+                            <?php foreach ($posts as $row) : ?>
+                                <div class="w3-container w3-card w3-white w3-round w3-margin"><br />
+                                    <img src=" <?= $row->getPicture() ?>" alt="avatar here" class="w3-left w3-margin-right postPicSize" style="width:60px" />
+                                    <span class="w3-right w3-opacity"> <?= $row->getTimestamp() ?> </span>
+                                    <h4><?= $row->getUsername() ?></h4><br />
+                                    <hr class="w3-clear" />
+                                    <p><?= $row->getContent() ?></p>
+                                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Like</button>
+                                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#collapseExample<?= $row->getId() ?>"><i class="fa fa-comment"></i> Show Comment</button>
+                                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#collapseExample2"><i class="fa fa-comment"></i>Comment</button>
+                                    <div class="collapse" id="collapseExample2">
+                                        <label for="textarea">Example textarea</label>
+                                        <textarea class="form-control" name="comment" id="textarea"></textarea>
+                                        <button type="submit" name="" class="btn btn-primary">Submit</button>
+                                    </div>
+                                    <div class="collapse" id="collapseExample<?= $row->getId() ?>">
+                                        <div class="card card-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                        <?php if (isset($_POST['username'])) : ?>
+                            <?php foreach ($post_others as $row) : ?>
+                                <div class="w3-container w3-card w3-white w3-round w3-margin"><br />
+                                    <img src=" <?= $row->getPicture() ?>" alt="avatar here" class="w3-left w3-margin-right postPicSize" style="width:60px" />
+                                    <span class="w3-right w3-opacity"> <?= $row->getTimestamp() ?> </span>
+                                    <h4><?= $row->getUsername() ?></h4><br />
+                                    <hr class="w3-clear" />
+                                    <p><?= $row->getContent() ?></p>
+                                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Like</button>
+                                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#collapseExample<?= $row->getId() ?>"><i class="fa fa-comment"></i> Show Comment</button>
+                                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#collapseExample2"><i class="fa fa-comment"></i>Comment</button>
+                                    <div class="collapse" id="collapseExample2">
+                                        <label for="textarea">Example textarea</label>
+                                        <textarea class="form-control" name="comment" id="textarea"></textarea>
+                                        <button type="submit" name="" class="btn btn-primary">Submit</button>
+                                    </div>
+                                    <div class="collapse" id="collapseExample<?= $row->getId() ?>">
+                                        <div class="card card-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
 
-                                        <button type="submit" class="w3-button w3-theme btn-primary" name="submitPost">
-                                            <i class="fa fa-pen"></i>&nbsp Post</button>
-                                    </form>
+
+                    <?php if (!isset($_POST['username'])) : ?>
+                        <div class="col-md-2">
+                            <div class="w3-card w3-round w3-white w3-center" style="width: 120%; padding:20px">
+                                <form method="POST">
+                                    <input type="hidden" name="loc" value="alluser.php">
+                                    <button class="btn btn-link">
+                                        <p>Recommendations</p>
+                                    </button>
+                                </form>
+                                <img src="img/ricardo1.jpg" alt="Avatar" style="width:100%" /><br />
+                                <span>William Lim</span>
+                                <div class="w3-row w3-opacity">
+                                    <div class="w3-half">
+                                        <button class="w3-button w3-block w3-green w3-section" title="Accept">
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                    </div>
+                                    <div class="w3-half">
+                                        <button class="w3-button w3-block w3-red w3-section" title="Decline">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- write status -->
-                    <!-- post -->
-                    <?php foreach ($posts as $row) : ?>
-                        <div class="w3-container w3-card w3-white w3-round w3-margin"><br />
-                            <img src=" <?= $row->getPicture() ?>" alt="avatar here" class="w3-left w3-margin-right postPicSize" style="width:60px" />
-                            <span class="w3-right w3-opacity"> <?= $row->getTimestamp() ?> </span>
-                            <h4><?= $row->getUsername() ?></h4><br />
-                            <hr class="w3-clear" />
-                            <p><?= $row->getContent() ?></p>
-                            <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Like</button>
-                            <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#collapseExample<?= $row->getId() ?>"><i class="fa fa-comment"></i> Show Comment</button>
-                            <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#collapseExample2"><i class="fa fa-comment"></i>Comment</button>
-                            <div class="collapse" id="collapseExample2">
-                                <label for="textarea">Example textarea</label>
-                                <textarea class="form-control" name="comment" id="textarea"></textarea>
-                                <button type="submit" name="" class="btn btn-primary">Submit</button>
-                            </div>
-                            <div class="collapse" id="collapseExample<?= $row->getId() ?>">
-                                <div class="card card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
+                    <?php endif; ?>
 
-                <!-- card 2 -->
-                <div class="col-md-2">
-                    <div class="w3-card w3-round w3-white w3-center" style="width: 120%; padding:20px">
-                        <!-- <div class="container"> -->
-                        <form method="POST">
-                            <input type="hidden" name="loc" value="followinglist.php">
-                            <button class="btn btn-link">
-                                <p>Recommendations</p>
-                            </button>
-                        </form>
-                        <img src="img/ricardo1.jpg" alt="Avatar" style="width:100%" /><br />
-                        <span>William Lim</span>
-                        <div class="w3-row w3-opacity">
-                            <div class="w3-half">
-                                <button class="w3-button w3-block w3-green w3-section" title="Accept">
-                                    <i class="fa fa-check"></i>
-                                </button>
-                            </div>
-                            <div class="w3-half">
-                                <button class="w3-button w3-block w3-red w3-section" title="Decline">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <!-- </div> -->
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer" style="margin-top: 30px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <h6>About</h6>
+                        <p class="text-justify">Project UTS Web Programming. Semoga Pak Putu senang dengan project kami.</p>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Categories</h6>
+                        <ul class="footer-links">
+                            <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
+                            <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
+                            <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
+                            <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
+                            <li><a href="http://scanfcode.com/category/android/">Android</a></li>
+                            <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Quick Links</h6>
+                        <ul class="footer-links">
+                            <li><a href="http://scanfcode.com/about/">About Us</a></li>
+                            <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+                            <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+                            <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+                            <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+                        </ul>
                     </div>
                 </div>
-
-
+                <hr>
             </div>
-        </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by
+                            <a href="#">Ryukin, Rara, Ryo, William, Michael, Kevin</a>.
+                        </p>
+                    </div>
 
-
-
-    </div>
-
-    <!-- Footer -->
-    <footer class="site-footer" style="margin-top: 30px">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <h6>About</h6>
-                    <p class="text-justify">Project UTS Web Programming. Semoga Pak Putu senang dengan project kami.</p>
-                </div>
-
-                <div class="col-xs-6 col-md-3">
-                    <h6>Categories</h6>
-                    <ul class="footer-links">
-                        <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-                        <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
-                        <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
-                        <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
-                        <li><a href="http://scanfcode.com/category/android/">Android</a></li>
-                        <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-xs-6 col-md-3">
-                    <h6>Quick Links</h6>
-                    <ul class="footer-links">
-                        <li><a href="http://scanfcode.com/about/">About Us</a></li>
-                        <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
-                        <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
-                        <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
-                        <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
-                    </ul>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <ul class="social-icons">
+                            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <hr>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-sm-6 col-xs-12">
-                    <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by
-                        <a href="#">Ryukin, Rara, Ryo, William, Michael, Kevin</a>.
-                    </p>
-                </div>
+        </footer>
 
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <ul class="social-icons">
-                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
 
