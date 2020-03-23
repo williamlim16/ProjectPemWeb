@@ -28,6 +28,10 @@ $users = new User(
     $result2['userdesc']
 );
 
+$query3 = "SELECT * FROM comment WHERE username = '" . $_SESSION['user']->getusername() . "'";
+$result3 = $conn->query($query2);
+$result3 = $result->fetch_assoc();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,30 +41,38 @@ $users = new User(
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+
+
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/profileStyle.css">
     <link rel="stylesheet" href="css/footer.css">
+
+    <!-- Material CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+
+
 </head>
 
 <body>
 
     <!-- NAV -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background: linear-gradient(to right, #0062E6, #33AEFF)">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
+        style="background: linear-gradient(to right, #0062E6, #33AEFF)">
         <a class="navbar-brand" href="#" style="font-family: 'Pacifico', cursive; font-size:25px">Xpress Yourself</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -78,10 +90,12 @@ $users = new User(
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link" data-toggle="dropdown">
-                            <img src="<?= $users->getprofilePicturePath() ?>" alt="Photo Avatar" id="profileavatar" class="avatar" style="width: 50px">
+                            <img src="<?= $users->getprofilePicturePath() ?>" alt="Photo Avatar" id="profileavatar"
+                                class="avatar">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right animate slideIn">
-                            <a href="profile.php" class="dropdown-item">Signed in as <br><strong><?= $users->getusername() ?></strong></a>
+                            <a href="profile.php" class="dropdown-item">Signed in as
+                                <br><strong><?= $users->getusername() ?></strong></a>
                             <div class="dropdown-divider"></div>
                             <a href="profile.php" class="dropdown-item">My Profile</a>
                             <div class="dropdown-divider"></div>
@@ -98,17 +112,13 @@ $users = new User(
 
 
     <div class="container">
-        <div class="w3-card">
+        <div class="w3-card cont">
             <div class="masthead" style="  background-image: url(' <?= $users->getcoverPath() ?>')">
-                <div class="container">
-
-                    <div class="container">
-                        <img src="<?= $users->getprofilePicturePath() ?> " class="profilePic">
-                    </div>
-                </div>
             </div>
+            <img class="prof img-fluid" src="<?= $users->getprofilePicturePath() ?> ">
             <div class="row">
-                <div class="col-3"></div>
+                <div class="col-3">
+                </div>
                 <div class="col-3">
                     <h2>Following</h2>
                     <h5 style="color: grey">27</h5>
@@ -124,6 +134,7 @@ $users = new User(
             </div>
         </div>
 
+        <!-- Information -->
         <div class="container">
             <div class="row" style="margin-top: 30px">
                 <!-- ini kartu -->
@@ -140,8 +151,7 @@ $users = new User(
                             <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-blue"></i>
                                 <?= $users->getbdate(); ?></p>
                             <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-blue"></i>Situganteng, UK</p>
-                            <!-- ini di db enggak ada alamat, mau tambahin alamat? atau apus aja? -->
-                            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-blue"></i><?php echo $users->getcontact() ?>
+                            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-blue"></i>milos@mail.com
                             </p>
                             <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-blue"></i>087775176573</p>
                             <hr>
@@ -155,16 +165,33 @@ $users = new User(
                                 <p><?php echo $row2->getskills() ?></p>
                                 <div class="w3-light-grey w3-round-xlarge w3-small">
                                     <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:<?php echo $row2->getpercentage() . '%' ?>"><?php echo $row2->getpercentage() ?>%</div>
+
                                 </div>
-                                <br>
-                            <?php
-                            }
-                            ?>
+                            </div>
+                            <p>Illustrator</p>
+                            <div class="w3-light-grey w3-round-xlarge w3-small">
+                                <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:75%">75%</div>
+                            </div>
+                            <p>Media</p>
+                            <div class="w3-light-grey w3-round-xlarge w3-small">
+                                <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:50%">50%</div>
+                            </div>
+                            <br>
 
-                            <form class="form-signin" method="POST">
-                                <button name="loc" value="edit.php" class="btn btn-warning" style="margin-bottom: 15px;">Edit Profile</button>
-                            </form>
-
+                            <p class="w3-large w3-text-theme"><b><i
+                                        class="fa fa-globe fa-fw w3-margin-right w3-text-blue"></i>Languages</b></p>
+                            <p>English</p>
+                            <div class="w3-light-grey w3-round-xlarge">
+                                <div class="w3-round-xlarge w3-blue" style="height:24px;width:100%"></div>
+                            </div>
+                            <p>Spanish</p>
+                            <div class="w3-light-grey w3-round-xlarge">
+                                <div class="w3-round-xlarge w3-blue" style="height:24px;width:55%"></div>
+                            </div>
+                            <p>German</p>
+                            <div class="w3-light-grey w3-round-xlarge">
+                                <div class="w3-round-xlarge w3-blue" style="height:24px;width:25%"></div>
+                            </div>
                             <br>
                         </div>
                     </div>
@@ -181,7 +208,8 @@ $users = new User(
                                     <form method="post">
                                         <div class="form-group row">
                                             <div class="container">
-                                                <input type="text" class="w3-border w3-padding form-control" name="post" id="post" style="height: 55px">
+                                                <input type="text" class="w3-border w3-padding form-control" name="post"
+                                                    id="post" style="height: 55px">
                                             </div>
                                         </div>
                                         <input type="hidden" name="do" value="add_post.php">
@@ -198,7 +226,6 @@ $users = new User(
                     </div>
                     <!-- write status -->
                     <!-- post -->
-
                     <?php foreach ($posts as $row) : ?>
                         <div class="w3-container w3-card w3-white w3-round w3-margin"><br />
                             <img src=" <?= $row->getPicture() ?>" alt="avatar here" class="w3-left w3-margin-right postPicSize" style="width:60px" />
@@ -207,7 +234,13 @@ $users = new User(
                             <hr class="w3-clear" />
                             <p><?= $row->getContent() ?></p>
                             <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Like</button>
-                            <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#collapseExample<? $row->getId() ?>"><i class="fa fa-comment"></i> Comment</button>
+                            <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#collapseExample<?= $row->getId() ?>"><i class="fa fa-comment"></i> Show Comment</button>
+                            <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#collapseExample2"><i class="fa fa-comment"></i>Comment</button>
+                            <div class="collapse" id="collapseExample2">
+                                <label for="textarea">Example textarea</label>
+                                <textarea class="form-control" name="comment" id="textarea"></textarea>
+                                <button type="submit" name="" class="btn btn-primary">Submit</button>
+                            </div>
                             <div class="collapse" id="collapseExample<?= $row->getId() ?>">
                                 <div class="card card-body">
                                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
@@ -238,12 +271,16 @@ $users = new User(
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
 
 
 
     </div>
+
+    <!-- Footer -->
     <footer class="site-footer" style="margin-top: 30px">
         <div class="container">
             <div class="row">
@@ -296,6 +333,12 @@ $users = new User(
             </div>
         </div>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
