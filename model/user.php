@@ -1,25 +1,26 @@
 <?php
 
 class User
-
 {
     var $username;
     var $firstName;
     var $lastName;
     var $password;
     var $bdate;
+    var $phonenum;
     var $gender;
     var $profilePicturePath;
     var $coverPath;
     var $contact;
     var $userdesc;
-    function __construct($susername, $sfirstName, $slastName, $spassword, $sbdate, $sgender, $sprofilePicturePath, $scoverPath, $scontact, $suserdesc)
+    function __construct($susername, $sfirstName, $slastName, $spassword, $sbdate, $sphonenum, $sgender, $sprofilePicturePath, $scoverPath, $scontact, $suserdesc)
     {
         $this->username = $susername;
         $this->firstName = $sfirstName;
         $this->lastName = $slastName;
         $this->password = $spassword;
         $this->bdate = $sbdate;
+        $this->phonenum = $sphonenum;
         $this->gender = $sgender;
         $this->profilePicturePath = $sprofilePicturePath;
         $this->coverPath = $scoverPath;
@@ -45,6 +46,10 @@ class User
     public function getbdate()
     {
         return $this->bdate;
+    }
+    public function getphonenum()
+    {
+        return $this->phonenum;
     }
     public function getgender()
     {
@@ -85,6 +90,10 @@ class User
     public function setbdate($str)
     {
         $this->bdate = $str;
+    }
+    public function setphonenum($str)
+    {
+        $this->phonenum = $str;
     }
     public function setgender($str)
     {

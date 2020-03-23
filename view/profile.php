@@ -20,6 +20,7 @@ $users = new User(
     $result2['lastName'],
     $result2['password'],
     $result2['bdate'],
+    $result2['phonenum'],
     $result2['gender'],
     $result2['profilePicturePath'],
     $result2['coverPath'],
@@ -154,17 +155,17 @@ $result3 = $result->fetch_assoc();
                             </p>
                             <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-blue"></i>087775176573</p>
                             <hr>
+                            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
+                            <?php
+                            $query = "SELECT * FROM skills WHERE username_fk =  '" . $_SESSION['user']->getusername() . "'";
+                            $result = $conn->query($query);
+                            $skills = array();
+                            foreach ($result as $row2) array_push($skills, new Skills($row2['username_fk'], $row2['skills'], $row2['percent']));
+                            foreach ($skills as $row2) { ?>
+                                <p><?php echo $row2->getskills() ?></p>
+                                <div class="w3-light-grey w3-round-xlarge w3-small">
+                                    <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:<?php echo $row2->getpercentage() . '%' ?>"><?php echo $row2->getpercentage() ?>%</div>
 
-                            <p class="w3-large"><b><i
-                                        class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
-                            <p>Adobe Photoshop</p>
-                            <div class="w3-light-grey w3-round-xlarge w3-small">
-                                <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">90%</div>
-                            </div>
-                            <p>Photography</p>
-                            <div class="w3-light-grey w3-round-xlarge w3-small">
-                                <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:80%">
-                                    <div class="w3-center w3-text-white">80%</div>
                                 </div>
                             </div>
                             <p>Illustrator</p>
@@ -247,8 +248,6 @@ $result3 = $result->fetch_assoc();
                             </div>
                         </div>
                     <?php endforeach; ?>
-
-
                 </div>
                 <!-- card 2 -->
                 <div class="col-2">
