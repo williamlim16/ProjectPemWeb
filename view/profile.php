@@ -28,9 +28,14 @@ $users = new User(
 );
 
 $query3 = "SELECT * FROM comment WHERE username = '" . $_SESSION['user']->getusername() . "'";
-$result3 = $conn->query($query2);
-$result3 = $result->fetch_assoc();
-
+$result3 = $conn->query($query3);
+$comments = array();
+foreach ($result3 as $com) array_push($comments, new CommentModel(
+    $com['commentID'],
+    $com['content'],
+    $com['username'],
+    $com['postID']
+));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -233,19 +238,21 @@ $result3 = $result->fetch_assoc();
                             <hr class="w3-clear" />
                             <p><?= $row->getContent() ?></p>
                             <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Like</button>
-                            <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#collapseExample<?= $row->getId() ?>"><i class="fa fa-comment"></i> Show Comment</button>
-                            <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#collapseExample2"><i class="fa fa-comment"></i>Comment</button>
-                            <div class="collapse" id="collapseExample2">
-                                <form method="POST" action="">
-                                    <label for="textarea">Example textarea</label>
-                                    <textarea class="form-control" name="comment" id="textarea"></textarea>
-                                    <button type="submit" name="submitcomment" class="btn btn-primary">Submit</button>
-                                    <input type="hidden" name="do" value="add_comment.php">
-                                </form>
-                            </div>
+                            <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse" data-target="#collapseExample<?= $row->getId() ?>"><i class="fa fa-comment"></i>Comment</button>
                             <div class="collapse" id="collapseExample<?= $row->getId() ?>">
                                 <div class="card card-body">
-                                    <?= $row ?>
+                                <?php
+                                foreach (array_reverse($comments) as $com) : ?>
+                                <?php if($com->getId() == $row->getId()){ ?>
+                                <p class="card-text"><?= $com->getContent();'</p>'?><?php } ?>
+                                <?php endforeach; ?>
+                                    <form method="POST" action="">
+                                        <label for="textarea">Add your comment</label>
+                                        <textarea class="form-control" name="comment" id="textarea"></textarea>
+                                        <button type="submit" name="submitcomment" value="<?= $row->getId() ?>" class="btn btn-primary">Submit</button>
+                                        <input type="hidden" name="do" value="add_comment.php">
+                                        <input type="hidden" name="username" value="<?= $users->username ?>">
+                                    </form>
                                 </div>
                             </div>
                         </div>
