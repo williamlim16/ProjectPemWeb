@@ -98,13 +98,17 @@ foreach ($result3 as $com) array_push($comments, new CommentModel(
                             <img src="<?= $users->getprofilePicturePath() ?>" alt="Photo Avatar" id="profileavatar"
                                 class="avatar">
                         </a>
+                        <form method="POST" action="">
                         <div class="dropdown-menu dropdown-menu-right animate slideIn">
                             <a href="profile.php" class="dropdown-item">Signed in as
                                 <br><strong><?= $users->getusername() ?></strong></a>
                             <div class="dropdown-divider"></div>
-                            <a href="profile.php" class="dropdown-item">My Profile</a>
+                            <button type="submit" class="dropdown-item">My Profile</button>
+                            <input type="hidden" name="loc" value="login.php">
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item">Logout</a>
+                            <button type="submit" name="do" value="logout.php" class="dropdown-item">Logout</button>
+                            <input type="hidden" name="loc" value="login.php">
+                            </form>
                         </div>
                     </li>
                 </ul>
