@@ -10,9 +10,9 @@ if (isset($_POST['do'])) include 'controller/' . $_POST['do'];
 
 if (isset($_POST['loc']))
     $loc = $_POST['loc'];
-else if (isset($_SESSION['user']))
+else if (isset($_SESSION['user'])) {
     $loc = 'profile.php';
-else
+} else
     $loc = 'login.php';
 
 include 'view/' . $loc;

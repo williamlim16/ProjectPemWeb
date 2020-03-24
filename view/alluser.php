@@ -1,5 +1,5 @@
 <?php
-$query = 'SELECT * FROM user WHERE NOT username = "'.$_SESSION['user']->getusername().'" ';
+$query = 'SELECT * FROM user WHERE NOT username = "' . $_SESSION['user']->getusername() . '" ';
 $result = $conn->query($query);
 $results = array();
 
@@ -16,6 +16,8 @@ foreach ($result as $row) array_push($results, new User(
     $row['userdesc'],
     $row['phonenum']
 ));
+
+
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +34,7 @@ foreach ($result as $row) array_push($results, new User(
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/profileStyle.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css" rel="stylesheet">
     <style>
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -68,39 +71,6 @@ foreach ($result as $row) array_push($results, new User(
         a:hover {
             opacity: 0.7;
         }
-
-        .image {
-            opacity: 1;
-            display: block;
-            width: 100%;
-            height: auto;
-            transition: .5s ease;
-            backface-visibility: hidden;
-        }
-
-        .middle {
-            transition: .5s ease;
-            opacity: 0;
-            position: absolute;
-            top: 30%;
-            left: 52%;
-            transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        .container:hover .image {
-            opacity: 0.3;
-        }
-
-        .container:hover .middle {
-            opacity: 1;
-        }
-
-        .text {
-            font-size: 16px;
-            padding: 16px 32px;
-        }
     </style>
 </head>
 
@@ -126,7 +96,7 @@ foreach ($result as $row) array_push($results, new User(
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link" data-toggle="dropdown">
-                            <img alt="Photo Avatar" id="profileavatar" class="avatar">
+                            <img alt="<?= $_SESSION['user']->getusername() ?>" id="profileavatar" class="avatar" src="<?= $_SESSION['user']->getProfilePicture() ?>">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right animate slideIn">
                             <a href="profile.php" class="dropdown-item">Signed in as
@@ -147,22 +117,23 @@ foreach ($result as $row) array_push($results, new User(
         <div class="row">
             <?php foreach ($results as $row) : ?>
                 <div class="col-md-3">
-                    <div class="card" style="height: 100%">
-                        <div class="container pb-3 pt-3 ml-3">
-                            <img src="<?= $row->profilePicturePath ?>" style="width:200px; height:200px" class="image">
-                            <div class="middle">
-                                <form method="POST">
-                                    <button class="btn btn-link" name="loc" value="profile.php">
-                                        <h5>View Profile</h5>
-                                    </button>
-                                    <input type="hidden" name="username" value="<?= $row->username ?>">
-                                </form>
+                    <div class="card" style="height: 120%;position:relative">
+                        <div class="container pb-3 pt-3">
+                            <div class="view overlay">
+                                <img src="<?= $row->profilePicturePath ?>" style="width:200px; height:200px">
+                                <div class="mask flex-center rgba-blue-light">
+                                    <form method="POST">
+                                        <button class="btn btn-link" name="loc" value="profile.php">
+                                            <h3 class="white-text">View Profile</h3>
+                                            <input type="hidden" name="username" value="<?= $row->username ?>">
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <hr>
                         <h1><?= $row->firstName . " " . $row->lastName ?></h1>
-                        <p class="title"><?= $row->contact ?></p>
-                        <p><?= $row->userdesc ?></p>
+                        <p class="title" style="position: absolute;bottom:0;left:42%"><?= $row->username ?></p>
                     </div>
                 </div>
             <?php endforeach; ?>
