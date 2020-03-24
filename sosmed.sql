@@ -2,6 +2,7 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
+
 -- Host: 127.0.0.1:3306
 -- Generation Time: Mar 24, 2020 at 08:07 AM
 -- Server version: 10.4.10-MariaDB
@@ -27,6 +28,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `comment`
 --
+
 
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
@@ -60,6 +62,7 @@ INSERT INTO `comment` (`commentID`, `content`, `username`, `postID`, `timestamp`
 -- Table structure for table `post`
 --
 
+
 DROP TABLE IF EXISTS `post`;
 CREATE TABLE IF NOT EXISTS `post` (
   `postID` int(11) NOT NULL AUTO_INCREMENT,
@@ -69,7 +72,6 @@ CREATE TABLE IF NOT EXISTS `post` (
   `picture` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`postID`),
   KEY `fkIdx_20` (`username`)
-
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -127,7 +129,6 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `firstName`, `lastName`, `password`, `bdate`, `phonenum`, `gender`, `profilePicturePath`, `coverPath`, `contact`, `userdesc`) VALUES
-
 ('admin', 'M. Ihsan', '', 'e10adc3949ba59abbe56e057f20f883e', '2020-03-05', 84949941, 'M', 'https://i.imgur.com/2W7QVhD.jpeg', 'https://i.imgur.com/0LIRXej.png', '', 'Hello World 123'),
 ('derp', 'derpsyt', 'lastDerp', '58fd9edd83341c29f1aebba81c31e257', '2000-04-11', 34648616, 'M', 'https://i.imgur.com/tCFGjLe.png', 'https://i.imgur.com/h72mp1V.jpeg', 'derp@gmail.com', NULL);
 
