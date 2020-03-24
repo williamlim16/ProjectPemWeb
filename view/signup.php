@@ -24,7 +24,7 @@
 
 <body>
     <div class="container col-sm-12 col-md-6 col-md-offset-3" style="margin-top:10px;">
-        <div class="jumbotron" style="">
+        <div class="jumbotron">
             <h1 class="text-center">Sign Up</h1>
             <?php if (isset($response['status']) && $response['status'] == 'failed')  echo "<p class='text-danger text-center'>" . $response['message'] . "</p>";
             ?>
