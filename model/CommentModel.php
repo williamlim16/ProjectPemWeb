@@ -32,8 +32,7 @@ class CommentModel{
     public function getTimestamp(){
         return $this->timestamp;
     }
-    public function getPicture()
-    {
+    public function getPicture(){
         return $this->picture;
     }
 }

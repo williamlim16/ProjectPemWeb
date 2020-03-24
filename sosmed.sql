@@ -2,11 +2,10 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
-
--- Host: 127.0.0.1:3306
--- Generation Time: Mar 24, 2020 at 08:07 AM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Host: localhost:3306
+-- Generation Time: Mar 24, 2020 at 09:07 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -54,7 +53,9 @@ INSERT INTO `comment` (`commentID`, `content`, `username`, `postID`, `timestamp`
 (14, 'yo!', 'admin', '5', '06:04 pm'),
 (13, 'helloa', 'derp', '6', '06:58 pm'),
 (12, 'hei', 'admin', '4', '05:40 pm'),
-(16, 'p', 'derp', '6', '06:21 pm');
+(16, 'p', 'derp', '6', '06:21 pm'),
+(18, 'test', 'derp', '11', '07:44 am'),
+(20, 'henlo', 'admin', '11', '07:54 am');
 
 -- --------------------------------------------------------
 
@@ -70,19 +71,20 @@ CREATE TABLE IF NOT EXISTS `post` (
   `username` varchar(45) NOT NULL,
   `timestamp` varchar(100) DEFAULT NOW(),
   `picture` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`postID`),
-  KEY `fkIdx_20` (`username`)
+  `photos` varchar(1000) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `post`
 --
 
-INSERT INTO `post` (`postID`, `content`, `username`, `timestamp`, `picture`) VALUES
-(4, 'Hello Friend', 'admin', '04:15 pm', 'https://i.imgur.com/2W7QVhD.jpeg'),
-(3, 'Hello World', 'derp', '04:21 pm', 'https://i.imgur.com/tCFGjLe.png'),
-(5, 'Hello Guys', 'derp', '05:14 pm', 'https://i.imgur.com/tCFGjLe.png'),
-(6, 'Testing', 'admin', '05:56 pm', 'https://i.imgur.com/2W7QVhD.jpeg');
+INSERT INTO `post` (`postID`, `content`, `username`, `timestamp`, `picture`, `photos`) VALUES
+(4, 'Hello Friend', 'admin', '04:15 pm', 'https://i.imgur.com/2W7QVhD.jpeg', NULL),
+(3, 'Hello World', 'derp', '04:21 pm', 'https://i.imgur.com/tCFGjLe.png', NULL),
+(5, 'Hello Guys', 'derp', '05:14 pm', 'https://i.imgur.com/tCFGjLe.png', NULL),
+(19, 'Testing', 'admin', '09:02 am', 'https://i.imgur.com/2W7QVhD.jpeg', 'resource/emoji.png'),
+(18, 'a', 'admin', '08:51 am', 'https://i.imgur.com/2W7QVhD.jpeg', 'resource/Freedom-Series-at-Christ-Fellowship-Church.png'),
+(11, 'Hello World', 'derp', '07:40 am', 'https://i.imgur.com/tCFGjLe.png', NULL);
 
 -- --------------------------------------------------------
 

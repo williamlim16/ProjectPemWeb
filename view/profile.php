@@ -80,7 +80,6 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
         style="background: linear-gradient(to right, #0062E6, #33AEFF)">
         <a class="navbar-brand" href="index.php" style="font-family: 'Pacifico', cursive; font-size:25px">Xpress
-
             Yourself</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
             aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -357,6 +356,22 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                         </form>
                                     </div>
                                 </div>
+                                <p class="mb-1"></p>
+                                <?php endforeach; ?>
+                                <hr>
+                                <form method="POST" action="">
+
+                                    <div class="form-group">
+                                        <textarea class="form-control" placeholder="Add your comment" name="comment"
+                                            id="textarea"></textarea>
+                                    </div>
+                                    <button type="submit" name="submitcomment" value="<?= $row->getId() ?>"
+                                        class="btn btn-info">Add Comment</button>
+                                    <input type="hidden" name="do" value="add_comment.php">
+                                    <input type="hidden" name="pp" value="<?= $loginUser->profilePicturePath ?>">
+                                    <input type="hidden" name="username" value="<?= $row->getUsername() ?>">
+                                </form>
+                                <hr>
                             </div>
                             <p class="mb-1"></p>
                             <?php endforeach; ?>
@@ -477,7 +492,6 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
         //     });
         // });
     </script>
-
 
 </body>
 
