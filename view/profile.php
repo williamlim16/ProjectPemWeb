@@ -41,10 +41,7 @@ foreach ($result as $row) array_push($userPost, new PostModel(
 // var_dump($userProfile);
 //null checker
 if ($userProfile->getcoverPath() == null) $userProfile->setcoverPath("img/defaultCover.jpg");
-if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePicturePath("img/defaultProfile.png")
-
-
-
+if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePicturePath("img/defaultProfile.png");
 
 ?>
 <!DOCTYPE html>
@@ -59,14 +56,16 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/profileStyle.css">
     <link rel="stylesheet" href="css/footer.css">
 </head>
 
 <body>
-
     <!-- NAV -->
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
         style="background: linear-gradient(to right, #0062E6, #33AEFF)">
         <a class="navbar-brand" href="#" style="font-family: 'Pacifico', cursive; font-size:25px">Xpress
@@ -90,6 +89,7 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link" data-toggle="dropdown">
+
                             <img src="<?= $loginUser->getprofilePicturePath() ?>" alt="Photo Avatar" id="profileavatar"
                                 class="avatar">
                         </a>
@@ -117,6 +117,7 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
 
     <div class="container">
         <div class="w3-card cont">
+
             <div class="masthead" style="background-image: url('<?= $userProfile->getcoverPath() ?>')" alt="No cover!">
             </div>
             <img class="prof" src="                       
@@ -135,17 +136,17 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                     </form>
                     <?php } ?>
                 </div>
-                <div class="col-3">
+                <div class="col-md-3">
                     <h2>Following</h2>
                     <h5 style="color: grey">27</h5>
                 </div>
-                <div class="col-3">
+                <div class="col-md-3">
                     <h2>Followers</h2>
                     <h5 style="color: grey">234</h5>
                 </div>
-                <div class="col-3">
-                    <h2>Blocked</h2>
-                    <h5 style="color: grey">1</h5>
+                <div class="col-md-3">
+                    <h2>Posts</h2>
+                    <h5 style="color: grey"><?= $count['total']; ?></h5>
                 </div>
 
             </div>
@@ -154,11 +155,11 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
         <!-- Information -->
         <div class="container">
             <div class="row" style="margin-top: 30px">
-                <!-- ini kartu -->
                 <div class="col-md-3">
                     <div class="w3-white w3-text-grey w3-card-4">
                         <div class="w3-container w3-text-black">
                             <h2 style="margin-top: 20px">
+
                                 <?php
                                 echo $userProfile->firstName . " " . $userProfile->lastName;
                                 ?>
@@ -166,6 +167,7 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                         </div>
                         <div class="w3-dark-text-grey w3-container">
                             <h4>
+
                                 <?= "@" . $userProfile->username ?>
                             </h4>
                             <h5 style="color: black">
@@ -175,12 +177,12 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                         </div>
                         <div class="w3-container">
                             <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-blue"></i>
+
                                 <?= $userProfile->bdate ?>
                             </p>
                             <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-blue"></i>
                                 <?= $userProfile->contact ?>
                             </p>
-                            <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-blue"></i>087775176573</p>
                             <hr>
                             <?php
                             $query = "SELECT * FROM skills WHERE username_fk =  '" . $_SESSION['user']->getusername() . "'";
@@ -188,14 +190,12 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                             $skills = array();
                             ?>
                             <?php foreach ($skills as $row2) : ?>
-                            <p><?php echo $row2->getskills() ?></p>
-                            <div class="w3-light-grey w3-round-xlarge w3-small">
-                                <div class="w3-container w3-center w3-round-xlarge w3-blue"
-                                    style="width:<?php echo $row2->getpercentage() . '%' ?>">
-                                    <?php echo $row2->getpercentage() ?>%</div>
+                                <p><?php echo $row2->getskills() ?></p>
+                                <div class="w3-light-grey w3-round-xlarge w3-small">
+                                    <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:<?php echo $row2->getpercentage() . '%' ?>">
+                                        <?php echo $row2->getpercentage() ?>%</div>
                                 <?php endforeach; ?>
-                                <p class="w3-large"><b><i
-                                            class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
+                                <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
                                 <p>Adobe Photoshop</p>
                                 <div class="w3-light-grey w3-round-xlarge w3-small">
                                     <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">90%
@@ -220,8 +220,7 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                 </div>
                                 <br>
 
-                                <p class="w3-large w3-text-theme"><b><i
-                                            class="fa fa-globe fa-fw w3-margin-right w3-text-blue"></i>Languages</b></p>
+                                <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-blue"></i>Languages</b></p>
                                 <p>English</p>
                                 <div class="w3-light-grey w3-round-xlarge">
                                     <div class="w3-round-xlarge w3-blue" style="height:24px;width:100%"></div>
@@ -235,13 +234,14 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                     <div class="w3-round-xlarge w3-blue" style="height:24px;width:25%"></div>
                                 </div>
                                 <br>
-                            </div>
+                                </div>
                         </div>
                     </div>
-
+                    <!-- Information -->
                     <!-- card 2 -->
                     <div class="col-md-7">
                         <!-- write status -->
+
                         <?php if (!$otherUser) { ?>
                         <div class="w3-row-padding">
                             <div class="w3-col m12">
@@ -374,43 +374,23 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                         </div>
                         <?php endforeach; ?>
 
-
                         <!-- post -->
 
                     </div>
 
                     <div class="col-md-2">
-                        <div class="w3-card w3-round w3-white w3-center" style="width: 120%; padding:20px">
+                        <div class="w3-card w3-round w3-white w3-center" style="width: 110%; padding:20px">
                             <form method="POST">
-                                <input type="hidden" name="do" value="session.php">
                                 <input type="hidden" name="loc" value="alluser.php">
                                 <button class="btn btn-link">
-                                    <p>Recommendations</p>
+                                    <a style="color:black">Find more friends!</a>
                                 </button>
                             </form>
-                            <img src="img/ricardo1.jpg" alt="Avatar" style="width:100%" /><br />
-                            <span>William Lim</span>
-                            <div class="w3-row w3-opacity">
-                                <div class="w3-half">
-                                    <button class="w3-button w3-block w3-green w3-section" title="Accept">
-                                        <i class="fa fa-check"></i>
-                                    </button>
-                                </div>
-                                <div class="w3-half">
-                                    <button class="w3-button w3-block w3-red w3-section" title="Decline">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
+                            <img src="img/addfriend.png" alt="Avatar" style="width:100%" /><br />
                         </div>
                     </div>
-
-
                 </div>
             </div>
-
-
-
         </div>
 
         <!-- Footer -->
@@ -476,6 +456,7 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script type="text/javascript">
+
         jQuery('button').click(function(e) {
             jQuery('.collapse').collapse('hide');
         });
