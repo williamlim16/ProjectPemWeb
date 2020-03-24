@@ -6,7 +6,7 @@ if (isset($_POST['submitcomment'])) {
     $username =  $_SESSION['user']->getusername();
     $picture = $_POST['pp'];
 
-    if (!$conn->query('INSERT INTO comment (content, username, postID, timestamp) VALUES("' . $content . '", "' . $username . '","' . $postid . '","' . $timestamp . '","' . $picture . '");')) {
+    if (!$conn->query('INSERT INTO comment (content, username, postID, timestamp, picture) VALUES("' . $content . '", "' . $username . '","' . $postid . '","' . $timestamp . '","' . $picture . '");')) {
         echo ("Error description: " . $conn->error);
     }
     unset($_POST['submitcomment']);
