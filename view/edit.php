@@ -115,14 +115,16 @@ $users = new User(
                             <button class="btn btn-primary col-12">Submit</button>
                         </div>
                     </div>
+                </form>
                     <div class="form-row">
                         <div class="col mt-3">
-                            <input type="hidden" name="loc" value="profile.php"> <!-- MVC view controller-->
-                            <button class="btn btn-danger col-12">Cancel</button>
+                            <form method="POST">
+                                <input type="hidden" name="loc" value="profile.php"> <!-- MVC view controller-->
+                                <button type="submit"class="btn btn-danger col-12">Cancel</button>
+                        </form>
                         </div>
                     </div>
                 </div>
-            </form>
             <form method="post">
                 <div class="form-group">
                     <div class="form-row">
