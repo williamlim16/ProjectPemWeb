@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $response['message'] = 'Username already exists!';
             } else { // Aman, no duplikat
                 // Tambahkan pemeriksaan2 atau perubahan value di sini
-
+                $user_password = md5($user_password);
                 // Insert ke DB
                 $insert_query = "INSERT INTO $table_name (username, password, firstName, lastName, bdate, gender, contact, phonenum)
                 VALUE('$user_username', '$user_password', '$user_firstname', '$user_lastname', '$user_dateofbirth', '$user_gender', '$user_email', '$user_phone_number')";
