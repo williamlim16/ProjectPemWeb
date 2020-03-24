@@ -6,14 +6,16 @@ class PostModel
     var $username;
     var $timestamp;
     var $picture;
+    var $photos;
 
-    function __construct($postid, $content, $username, $timestamp, $picture)
+    function __construct($postid, $content, $username, $timestamp, $picture, $photos)
     {
         $this->postid = $postid;
         $this->content = $content;
         $this->username = $username;
         $this->timestamp = $timestamp;
         $this->picture = $picture;
+        $this->photos = $photos;
         // $this->postcount = $postcount;
     }
     public function getContent()
@@ -35,6 +37,10 @@ class PostModel
     public function getId()
     {
         return $this->postid;
+    }
+    public function getPhotos()
+    {
+        return $this->photos;
     }
     // public function getPostCount()
     // {

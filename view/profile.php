@@ -7,7 +7,8 @@ foreach ($result as $row) array_push($posts, new PostModel(
     $row['content'],
     $row['username'],
     $row['timestamp'],
-    $row['picture']
+    $row['picture'],
+    $row['photos']
 ));
 
 $query = "SELECT * FROM user WHERE username = '" . $_SESSION['user']->getusername() . "'";
@@ -39,6 +40,7 @@ foreach ($result3 as $com) array_push($comments, new CommentModel(
     $com['postID'],
     $com['timestamp']
 ));
+
 if(isset($_POST['username'])){
     $query = "SELECT * FROM user WHERE username = '" . $_POST['username'] . "'";
     $result = $conn->query($query);
@@ -65,7 +67,8 @@ if(isset($_POST['username'])){
         $row['content'],
         $row['username'],
         $row['timestamp'],
-        $row['picture']
+        $row['picture'],
+        $row['photos']
     ));
 
 }
@@ -115,20 +118,21 @@ if(isset($_POST['username'])){
                             <img src="<?= $users->getprofilePicturePath() ?>" alt="Photo Avatar" id="profileavatar"
                                 class="avatar">
                         </a>
-                            <div class="dropdown-menu dropdown-menu-right animate slideIn">
-                                <a href ="profile.php" class="dropdown-item">Signed in as
-                                    <br><strong><?= $users->getusername() ?></strong></a>
-                                <div class="dropdown-divider"></div>
-                                <form method="POST">
-                                    <button type="submit" name="do" value="session.php" class="dropdown-item">My Profile</button>
-                                    <input type="hidden" name="profile">
-                                </form>
-                                <div class="dropdown-divider"></div>
-                                <form method="POST">
-                                    <button type="submit" name="do" value="logout.php" class="dropdown-item">Logout</button>
-                                    <input type="hidden" name="loc" value="login.php">
-                                </form>
-                            </div>
+                        <div class="dropdown-menu dropdown-menu-right animate slideIn">
+                            <a href="profile.php" class="dropdown-item">Signed in as
+                                <br><strong><?= $users->getusername() ?></strong></a>
+                            <div class="dropdown-divider"></div>
+                            <form method="POST">
+                                <button type="submit" name="do" value="session.php" class="dropdown-item">My
+                                    Profile</button>
+                                <input type="hidden" name="profile">
+                            </form>
+                            <div class="dropdown-divider"></div>
+                            <form method="POST">
+                                <button type="submit" name="do" value="logout.php" class="dropdown-item">Logout</button>
+                                <input type="hidden" name="loc" value="login.php">
+                            </form>
+                        </div>
                     </li>
                 </ul>
             </form>
@@ -151,12 +155,12 @@ if(isset($_POST['username'])){
                 <div class="col-3">
                     <?php if (!isset($_POST['username'])) {?>
                     <form method="POST">
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-link">
-                            <i class="fas fa-pencil-alt" style="font-size:40px; color:black"></i>
-                        </button>
-                        <input type="hidden" name="loc" value="edit.php">
-                    </div>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-link">
+                                <i class="fas fa-pencil-alt" style="font-size:40px; color:black"></i>
+                            </button>
+                            <input type="hidden" name="loc" value="edit.php">
+                        </div>
                     </form>
                     <?php }?>
                 </div>
@@ -172,7 +176,7 @@ if(isset($_POST['username'])){
                     <h2>Blocked</h2>
                     <h5 style="color: grey">1</h5>
                 </div>
-                
+
             </div>
         </div>
 
@@ -295,11 +299,18 @@ if(isset($_POST['username'])){
                                 <div class="w3-card w3-round w3-white">
                                     <div class="w3-container w3-padding">
                                         <h6 class="w3-opacity">What's on your mind?</h6>
-                                        <form method="post">
+
+                                        <form method="post" enctype="multipart/form-data">
                                             <div class="form-group row">
                                                 <div class="container">
                                                     <input type="text" class="w3-border w3-padding form-control"
                                                         name="post" id="post" style="height: 55px">
+                                                    <div class="custom-file">
+                                                        <input type="file" name="fileToUpload" class="custom-file-input"
+                                                            id="customFile">
+                                                        <label class="custom-file-label" for="customFile">Choose
+                                                            file</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <input type="hidden" name="do" value="add_post.php">
@@ -311,6 +322,7 @@ if(isset($_POST['username'])){
                                                 name="submitPost">
                                                 <i class="fa fa-pen"></i>&nbsp Post</button>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>
@@ -327,9 +339,10 @@ if(isset($_POST['username'])){
                             <span class="w3-right w3-opacity"> <?= $row->getTimestamp() ?> </span>
                             <h4><?= $row->getUsername() ?></h4><br />
                             <hr class="w3-clear" />
+                            <img src="<?=$row->getPhotos() ?>" class="img-fluid rounded mx-auto d-block ">
                             <p><?= $row->getContent() ?></p>
                             <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i
-                                    class="fa fa-thumbs-up"></i> Like</button>
+                                    class="fa fa-thumbs-up"></i> Like <span class="w3-badge w3-red">8</span></button>
                             <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse"
                                 data-target="#collapseExample<?= $row->getId() ?>"><i class="fa fa-comment"></i>
                                 Comment</button>
@@ -367,6 +380,7 @@ if(isset($_POST['username'])){
                                             <h5 class="mb-1"><?= $com->getUsername() ?></h3>
                                         </div>
                                         <hr>
+                                        <img src="<?=$row->getPhotos() ?>" class="img-fluid rounded mx-auto d-block">
                                         <p class="mb-1"><?= $com->getContent();?></p>
                                         <small><?= $com->getTimestamp(); ?></small>
                                         <small><a class="" data-toggle="collapse"
@@ -447,7 +461,7 @@ if(isset($_POST['username'])){
                             <div class="collapse" id="collapseExample<?= $row->getId() ?>">
                                 <?php foreach ($comments as $com) : ?>
                                 <?php if($com->getId() == $row->getId()){ ?>
-   
+
                                 <div class="list-group">
                                     <div class="list-group-item list-group-item-action flex-column align-items-start">
                                         <div class="d-flex w-100 justify-content-start">
@@ -481,7 +495,7 @@ if(isset($_POST['username'])){
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <p class="mb-1"><?php } ?>
                                     <?php endforeach; ?>
                                     <hr>
@@ -499,7 +513,7 @@ if(isset($_POST['username'])){
                             </div>
                         </div>
                         <?php endforeach; ?>
-                        <?php }?> 
+                        <?php }?>
                         <!-- post -->
 
                     </div>
