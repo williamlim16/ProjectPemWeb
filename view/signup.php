@@ -14,12 +14,20 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style media="all">
+    body {
+        background: linear-gradient(to right, #33AEFF, #0062E6);
+    }
+    </style>
 </head>
 
 <body>
-    <div class="container col-sm-12 col-md-6 col-md-offset-3" style="margin-top:128px;">
-        <div class="jumbotron">
+    <div class="container col-sm-12 col-md-6 col-md-offset-3" style="margin-top:10px;">
+        <div class="jumbotron" style="">
             <h1 class="text-center">Sign Up</h1>
+            <?php if (isset($response['status']) && $response['status'] == 'failed')  echo "<p class='text-danger text-center'>" . $response['message'] . "</p>";
+            ?>
             <form action="" method="post">
                 <!-- using MVC, no action -->
                 <div class="form-group col-sm-12">
@@ -31,8 +39,7 @@
                         <input required id="username" name="username" type="text" class="form-control"
                             placeholder="Insert unique username here" />
                     </div>
-                    <?php if (isset($duplikat) && $duplikat) echo "<p class='text-danger'>" . $response['message'] . "</p>";
-          ?>
+
                 </div>
                 <div class="form-group col-sm-12">
                     <label for="email" class="control-label"> Email </label>
@@ -85,7 +92,7 @@
                             <i class="glyphicon glyphicon-phone"></i>
                         </span>
                         <input required id="user_phone" name="phone_number" type="tel" class="form-control"
-                            placeholder="Insert your phone number (9-12 digits)" pattern="8[0-9]{8,11}" />
+                            placeholder="9-12 digits (e.g. 8XXXXXXXX)" pattern="8[0-9]{8,11}" />
                     </div>
                 </div>
                 <div class="form-group col-sm-12 col-md-6">
@@ -103,7 +110,7 @@
                 <div class="form-inline form-group">
                     <label for="gender" class="control-label col-sm-12"> Gender </label>
                     <div class="form-group col-sm-4">
-                        <input type="radio" name="gender" id="gender_male" class="form-control" value="M" />
+                        <input type="radio" name="gender" id="gender_male" class="form-control" value="M" required />
                         <label for="gender_male" class="control-label"> Male </label>
                     </div>
                     <div class="form-group col-sm-4">
@@ -123,7 +130,12 @@
                 </button>
             </form>
             <h5 class="text-center text-muted">
-                Already have an account? <form method="POST"><button name="loc" type="submit" value="login.php" role="button"> Sign in now </button></form>
+                Already have an account? <form method="POST">
+                    <input type="hidden" name="loc" value="login.php">
+                    <button type="submit" class="btn btn-warning col-md-12 col-sm-6">
+                        Click here to Login
+                    </button>
+                </form>
             </h5>
         </div>
     </div>

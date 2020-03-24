@@ -2,10 +2,10 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 24, 2020 at 07:28 AM
--- Server version: 5.7.24
--- PHP Version: 7.2.19
+-- Host: 127.0.0.1:3306
+-- Generation Time: Mar 24, 2020 at 08:07 AM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,12 +28,17 @@ SET time_zone = "+00:00";
 -- Table structure for table `comment`
 --
 
-CREATE TABLE `comment` (
-  `commentID` int(45) NOT NULL,
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE IF NOT EXISTS `comment` (
+  `commentID` int(11) NOT NULL AUTO_INCREMENT ,
   `content` varchar(255) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `postID` varchar(45) NOT NULL,
-  `timestamp` varchar(100) DEFAULT NULL
+    `timestamp` varchar(100) DEFAULT NOW(),
+  `postID` int(11) NOT NULL,
+  PRIMARY KEY (`commentID`),
+  KEY `fkIdx_27` (`username`),
+  KEY `fkIdx_30` (`postID`)
+
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -55,12 +60,16 @@ INSERT INTO `comment` (`commentID`, `content`, `username`, `postID`, `timestamp`
 -- Table structure for table `post`
 --
 
-CREATE TABLE `post` (
-  `postID` int(45) NOT NULL,
+DROP TABLE IF EXISTS `post`;
+CREATE TABLE IF NOT EXISTS `post` (
+  `postID` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(255) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `timestamp` varchar(100) DEFAULT NULL,
-  `picture` varchar(255) DEFAULT NULL
+  `timestamp` varchar(100) DEFAULT NOW(),
+  `picture` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`postID`),
+  KEY `fkIdx_20` (`username`)
+
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -105,7 +114,7 @@ CREATE TABLE `user` (
   `lastName` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `bdate` date NOT NULL,
-  `phonenum` int(100) NOT NULL,
+  `phonenum` varchar(45) NOT NULL,
   `gender` varchar(1) NOT NULL,
   `profilePicturePath` varchar(255) DEFAULT NULL,
   `coverPath` varchar(255) DEFAULT NULL,
@@ -118,6 +127,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `firstName`, `lastName`, `password`, `bdate`, `phonenum`, `gender`, `profilePicturePath`, `coverPath`, `contact`, `userdesc`) VALUES
+
 ('admin', 'M. Ihsan', '', 'e10adc3949ba59abbe56e057f20f883e', '2020-03-05', 84949941, 'M', 'https://i.imgur.com/2W7QVhD.jpeg', 'https://i.imgur.com/0LIRXej.png', '', 'Hello World 123'),
 ('derp', 'derpsyt', 'lastDerp', '58fd9edd83341c29f1aebba81c31e257', '2000-04-11', 34648616, 'M', 'https://i.imgur.com/tCFGjLe.png', 'https://i.imgur.com/h72mp1V.jpeg', 'derp@gmail.com', NULL);
 
