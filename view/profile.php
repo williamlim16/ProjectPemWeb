@@ -21,10 +21,12 @@ if (isset($_POST['username']) && $_POST['username'] != $_SESSION['user']->getuse
     );
 
     $getPost = "SELECT * FROM post WHERE username = '" . $_POST['username'] . "'";
+    $getPostCount = "SELECT count(*) as total from post WHERE username = '" . $_POST['username'] . "'";
     $otherUser = true;
 } else {
     $userProfile = $loginUser;
     $getPost = "SELECT * FROM post WHERE username = '" . $_SESSION['user']->getusername() . "'";
+    $getPostCount = "SELECT count(*) as total from post WHERE username = '" . $_SESSION['user']->getusername()  . "'";
 }
 
 //set user posts
@@ -38,15 +40,13 @@ foreach ($result as $row) array_push($userPost, new PostModel(
     $row['picture']
 ));
 
+$count = $conn->query($getPostCount);
+$count = $count->fetch_assoc();
+
 // var_dump($userProfile);
 //null checker
 if ($userProfile->getcoverPath() == null) $userProfile->setcoverPath("img/defaultCover.jpg");
 if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePicturePath("img/defaultProfile.png");
-
-$query = "SELECT count(*) as total from post";
-$result = $conn->query($query);
-$result = $result->fetch_assoc();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,9 +99,9 @@ $result = $result->fetch_assoc();
                                 <br><strong><?= $loginUser->getusername() ?></strong></a>
                             <div class="dropdown-divider"></div>
                             <form method="POST">
-                                <button type="submit" name="do" value="session.php" class="dropdown-item">My
+                                <button type="submit" name="loc" value="profile.php" class="dropdown-item">My
                                     Profile</button>
-                                <input type="hidden" name="profile">
+                                <!-- ini gimana maksudnya? -->
                             </form>
                             <div class="dropdown-divider"></div>
                             <form method="POST">
@@ -146,7 +146,7 @@ $result = $result->fetch_assoc();
                 </div>
                 <div class="col-md-3">
                     <h2>Posts</h2>
-                    <h5 style="color: grey"><?= $result['total']; ?></h5>
+                    <h5 style="color: grey"><?= $count['total']; ?></h5>
                 </div>
 
             </div>
