@@ -5,13 +5,15 @@ class CommentModel{
     var $username;
     var $commentid;
     var $timestamp;
+    var $picture;
     
-    function __construct($commentid, $content, $username, $postid, $timestamp ){
+    function __construct($commentid, $content, $username, $postid, $timestamp, $picture ){
         $this->postid = $postid;
         $this->content = $content;
         $this->username = $username;
         $this->commentid = $commentid;
         $this->timestamp = $timestamp;
+        $this->picture = $picture;
     }
 
     public function getContent(){
@@ -29,5 +31,9 @@ class CommentModel{
     }
     public function getTimestamp(){
         return $this->timestamp;
+    }
+    public function getPicture()
+    {
+        return $this->picture;
     }
 }

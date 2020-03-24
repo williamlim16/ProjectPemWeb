@@ -39,7 +39,8 @@ foreach ($result as $row) array_push($userPost, new PostModel(
     $row['content'],
     $row['username'],
     $row['timestamp'],
-    $row['picture']
+    $row['picture'],
+    $row['photos']
 ));
 
 $count = $conn->query($getPostCount);
@@ -68,9 +69,9 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
     <link rel="stylesheet" href="css/profileStyle.css">
     <link rel="stylesheet" href="css/footer.css">
     <style>
-    a {
-        color: black;
-    }
+        a {
+            color: black;
+        }
     </style>
 </head>
 
@@ -242,11 +243,17 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                             <div class="w3-card w3-round w3-white">
                                 <div class="w3-container w3-padding">
                                     <h6 class="w3-opacity">What's on your mind?</h6>
-                                    <form method="post">
+                                    <form method="post" enctype="multipart/form-data">
                                         <div class="form-group row">
                                             <div class="container">
                                                 <input type="text" class="w3-border w3-padding form-control" name="post"
-                                                    id="post" style="height: 55px">
+                                                    id="post" style="height: 55px;">
+                                                <div class="custom-file">
+                                                    <input type="file" name="fileToUpload" class="custom-file-input" id="inputGroupFile01"
+                                                        aria-describedby="inputGroupFileAddon01">
+                                                    <label class="custom-file-label" for="inputGroupFile01">Choose
+                                                        file</label>
+                                                </div>
                                             </div>
                                         </div>
                                         <input type="hidden" name="do" value="add_post.php">
@@ -272,6 +279,7 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                         <h4><a href="index.php?user=<?= $row->getUsername() ?>"><?= $row->getUsername() ?></a></h4>
                         <br />
                         <hr class="w3-clear" />
+                        <img src="<?= $row->getPhotos()?>" class="img-fluid rounded mx-auto d-block">
                         <p><?= $row->getContent() ?></p>
                         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i
                                 class="fa fa-thumbs-up"></i> Like</button>
@@ -310,14 +318,15 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                     $com['content'],
                                     $com['username'],
                                     $com['postID'],
-                                    $com['timestamp']
+                                    $com['timestamp'],
+                                    $com['picture']
                                 ));
                                 foreach ($comments as $com) : ?>
 
                             <div class="list-group">
                                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-start">
-                                        <img src=" <?= $row->getPicture() ?>" alt="avatar here"
+                                        <img src=" <?= $com->getPicture() ?>" alt="avatar here"
                                             class="w3-left w3-margin-right postPicSize"
                                             style="width: 35px;height: 35px;" />
                                         <h5 class="mb-1"><a
@@ -340,9 +349,10 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                             <button type="submit" name="editcomment" value="<?= $com->getCommentId() ?>"
                                                 class="btn btn-success">Confirm</button>
                                             <input type="hidden" name="do" value="add_comment.php">
-                                            <input type="hidden" name="username" value="<?= $loginUser->username ?>">
+                                            <input type="hidden" name="username" value="<?= $row->getUsername() ?>">
                                             <button type="submit" name="delete" value="<?= $com->getCommentId() ?>"
                                                 class="btn btn-danger">Delete</button>
+                                            <input type="hidden" name="username" value="<?= $row->getUsername() ?>">
                                             <input type="hidden" name="do" value="add_comment.php">
                                         </form>
                                     </div>
@@ -360,7 +370,8 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                 <button type="submit" name="submitcomment" value="<?= $row->getId() ?>"
                                     class="btn btn-info">Add Comment</button>
                                 <input type="hidden" name="do" value="add_comment.php">
-                                <input type="hidden" name="username" value="<?= $loginUser->username ?>">
+                                <input type="hidden" name="username" value="<?= $row->getUsername() ?>">
+                                <input type="hidden" name="pp" value="<?= $loginUser->profilePicturePath ?>">
                             </form>
                             <hr>
                         </div>
@@ -452,19 +463,19 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-    jQuery('button').click(function(e) {
-        jQuery('.collapse').collapse('hide');
-    });
-    // $('#addc').click(function() {
-    //     var comment = $('#textarea').val();
-    //     var username = $('#uname').val();
-    //     var id = $('#addc').val()
-    //     $.ajax({
-    //         type: 'POST',
-    //         url: './controller/add_comment.php',
-    //         data: { comment: comment, username: username, submitcontent: id }
-    //     });
-    // });
+        jQuery('button').click(function (e) {
+            jQuery('.collapse').collapse('hide');
+        });
+        // $('#addc').click(function() {
+        //     var comment = $('#textarea').val();
+        //     var username = $('#uname').val();
+        //     var id = $('#addc').val()
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: './controller/add_comment.php',
+        //         data: { comment: comment, username: username, submitcontent: id }
+        //     });
+        // });
     </script>
 
 
