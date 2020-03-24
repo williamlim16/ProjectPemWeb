@@ -126,7 +126,7 @@ foreach ($result as $row) array_push($results, new User(
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link" data-toggle="dropdown">
-                            <img alt="Photo Avatar" id="profileavatar" class="avatar">
+                            <img src="g" id="profileavatar" class="avatar">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right animate slideIn">
                             <a href="profile.php" class="dropdown-item">Signed in as

@@ -425,11 +425,7 @@ if(isset($_POST['username'])){
                             <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse"
                                 data-target="#collapseExample<?= $row->getId() ?>"><i class="fa fa-comment"></i>
                                 Comment</button>
-                            <button type="button"
-                                <?php if($_SESSION['user']->getusername() != $row->getUsername()) echo ' hidden '?>
-                                class="w3-button w3-theme-d1 w3-margin-bottom" data-toggle="collapse"
-                                data-target="#collapseEdit<?= $row->getId() ?>"><i class="fa fa-pencil"></i>
-                                Edit</button>
+
 
                             <!-- collapse edit post-->
                             <div class="collapse" id="collapseEdit<?= $row->getId() ?>">
@@ -496,8 +492,8 @@ if(isset($_POST['username'])){
                                         </div>
                                         <button id="addc" type="" name="submitcomment" value="<?= $row->getId() ?>"
                                             class="btn btn-info">Add Comment</button>
-                                        <input type="hidden" value="add_comment.php">
-                                        <input type="hidden" id="uname" name="username" value="<?= $users->username ?>">
+                                        <input type="hidden" name="do" value="add_comment.php">
+                                        <input type="hidden" name="username" value="<?= $users->username ?>">
                                     </form>
                                     <hr>
                             </div>
