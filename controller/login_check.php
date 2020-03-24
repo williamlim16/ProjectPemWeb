@@ -32,7 +32,7 @@ if (!$captcha) {
 
             if ($res) {
                 $res = $res->fetch_assoc();
-                $loginCred = new LoginModel($res['username'], $res['password']);
+                $loginCred = new LoginModel($res['username'], $res['password'], $res['profilePicturePath']);
                 // echo md5($password);
                 // echo "<br>";
                 // echo $loginCred->getpassword();

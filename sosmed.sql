@@ -28,12 +28,18 @@ SET time_zone = "+00:00";
 -- Table structure for table `comment`
 --
 
-CREATE TABLE `comment` (
-  `commentID` int(45) NOT NULL,
+
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE IF NOT EXISTS `comment` (
+  `commentID` int(11) NOT NULL AUTO_INCREMENT ,
   `content` varchar(255) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `postID` varchar(45) NOT NULL,
-  `timestamp` varchar(100) DEFAULT NULL
+    `timestamp` varchar(100) DEFAULT NOW(),
+  `postID` int(11) NOT NULL,
+  PRIMARY KEY (`commentID`),
+  KEY `fkIdx_27` (`username`),
+  KEY `fkIdx_30` (`postID`)
+
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -57,11 +63,13 @@ INSERT INTO `comment` (`commentID`, `content`, `username`, `postID`, `timestamp`
 -- Table structure for table `post`
 --
 
-CREATE TABLE `post` (
-  `postID` int(45) NOT NULL,
+
+DROP TABLE IF EXISTS `post`;
+CREATE TABLE IF NOT EXISTS `post` (
+  `postID` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(255) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `timestamp` varchar(100) DEFAULT NULL,
+  `timestamp` varchar(100) DEFAULT NOW(),
   `picture` varchar(255) DEFAULT NULL,
   `photos` varchar(1000) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -110,7 +118,7 @@ CREATE TABLE `user` (
   `lastName` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `bdate` date NOT NULL,
-  `phonenum` int(100) NOT NULL,
+  `phonenum` varchar(45) NOT NULL,
   `gender` varchar(1) NOT NULL,
   `profilePicturePath` varchar(255) DEFAULT NULL,
   `coverPath` varchar(255) DEFAULT NULL,
@@ -165,13 +173,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `commentID` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `commentID` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `postID` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `postID` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
