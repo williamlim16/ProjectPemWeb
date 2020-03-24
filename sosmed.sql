@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 23, 2020 at 01:23 PM
+-- Generation Time: Mar 24, 2020 at 08:07 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -30,10 +30,11 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
-  `commentID` varchar(45) NOT NULL,
+  `commentID` int(11) NOT NULL AUTO_INCREMENT ,
   `content` varchar(255) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `postID` varchar(45) NOT NULL,
+    `timestamp` varchar(100) DEFAULT NOW(),
+  `postID` int(11) NOT NULL,
   PRIMARY KEY (`commentID`),
   KEY `fkIdx_27` (`username`),
   KEY `fkIdx_30` (`postID`)
@@ -47,10 +48,10 @@ CREATE TABLE IF NOT EXISTS `comment` (
 
 DROP TABLE IF EXISTS `post`;
 CREATE TABLE IF NOT EXISTS `post` (
-  `postID` varchar(45) NOT NULL,
+  `postID` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(255) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `timestamp` varchar(100),
+  `timestamp` varchar(100) DEFAULT NOW(),
   `picture` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`postID`),
   KEY `fkIdx_20` (`username`)
@@ -91,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `lastName` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `bdate` date NOT NULL,
-  `phonenum` int(100) NOT NULL,
+  `phonenum` varchar(45) NOT NULL,
   `gender` varchar(1) NOT NULL,
   `profilePicturePath` varchar(255) DEFAULT NULL,
   `coverPath` varchar(255) DEFAULT NULL,
@@ -105,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`username`, `firstName`, `lastName`, `password`, `bdate`, `phonenum`, `gender`, `profilePicturePath`, `coverPath`, `contact`, `userdesc`) VALUES
-('derp', 'derpsyt', 'lastDerp', '58fd9edd83341c29f1aebba81c31e257', '2000-04-11', 34648616, 'M', NULL, NULL, 'derp@gmail.com', NULL);
+('derp', '123', 'lastDerp', '58fd9edd83341c29f1aebba81c31e257', '2000-04-11', 34648616, 'M', NULL, NULL, 'derp@gmail.com', NULL);
 
 --
 -- Constraints for dumped tables

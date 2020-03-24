@@ -41,15 +41,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $duplikat = $result->num_rows != 0;
 
             if ($duplikat == true) {
-                echo "DUPE";
-                $response['status'] = 'duplicate';
+                // echo "DUPE";
+                $response['status'] = 'failed';
                 $response['message'] = 'Username already exists!';
             } else { // Aman, no duplikat
                 // Tambahkan pemeriksaan2 atau perubahan value di sini
 
                 // Insert ke DB
-                $insert_query = "INSERT INTO $table_name (username, password, firstName, lastName, bdate, gender, contact)
-                VALUE('$user_username', '$user_password', '$user_firstname', '$user_lastname', '$user_dateofbirth', '$user_gender', '$user_email')";
+                $insert_query = "INSERT INTO $table_name (username, password, firstName, lastName, bdate, gender, contact, phonenum)
+                VALUE('$user_username', '$user_password', '$user_firstname', '$user_lastname', '$user_dateofbirth', '$user_gender', '$user_email', '$user_phone_number')";
                 // phone number belum dipakai
 
                 // Cek hasil insert
@@ -57,12 +57,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 // Atur Response
                 if ($insert_result == false) {
-                    echo "CANNOT INSERT";
+                    // echo $conn->error;
 
                     $response['status'] = 'failed';
                     $response['message'] = 'Failed to insert values to DB!';
                 } else {
-                    echo "SUCCESS";
+                    // echo "SUCCESS";
 
                     $response['status'] = 'success';
                     $response['message'] = 'User Sign Up Successful!';
@@ -71,14 +71,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
     } else {
-        echo "PASS MISMATCH";
-        $response['status'] = 'password mismatch';
+        // echo "PASS MISMATCH";
+        $response['status'] = 'failed';
         $response['message'] = 'Password and Confirm Password does not match!';
     }
 } else {
-    echo "WRONG METHODD";
+    // echo "WRONG METHODD";
 
-    $response['status'] = 'method not allowed';
+    $response['status'] = 'failed';
     $response['message'] = 'Only accessible via POST Method!';
 }
 
