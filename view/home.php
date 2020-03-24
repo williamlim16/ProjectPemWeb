@@ -105,7 +105,7 @@ foreach ($result as $row) array_push($userPost, new PostModel(
                     <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
                         Like</button>
                     <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse"
-                        data-target="#collapseExample<?= $row->getId() ?>"><i class="fa fa-comment"></i>
+                        data-target="#postCollapse<?= $row->getId() ?>"><i class="fa fa-comment"></i>
                         Comment</button>
                     <button type="button" <?php if ($loginUser->getusername() != $row->getUsername()) echo ' hidden ' ?>
                         class="w3-button w3-theme-d1 w3-margin-bottom" data-toggle="collapse"
@@ -128,7 +128,7 @@ foreach ($result as $row) array_push($userPost, new PostModel(
                         <hr>
                     </div>
 
-                    <div class="collapse" id="collapseExample<?= $row->getId() ?>">
+                    <div class="collapse" id="postCollapse<?= $row->getId() ?>">
                         <!--GET COMMENT FOR EACH POST WITH QUERY, NOT REQUESTING ALL COMMENT AT ONCE -->
                         <?php
                             $id = $row->getId();
@@ -158,7 +158,7 @@ foreach ($result as $row) array_push($userPost, new PostModel(
                                 <p class="mb-1"><?= $com->getContent(); ?></p>
                                 <small><?= $com->getTimestamp(); ?></small>
                                 <small><a class="" data-toggle="collapse"
-                                        <?php if ($loginUser->getusername() != $row->getUsername()) echo ' hidden ' ?>
+                                        <?php if ($loginUser->getusername() != $com->getUsername()) echo ' hidden ' ?>
                                         href="#collapseExample<?= $com->getCommentId() ?>" role="button">
                                         Edit</a></small>
                                 <div class="collapse" id="collapseExample<?= $com->getCommentId() ?>">
@@ -277,6 +277,13 @@ foreach ($result as $row) array_push($userPost, new PostModel(
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript">
+    $('.collapse').collapse('hide');
+
+    jQuery('button').click(function(e) {
+        jQuery('.collapse').collapse('hide');
+    });
     </script>
 </body>
 

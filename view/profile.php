@@ -81,7 +81,8 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
         <a class="navbar-brand" href="index.php" style="font-family: 'Pacifico', cursive; font-size:25px">Xpress
 
             Yourself</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -90,8 +91,8 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                 <li class="nav-item active">
                     <form method="post">
                         <input type="hidden" name="loc" value="home.php">
-                        <button class="btn btn-link" type="submit" style="color:white">Home <span
-                                class="sr-only">(current)</span></but>
+                        <button class="btn btn-link p-0" type="submit" style="color:white">Home <span
+                                class="sr-only">(current)</span></button>
                     </form>
                 </li>
             </ul>
@@ -100,7 +101,8 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link" data-toggle="dropdown">
 
-                            <img src="<?= $loginUser->getprofilePicturePath() ?>" alt="Photo Avatar" id="profileavatar" class="avatar">
+                            <img src="<?= $loginUser->getprofilePicturePath() ?>" alt="Photo Avatar" id="profileavatar"
+                                class="avatar">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right animate slideIn">
                             <a href="index.php" class="dropdown-item">Signed in as
@@ -130,18 +132,19 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
             <div class="masthead" style="background-image: url('<?= $userProfile->getcoverPath() ?>')" alt="No cover!">
             </div>
             <img class="prof" src="                       
-            <?= $userProfile->profilePicturePath; ?>" style="display: block;max-width:180px; max-height:180px; width:auto; height:auto;">
+            <?= $userProfile->profilePicturePath; ?>"
+                style="display: block;max-width:180px; max-height:180px; width:auto; height:auto;">
             <div class="row">
                 <div class="col-3">
                     <?php if (!$otherUser) { ?>
-                        <form method="POST">
-                            <div class="d-flex justify-content-end">
-                                <button class="btn btn-link">
-                                    <i class="fas fa-pencil-alt" style="font-size:40px; color:black"></i>
-                                </button>
-                                <input type="hidden" name="loc" value="edit.php">
-                            </div>
-                        </form>
+                    <form method="POST">
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-link">
+                                <i class="fas fa-pencil-alt" style="font-size:40px; color:black"></i>
+                            </button>
+                            <input type="hidden" name="loc" value="edit.php">
+                        </div>
+                    </form>
                     <?php } ?>
                 </div>
                 <div class="col-md-3">
@@ -273,7 +276,7 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i
                                 class="fa fa-thumbs-up"></i> Like</button>
                         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" data-toggle="collapse"
-                            data-target="#collapseExample<?= $row->getId() ?>"><i class="fa fa-comment"></i>
+                            data-target="#postCollapse<?= $row->getId() ?>"><i class="fa fa-comment"></i>
                             Comment</button>
                         <button type="button" <?php if ($otherUser) echo ' hidden ' ?>
                             class="w3-button w3-theme-d1 w3-margin-bottom" data-toggle="collapse"
@@ -295,7 +298,7 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                             <hr>
                         </div>
 
-                        <div class="collapse" id="collapseExample<?= $row->getId() ?>">
+                        <div class="collapse" id="postCollapse<?= $row->getId() ?>">
                             <!--GET COMMENT FOR EACH POST WITH QUERY, NOT REQUESTING ALL COMMENT AT ONCE -->
                             <?php
                                 $id = $row->getId();
@@ -324,7 +327,8 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                     <hr>
                                     <p class="mb-1"><?= $com->getContent(); ?></p>
                                     <small><?= $com->getTimestamp(); ?></small>
-                                    <small><a class="" data-toggle="collapse" <?php if ($otherUser) echo ' hidden ' ?>
+                                    <small><a class="" data-toggle="collapse"
+                                            <?php if ($com->getusername() != $loginUser->getusername()) echo ' hidden ' ?>
                                             href="#collapseExample<?= $com->getCommentId() ?>" role="button">
                                             Edit</a></small>
                                     <div class="collapse" id="collapseExample<?= $com->getCommentId() ?>">
@@ -370,20 +374,20 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                 </div>
 
 
-                    <div class="col-md-2">
-                        <div class="w3-card w3-round w3-white w3-center" style="width: 110%; padding:20px">
-                            <form method="POST">
-                                <input type="hidden" name="loc" value="alluser.php">
-                                <button class="btn btn-link">
-                                    <a style="color:black">Find more friends!</a>
-                                </button>
-                            </form>
-                            <img src="img/addfriend.png" alt="Avatar" style="width:100%" /><br />
-                        </div>
+                <div class="col-md-2">
+                    <div class="w3-card w3-round w3-white w3-center" style="width: 110%; padding:20px">
+                        <form method="POST">
+                            <input type="hidden" name="loc" value="alluser.php">
+                            <button class="btn btn-link">
+                                <a style="color:black">Find more friends!</a>
+                            </button>
+                        </form>
+                        <img src="img/addfriend.png" alt="Avatar" style="width:100%" /><br />
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
     <!-- Footer -->
     <footer class="site-footer" style="margin-top: 30px">
