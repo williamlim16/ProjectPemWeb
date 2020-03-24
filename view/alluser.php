@@ -96,7 +96,9 @@ foreach ($result as $row) array_push($results, new User(
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link" data-toggle="dropdown">
+
                             <img alt="<?= $_SESSION['user']->getusername() ?>" id="profileavatar" class="avatar" src="<?= $_SESSION['user']->getProfilePicture() ?>">
+
                         </a>
                         <div class="dropdown-menu dropdown-menu-right animate slideIn">
                             <a href="profile.php" class="dropdown-item">Signed in as
