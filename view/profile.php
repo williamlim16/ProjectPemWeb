@@ -359,6 +359,7 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                 <?php endforeach; ?>
                                 <hr>
                                 <form method="POST" action="">
+
                                     <div class="form-group">
                                         <textarea class="form-control" placeholder="Add your comment" name="comment"
                                             id="textarea"></textarea>
