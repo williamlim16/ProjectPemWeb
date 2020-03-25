@@ -1,4 +1,5 @@
 <?php
+echo "hai";
 function sterilize_input($input)
 {
     $input = trim($input); // Ngilangin spasi, enter dll
