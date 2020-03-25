@@ -198,21 +198,30 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
 
                             ?>
                             <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
-                            <?php foreach ($skills as $row2) : ?>
-                                <p><?php echo $row2->getskills() ?></p>
-                                <div class="w3-light-grey w3-round-xlarge w3-small">
-                                    <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:<?php echo $row2->getpercentage() . '%' ?>">
-                                        <?php echo $row2->getpercentage() ?>%</div>
-                                </div>
-                                <p>Illustrator</p>
-                                <div class="w3-light-grey w3-round-xlarge w3-small">
-                                    <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:75%">75%</div>
-                                </div>
-                                <p>Media</p>
-                                <div class="w3-light-grey w3-round-xlarge w3-small">
-                                    <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:50%">50%</div>
-                                </div>
-                                <br>
+                            <?php foreach ($skills as $row2) :?>
+                            <p><?php echo $row2->getskills() ?></p>
+                            <div class="w3-light-grey w3-round-xlarge w3-small">
+                                <div class="w3-container w3-center w3-round-xlarge w3-blue"
+                                    style="width:<?php echo $row2->getpercentage() . '%' ?>">
+                                    <?php echo $row2->getpercentage() ?>%</div>
+                            </div>
+                            <?php endforeach; ?>
+                            <br>
+                            <!-- <p class="w3-large w3-text-theme"><b><i
+                                        class="fa fa-globe fa-fw w3-margin-right w3-text-blue"></i>Languages</b></p>
+                            <p>English</p>
+                            <div class="w3-light-grey w3-round-xlarge">
+                                <div class="w3-round-xlarge w3-blue" style="height:24px;width:100%"></div>
+                            </div>
+                            <p>Spanish</p>
+                            <div class="w3-light-grey w3-round-xlarge">
+                                <div class="w3-round-xlarge w3-blue" style="height:24px;width:55%"></div>
+                            </div>
+                            <p>German</p>
+                            <div class="w3-light-grey w3-round-xlarge">
+                                <div class="w3-round-xlarge w3-blue" style="height:24px;width:25%"></div>
+                            </div>
+                            <br> -->
                         </div>
                     </div>
                 </div>
