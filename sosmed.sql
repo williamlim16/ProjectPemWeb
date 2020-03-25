@@ -110,9 +110,9 @@ CREATE TABLE `user` (
   `lastName` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `bdate` date NOT NULL,
-  `phonenum` int(100) NOT NULL,
+  `phonenum` varchar(45) NOT NULL,
   `gender` varchar(1) NOT NULL,
-  `profilePicturePath` varchar(255) DEFAULT NULL,
+  `profilePicturePath` varchar(500) DEFAULT NULL,
   `coverPath` varchar(255) DEFAULT NULL,
   `contact` varchar(45) NOT NULL,
   `userdesc` varchar(255) DEFAULT NULL

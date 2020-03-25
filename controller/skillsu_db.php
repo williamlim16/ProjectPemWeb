@@ -1,5 +1,5 @@
 <?php
-echo "hai";
+// echo "hai";
 function sterilize_input($input)
 {
     $input = trim($input); // Ngilangin spasi, enter dll
@@ -32,13 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $insert_result = $conn->query($check_query);
         }
     }
-} else {
-    echo "PASS MISMATCH";
-    $response['status'] = 'password mismatch';
-    $response['message'] = 'Password and Confirm Password does not match!';
 }
-
-
 
 
 // Kembalikan response JSON
