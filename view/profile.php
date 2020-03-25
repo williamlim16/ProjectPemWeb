@@ -211,10 +211,12 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                             </div>
                             <?php endforeach; ?>
                             <br>
+                            <?php if (!$otherUser) { ?>
                             <form method="post">
                                 <input type="hidden" name="loc" value="edit.php">
                                 <button class="btn btn-warning" type="submit"> Edit Profile</button>
                             </form>
+                            <?php } ?>
                             <!-- <p class="w3-large w3-text-theme"><b><i
                                         class="fa fa-globe fa-fw w3-margin-right w3-text-blue"></i>Languages</b></p>
                             <p>English</p>
@@ -272,8 +274,8 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                     <?php } ?>
                     <?php foreach (array_reverse($userPost) as $row) : ?>
                     <div class="w3-container w3-card w3-white w3-round w3-margin"><br />
-                        <img src=" <?= $row->getPicture() ?>" alt="avatar here"
-                            class="w3-left w3-margin-right postPicSize" style="width:60px" />
+                        <img src=" <?= $row->getPicture() ?>" alt="avatar" class="w3-left w3-margin-right postPicSize"
+                            style="width:60px" />
                         <span class="w3-right w3-opacity"> <?= $row->getTimestamp() ?> </span>
                         <h4><a href="index.php?user=<?= $row->getUsername() ?>"><?= $row->getUsername() ?></a></h4>
                         <br />
@@ -323,7 +325,7 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                 <?php foreach ($comments as $com) : ?>
                                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-start">
-                                        <img src=" <?= $com->getPicture() ?>" alt="avatar here"
+                                        <img src=" <?= $com->getPicture() ?>" alt="avatar"
                                             class="w3-left w3-margin-right postPicSize"
                                             style="width: 35px;height: 35px;" />
                                         <h5 class="mb-1"><a

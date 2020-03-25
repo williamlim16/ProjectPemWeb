@@ -96,7 +96,7 @@ foreach ($result as $row) array_push($userPost, new PostModel(
 
                 <?php foreach (array_reverse($userPost) as $row) : ?>
                 <div class="w3-container w3-card w3-white w3-round w3-margin"><br />
-                    <img src=" <?= $row->getPicture() ?>" alt="avatar here" class="w3-left w3-margin-right postPicSize"
+                    <img src=" <?= $row->getPicture() ?>" alt="avatar" class="w3-left w3-margin-right postPicSize"
                         style="width:60px" />
                     <span class="w3-right w3-opacity"> <?= $row->getTimestamp() ?> </span>
                     <h4><a href="index.php?user=<?= $row->getUsername() ?>"><?= $row->getUsername() ?>
@@ -149,7 +149,7 @@ foreach ($result as $row) array_push($userPost, new PostModel(
                             <?php foreach ($comments as $com) : ?>
                             <div class="list-group-item list-group-item-action flex-column align-items-start">
                                 <div class="d-flex w-100 justify-content-start">
-                                    <img src=" <?= $com->getPicture() ?>" alt="avatar here"
+                                    <img src=" <?= $com->getPicture() ?>" alt="avatar"
                                         class="w3-left w3-margin-right postPicSize" style="width: 35px;height: 35px;" />
                                     <h5 class="mb-1"><a
                                             href="index.php?user=<?= $com->getUsername() ?>"><?= $com->getUsername() ?></a>

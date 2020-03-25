@@ -57,10 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 // Atur Response
                 if ($insert_result == false) {
-                    // echo $conn->error;
+                    echo $conn->error;
 
                     $response['status'] = 'failed';
-                    $response['message'] = 'Failed to insert values to DB!';
+                    $response['message'] = 'Register failed!';
                 } else {
                     // echo "SUCCESS";
 
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $response['status'] = 'failed';
     $response['message'] = 'Only accessible via POST Method!';
 }
-
+if ($insert_result == false) echo $conn->error;
 // Kembalikan response JSON
 // echo json_encode($response);
 
