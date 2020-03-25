@@ -190,23 +190,24 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                 <?= $userProfile->contact ?>
                             </p>
                             <hr>
+                            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
                             <?php
                             $query = "SELECT * FROM skills WHERE username_fk =  '" . $_SESSION['user']->getusername() . "'";
                             $result = $conn->query($query);
                             $skills = array();
                             foreach ($result as $row) array_push($skills, new Skills($row['username_fk'], $row['skills'], $row['percent']));
-
-                            ?>
-                            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-blue"></i>Skills</b></p>
-                            <?php foreach ($skills as $row2) :?>
-                            <p><?php echo $row2->getskills() ?></p>
-                            <div class="w3-light-grey w3-round-xlarge w3-small">
-                                <div class="w3-container w3-center w3-round-xlarge w3-blue"
-                                    style="width:<?php echo $row2->getpercentage() . '%' ?>">
-                                    <?php echo $row2->getpercentage() ?>%</div>
-                            </div>
+                            foreach ($skills as $row2) : ?>
+                                <p><?php echo $row2->getskills() ?></p>
+                                <div class="w3-light-grey w3-round-xlarge w3-small">
+                                    <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:<?php echo $row2->getpercentage() . '%' ?>">
+                                        <?php echo $row2->getpercentage() ?>%</div>
+                                </div>
                             <?php endforeach; ?>
                             <br>
+                            <form method="post">
+                                <input type="hidden" name="loc" value="edit.php">
+                                <button class="btn btn-warning" type="submit"> Edit Profile</button>
+                            </form>
                             <!-- <p class="w3-large w3-text-theme"><b><i
                                         class="fa fa-globe fa-fw w3-margin-right w3-text-blue"></i>Languages</b></p>
                             <p>English</p>
@@ -275,7 +276,6 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                 Comment</button>
                             <button type="button" <?php if ($otherUser) echo ' hidden ' ?> class="w3-button w3-theme-d1 w3-margin-bottom" data-toggle="collapse" data-target="#collapseEdit<?= $row->getId() ?>"><i class="fas fa-pencil-alt"></i>
                                 Edit</button>
-
                             <div class="collapse" id="collapseEdit<?= $row->getId() ?>">
                                 <form method="post">
                                     <div class="form-group">
@@ -292,20 +292,19 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                             <div class="collapse" id="postCollapse<?= $row->getId() ?>">
                                 <!--GET COMMENT FOR EACH POST WITH QUERY, NOT REQUESTING ALL COMMENT AT ONCE -->
                                 <?php
-                                    $id = $row->getId();
-                                    $getComment = "SELECT * FROM comment WHERE comment.PostID = '$id'";
-                                    $res = $conn->query($getComment);
-                                    $comments = array();
-                                    foreach ($res as $com) array_push($comments, new CommentModel(
-                                        $com['commentID'],
-                                        $com['content'],
-                                        $com['username'],
-                                        $com['postID'],
-                                        $com['timestamp'],
-                                        $com['picture']
-                                    ));
-                                    foreach ($comments as $com) : ?>
-
+                                $id = $row->getId();
+                                $getComment = "SELECT * FROM comment WHERE comment.PostID = '$id'";
+                                $res = $conn->query($getComment);
+                                $comments = array();
+                                foreach ($res as $com) array_push($comments, new CommentModel(
+                                    $com['commentID'],
+                                    $com['content'],
+                                    $com['username'],
+                                    $com['postID'],
+                                    $com['timestamp'],
+                                    $com['picture']
+                                ));
+                                foreach ($comments as $com) : ?>
                                     <div class="list-group">
                                         <div class="list-group-item list-group-item-action flex-column align-items-start">
                                             <div class="d-flex w-100 justify-content-start">
@@ -336,7 +335,6 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                     <?php endforeach; ?>
                                     <hr>
                                     <form method="POST" action="">
-
                                         <div class="form-group">
                                             <textarea class="form-control" placeholder="Add your comment" name="comment" id="textarea"></textarea>
                                         </div>
@@ -351,27 +349,19 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                 <?php endforeach; ?>
                                 <hr>
                                 <form method="POST" action="">
-
                                     <div class="form-group">
                                         <textarea class="form-control" placeholder="Add your comment" name="comment" id="textarea"></textarea>
                                     </div>
-                                    <button type="submit" name="submitcomment" value="<?= $row->getId() ?>" class="btn btn-info">Add Comment</button>
+                                    <button type="submit" name="submitcomment" value="<?php $row->getId() ?>" class="btn btn-info">Add Comment</button>
                                     <input type="hidden" name="do" value="add_comment.php">
-                                    <input type="hidden" name="username" value="<?= $row->getUsername() ?>">
-                                    <input type="hidden" name="pp" value="<?= $loginUser->profilePicturePath ?>">
+                                    <input type="hidden" name="username" value="<?php $row->getUsername() ?>">
+                                    <input type="hidden" name="pp" value="<?php $loginUser->profilePicturePath() ?>">
                                 </form>
                                 <hr>
                             </div>
                         </div>
-                    <?php endforeach; ?>
-
-
-                    <!-- post -->
-
-
+                        <!-- post -->
                 </div>
-
-
                 <div class="col-md-2">
                     <div class="w3-card w3-round w3-white w3-center" style="width: 110%; padding:20px">
                         <form method="POST">
