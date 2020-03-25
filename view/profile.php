@@ -259,9 +259,8 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                 </div>
                             </div>
                         </div>
+                        <!-- write status -->
                     <?php } ?>
-                    <!-- write status -->
-
                     <?php foreach (array_reverse($userPost) as $row) : ?>
                         <div class="w3-container w3-card w3-white w3-round w3-margin"><br />
                             <img src=" <?= $row->getPicture() ?>" alt="avatar here" class="w3-left w3-margin-right postPicSize" style="width:60px" />
@@ -346,114 +345,114 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                     <hr>
                                     </div>
                                     <p class="mb-1"></p>
+                                    <hr>
+                                    <form method="POST">
+                                        <div class="form-group">
+                                            <textarea class="form-control" placeholder="Add your comment" name="comment" id="textarea"></textarea>
+                                        </div>
+                                        <button type="submit" name="submitcomment" value="<?php $row->getId() ?>" class="btn btn-info">Add Comment</button>
+                                        <input type="hidden" name="do" value="add_comment.php">
+                                        <input type="hidden" name="username" value="<?php $row->getUsername() ?>">
+                                        <input type="hidden" name="pp" value="<?php $loginUser->profilePicturePath ?>">
+                                    </form>
+                                    <hr>
                                 <?php endforeach; ?>
-                                <hr>
-                                <form method="POST" action="">
-                                    <div class="form-group">
-                                        <textarea class="form-control" placeholder="Add your comment" name="comment" id="textarea"></textarea>
-                                    </div>
-                                    <button type="submit" name="submitcomment" value="<?php $row->getId() ?>" class="btn btn-info">Add Comment</button>
-                                    <input type="hidden" name="do" value="add_comment.php">
-                                    <input type="hidden" name="username" value="<?php $row->getUsername() ?>">
-                                    <input type="hidden" name="pp" value="<?php $loginUser->profilePicturePath() ?>">
-                                </form>
-                                <hr>
                             </div>
                         </div>
                         <!-- post -->
+
                 </div>
-                <div class="col-md-2">
-                    <div class="w3-card w3-round w3-white w3-center" style="width: 110%; padding:20px">
-                        <form method="POST">
-                            <input type="hidden" name="loc" value="alluser.php">
-                            <button class="btn btn-link">
-                                <a style="color:black">Find more friends!</a>
-                            </button>
-                        </form>
-                        <img src="img/addfriend.png" alt="Avatar" style="width:100%" /><br />
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="w3-card w3-round w3-white w3-center" style="width: 110%; padding:20px">
+                <form method="POST">
+                    <input type="hidden" name="loc" value="alluser.php">
+                    <button class="btn btn-link">
+                        <a style="color:black">Find more friends!</a>
+                    </button>
+                </form>
+                <img src="img/addfriend.png" alt="Avatar" style="width:100%" /><br />
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer" style="margin-top: 30px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <h6>About</h6>
+                        <p class="text-justify">Project UTS Web Programming. Semoga Pak Putu senang dengan project kami.
+                        </p>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Materials</h6>
+                        <ul class="footer-links">
+                            <li>
+                                <a>HTML5</a>
+                            </li>
+                            <li>
+                                <a>CSS</a>
+                            </li>
+                            <li>
+                                <a>Bootstrap</a>
+                            </li>
+                            <li>
+                                <a>PHP</a>
+                            </li>
+                            <li>
+                                <a>Javascript</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Members</h6>
+                        <ul class="footer-links">
+                            <li><a href="#">Aurelius Ryo Wang</a></li>
+                            <li><a href="#">Arida Amalia Rosa</a></li>
+                            <li><a href="#">Kevin Sherdy Lieanto </a></li>
+                            <li><a href="#">Michael</a></li>
+                            <li><a href="#">Ryukin Aranta Lika</a></li>
+                            <li><a href="#">William</a></li>
+                        </ul>
                     </div>
                 </div>
+                <hr>
             </div>
-        </div>
-    </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by
+                            <a href="#">Ryukin, Rara, Ryo, William, Michael, Kevin</a>.
+                        </p>
+                    </div>
 
-    <!-- Footer -->
-    <footer class="site-footer" style="margin-top: 30px">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <h6>About</h6>
-                    <p class="text-justify">Project UTS Web Programming. Semoga Pak Putu senang dengan project kami.
-                    </p>
-                </div>
 
-                <div class="col-xs-6 col-md-3">
-                    <h6>Materials</h6>
-                    <ul class="footer-links">
-                        <li>
-                            <a>HTML5</a>
-                        </li>
-                        <li>
-                            <a>CSS</a>
-                        </li>
-                        <li>
-                            <a>Bootstrap</a>
-                        </li>
-                        <li>
-                            <a>PHP</a>
-                        </li>
-                        <li>
-                            <a>Javascript</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-xs-6 col-md-3">
-                    <h6>Members</h6>
-                    <ul class="footer-links">
-                        <li><a href="#">Aurelius Ryo Wang</a></li>
-                        <li><a href="#">Arida Amalia Rosa</a></li>
-                        <li><a href="#">Kevin Sherdy Lieanto </a></li>
-                        <li><a href="#">Michael</a></li>
-                        <li><a href="#">Ryukin Aranta Lika</a></li>
-                        <li><a href="#">William</a></li>
-                    </ul>
                 </div>
             </div>
-            <hr>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-sm-6 col-xs-12">
-                    <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by
-                        <a href="#">Ryukin, Rara, Ryo, William, Michael, Kevin</a>.
-                    </p>
-                </div>
+        </footer>
 
-
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        jQuery('button').click(function(e) {
-            jQuery('.collapse').collapse('hide');
-        });
-        // $('#addc').click(function() {
-        //     var comment = $('#textarea').val();
-        //     var username = $('#uname').val();
-        //     var id = $('#addc').val()
-        //     $.ajax({
-        //         type: 'POST',
-        //         url: './controller/add_comment.php',
-        //         data: { comment: comment, username: username, submitcontent: id }
-        //     });
-        // });
-    </script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            jQuery('button').click(function(e) {
+                jQuery('.collapse').collapse('hide');
+            });
+            // $('#addc').click(function() {
+            //     var comment = $('#textarea').val();
+            //     var username = $('#uname').val();
+            //     var id = $('#addc').val()
+            //     $.ajax({
+            //         type: 'POST',
+            //         url: './controller/add_comment.php',
+            //         data: { comment: comment, username: username, submitcontent: id }
+            //     });
+            // });
+        </script>
 
 </body>
 
