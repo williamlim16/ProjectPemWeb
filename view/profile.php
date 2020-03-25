@@ -248,8 +248,8 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                                     <form method="post" enctype="multipart/form-data">
                                         <div class="form-group row">
                                             <div class="container">
-                                                <input type="text" class="w3-border w3-padding form-control" name="post"
-                                                    id="post" style="height: 55px;">
+                                                <input type="text" class="w3-border w3-padding form-control w3-col s11"
+                                                    name="post" id="post" style="height: 55px;">
                                                 <div class="custom-file">
                                                     <input type="file" name="fileToUpload" class="custom-file-input"
                                                         id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
@@ -379,21 +379,20 @@ if ($userProfile->getprofilePicturePath() == null) $userProfile->setprofilePictu
                     </div>
                     <?php endforeach; ?>
                 </div>
+                <!-- post -->
+                <div class="col-md-2">
+                    <div class="w3-card w3-round w3-white w3-center" style="width: 110%; padding:20px">
+                        <form method="POST">
+                            <input type="hidden" name="loc" value="alluser.php">
+                            <button class="btn btn-link" type="submit">
+                                <a style="color:black">Find more friends!</a>
+                            </button>
+                            <input type="image" src="img/addfriend.png" alt="Avatar" style="width:100%" /><br />
+                        </form>
+                    </div>
+                </div>
             </div>
-            <!-- post -->
 
-        </div>
-    </div>
-    </div>
-    <div class="col-md-2 offset-md-4">
-        <div class="w3-card w3-round w3-white w3-center" style="width: 110%; padding:20px">
-            <form method="POST">
-                <input type="hidden" name="loc" value="alluser.php">
-                <button class="btn btn-link" type="submit">
-                    <a style="color:black">Find more friends!</a>
-                </button>
-                <input type="image" src="img/addfriend.png" alt="Avatar" style="width:100%" /><br />
-            </form>
         </div>
     </div>
 

@@ -102,6 +102,8 @@ foreach ($result as $row) array_push($userPost, new PostModel(
                     <h4><a href="index.php?user=<?= $row->getUsername() ?>"><?= $row->getUsername() ?>
                         </a></h4><br />
                     <hr class="w3-clear" />
+                    <img src="<?= $row->getPhotos() ?>" class="img-fluid rounded mx-auto d-block">
+
                     <p><?= $row->getContent() ?></p>
                     <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>
                         Like</button>
