@@ -11,7 +11,8 @@ foreach ($result as $row) array_push($userPost, new PostModel(
     $row['content'],
     $row['username'],
     $row['timestamp'],
-    $row['picture']
+    $row['picture'],
+    $row['photos']
 ));
 
 
@@ -71,7 +72,7 @@ foreach ($result as $row) array_push($userPost, new PostModel(
                                 <br><strong><?= $loginUser->getusername() ?></strong></a>
                             <div class="dropdown-divider"></div>
                             <form method="POST">
-                                <button type="submit" name="do" value="session.php" class="dropdown-item">My
+                                <button type="submit" name="loc" value="profile.php" class="dropdown-item">My
                                     Profile</button>
                                 <input type="hidden" name="profile">
                             </form>
@@ -140,25 +141,25 @@ foreach ($result as $row) array_push($userPost, new PostModel(
                                 $com['content'],
                                 $com['username'],
                                 $com['postID'],
-                                $com['timestamp']
-                            ));
-                            foreach ($comments as $com) : ?>
+                                $com['timestamp'],
+                                $com['picture']
+                            )); ?>
 
                         <div class="list-group">
+                            <?php foreach ($comments as $com) : ?>
                             <div class="list-group-item list-group-item-action flex-column align-items-start">
                                 <div class="d-flex w-100 justify-content-start">
-                                    <img src=" <?= $row->getPicture() ?>" alt="avatar here"
+                                    <img src=" <?= $com->getPicture() ?>" alt="avatar here"
                                         class="w3-left w3-margin-right postPicSize" style="width: 35px;height: 35px;" />
                                     <h5 class="mb-1"><a
-                                            href="index.php?user=<?= $com->getUsername() ?>"><?= $com->getUsername() ?>
-                                        </a>
+                                            href="index.php?user=<?= $com->getUsername() ?>"><?= $com->getUsername() ?></a>
                                         </h3>
                                 </div>
                                 <hr>
                                 <p class="mb-1"><?= $com->getContent(); ?></p>
                                 <small><?= $com->getTimestamp(); ?></small>
                                 <small><a class="" data-toggle="collapse"
-                                        <?php if ($loginUser->getusername() != $com->getUsername()) echo ' hidden ' ?>
+                                        <?php if ($com->getusername() != $loginUser->getusername()) echo ' hidden ' ?>
                                         href="#collapseExample<?= $com->getCommentId() ?>" role="button">
                                         Edit</a></small>
                                 <div class="collapse" id="collapseExample<?= $com->getCommentId() ?>">
@@ -170,37 +171,34 @@ foreach ($result as $row) array_push($userPost, new PostModel(
                                         <button type="submit" name="editcomment" value="<?= $com->getCommentId() ?>"
                                             class="btn btn-success">Confirm</button>
                                         <input type="hidden" name="do" value="add_comment.php">
-                                        <input type="hidden" name="username" value="<?= $loginUser->username ?>">
+                                        <input type="hidden" name="username" value="<?= $row->getUsername() ?>">
                                         <button type="submit" name="delete" value="<?= $com->getCommentId() ?>"
                                             class="btn btn-danger">Delete</button>
+                                        <input type="hidden" name="username" value="<?= $row->getUsername() ?>">
                                         <input type="hidden" name="do" value="add_comment.php">
-                                        <input type="hidden" name="loc" value="home.php">
-
                                     </form>
                                 </div>
                             </div>
+                            <p class="mb-1"></p>
+                            <?php endforeach; ?>
+                            <hr>
+                            <form method="POST" action="">
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="Add your comment" name="comment"
+                                        id="textarea"></textarea>
+                                </div>
+                                <button type="submit" name="submitcomment" value="<?= $row->getId() ?>"
+                                    class="btn btn-info">Add Comment</button>
+                                <input type="hidden" name="do" value="add_comment.php">
+                                <input type="hidden" name="pp" value="<?= $loginUser->profilePicturePath ?>">
+                                <input type="hidden" name="loc" value="home.php">
+                            </form>
+                            <hr>
                         </div>
-                        <p class="mb-1"></p>
-                        <?php endforeach; ?>
-                        <hr>
-                        <form method="POST" action="">
-
-                            <div class="form-group">
-                                <textarea class="form-control" placeholder="Add your comment" name="comment"
-                                    id="textarea"></textarea>
-                            </div>
-                            <button type="submit" name="submitcomment" value="<?= $row->getId() ?>"
-                                class="btn btn-info">Add
-                                Comment</button>
-                            <input type="hidden" name="do" value="add_comment.php">
-                            <input type="hidden" name="username" value="<?= $loginUser->username ?>">
-                            <input type="hidden" name="loc" value="home.php">
-
-                        </form>
-                        <hr>
                     </div>
                 </div>
                 <?php endforeach; ?>
+
             </div>
         </div>
 
